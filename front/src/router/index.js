@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/pages/about/AboutPage.vue'),
+    component: () => import('@/pages/activities/word-by-word/WordByWordPage.vue'),
   },
 ]
 

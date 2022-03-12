@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     async loadData() {
-      const response = await fetch('http://localhost:5000/api/info')
+      const response = await fetch('http://localhost:5000/api/activities')
       this.info = await response.json()
     }
   }
