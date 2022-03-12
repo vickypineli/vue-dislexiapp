@@ -9,7 +9,7 @@ def main():
 
     info_repository = InfoRepository(database_path)
 
-    info_repository.save(Info(app_name="f5-seed-app"))
+    info_repository.save(Info(app_name="irla-kurri"))
 
 
 if __name__ == '__main__':
