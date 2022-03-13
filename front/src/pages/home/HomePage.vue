@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="@/assets/img/logo.png" />
-    <h1>{{ info.app_name }}</h1>
+    <!-- <img alt="Vue logo" src="@/assets/img/logo.png" /> -->
+    <h1>ONGI ETORRI</h1>
   </div>
 </template>
 

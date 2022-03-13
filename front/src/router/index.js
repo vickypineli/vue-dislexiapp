@@ -7,9 +7,14 @@ const routes = [
     component: () => import('@/pages/home/HomePage.vue'),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('@/pages/activities/word-by-word/WordByWordPage.vue'),
+    path: '/activities',
+    name: 'activities',
+    component: () => import('@/pages/activities/ActivitiesPage.vue'),
+  },
+  {
+    path: '/activities/word-by-word',
+    name: 'WordByWord',
+    component: () => import('@/pages/word-by-word/WordByWordPage.vue'),
   },
 ]
 
