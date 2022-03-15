@@ -16,6 +16,7 @@ def test_should_return_info_in_database():
     )
 
     response = client.get("/api/info")
+    
     assert response.json == {
         "app_name": "test application",
     }

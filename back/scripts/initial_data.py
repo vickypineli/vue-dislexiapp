@@ -14,15 +14,11 @@ def main():
 
     info_repository.save(Info(app_name="irla-kurri"))
 
-    text1 = ("En un lugar de la Mancha de cuyo nombre no quiero acordarme ")
-    text2 = ("A cien cañones por banda, viento en popa a toda vela ")
-    text3 = ("Cuando ante tí se abran muchos caminos y no sepas cual recorrer")
-
+    Activity1 = Activity (text = "En un lugar la Mancha de cuyo nombre no quiero acordarme ")
+                           
     activity_repository = ActivityRepository(database_path)
-    activity_repository.save(text1)
-    activity_repository.save(text2)
-    activity_repository.save(text3)
+    activity_repository.save(Activity1)
     
-
-if __name__ == '__main__':
+    print("Base de datos inicializada en" + database_path)
+    
     main()

@@ -22,9 +22,14 @@ def create_app(repositories):
     #     all_activities = repositories["activities"].get_all_activities()
     #     return object_to_json(all_activities)   
     
-    @app.route("/api/activities/word-by-word", methods=["GET"])
-    def text_get():
-        text_selected = repositories["texts"].get_text()
-        return object_to_json(text_selected)
+    @app.route("/api/activities/word-by-word/", methods=["GET"])
+    def wordByWord_text_get():
+        text_all = repositories["Activities"].get_text()
+        return object_to_json(text_all)
 
-    return app
+    # @app.route("/api/activities/word-by-word/<id>", methods=["GET"])
+    # def wordByWord_text_by_id(id):
+    #     text = repositories["Activity"].get_by_id(id)
+    #     return object_to_json(text)
+
+        return app
