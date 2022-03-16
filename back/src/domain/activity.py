@@ -1,12 +1,14 @@
 import sqlite3
 
 class Activity:
-    def __init__(self,text):
-        self.text = text
+    def __init__(self,id,name):
+        self.id = id
+        self.name = name
 
     def to_dict(self):
         return {
-            'text': self.text
+            'id': self.id,
+            'name': self.name,
         }
 
 class ActivityRepository:
@@ -24,8 +26,7 @@ class ActivityRepository:
             create table if not exists activities (
                 id varchar,
                 name varchar,
-            )
-            
+            )  
         """
         conn = self.create_conn()
         cursor = conn.cursor()
@@ -39,10 +40,10 @@ class ActivityRepository:
         cursor.execute(sql)
 
         data = cursor.fetchall()
-        activities = []
+        result = []
         for item in data:
             activity = Activity(**item)
-            activities.append(activity)
-        return activities
+            result.append(activity)
+        return result
      
  

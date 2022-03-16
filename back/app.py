@@ -9,7 +9,7 @@ database_path = "data/database.db"
 repositories = {
     "info": InfoRepository(database_path),
     "activities": ActivityRepository(database_path),
-    "wordbyword": WordbywordRepository(database_path),
+   
 }
 
 app = create_app(repositories)

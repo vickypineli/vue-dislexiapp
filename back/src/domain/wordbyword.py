@@ -1,13 +1,14 @@
 import sqlite3
 
 class Wordbyword:
-    def__init__(self, text):
+    def __init__(self, text):
        self.text = text
     
     def to_dict(self):
         return {
-            'text': self.text
+            'text': self.text,
         }
+
 class WordbywordRepository:
     def __init__(self, database_path):
         self.database_path = database_path
