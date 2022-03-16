@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from src.lib.utils import object_to_json
-
+from src.domain.activity import Activity
 
 def create_app(repositories):
     app = Flask(__name__)
