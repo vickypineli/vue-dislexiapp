@@ -1,15 +1,14 @@
 import sqlite3
 
-class Activity:
-    def __init__(self,text):
-        self.text = text
-
+class Wordbyword:
+    def__init__(self, text):
+       self.text = text
+    
     def to_dict(self):
         return {
             'text': self.text
         }
-
-class ActivityRepository:
+class WordbywordRepository:
     def __init__(self, database_path):
         self.database_path = database_path
         self.init_tables()
@@ -22,8 +21,7 @@ class ActivityRepository:
     def init_tables(self):
         sql = """
             create table if not exists activities (
-                id varchar,
-                name varchar,
+                text varchar
             )
             
         """
@@ -32,17 +30,10 @@ class ActivityRepository:
         cursor.execute(sql)
         conn.commit()
 
-    def get_all(self):
+    def get_texts(self):
         sql = """select * from activities"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql)
 
-        data = cursor.fetchall()
-        activities = []
-        for item in data:
-            activity = Activity(**item)
-            activities.append(activity)
-        return activities
-     
- 
+        return cursor.fetchall()
