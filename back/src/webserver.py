@@ -21,12 +21,12 @@ def create_app(repositories):
 
     @app.route("/api/activities", methods=["GET"])
     def get_all_activities():
-        all_activities = repositories["activities"].get_all()
+        all_activities = repositories["Activities"].get_all()
         return object_to_json(all_activities)   
     
     @app.route("/api/activities/word-by-word/", methods=["GET"])
     def wordByWord_text_get():
-        text_all = repositories["Activities"].get_texts()
+        text_all = repositories["Wordbyword"].get_texts()
         return object_to_json(text_all)
 
     # @app.route("/api/activities/<name>", methods=["GET"])

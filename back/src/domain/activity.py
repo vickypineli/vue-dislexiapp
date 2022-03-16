@@ -23,7 +23,7 @@ class ActivityRepository:
 
     def init_tables(self):
         sql = """
-            create table if not exists activities (
+            create table if not exists activities  (
                 id varchar,
                 name varchar,
             )  
