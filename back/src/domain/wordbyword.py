@@ -21,10 +21,9 @@ class WordbywordRepository:
 
     def init_tables(self):
         sql = """
-            create table if not exists activities (
+            create table if not exists wordbyword (
                 text varchar
             )
-            
         """
         conn = self.create_conn()
         cursor = conn.cursor()
