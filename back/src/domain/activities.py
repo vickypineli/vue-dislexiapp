@@ -1,7 +1,7 @@
 import sqlite3
 
 class Activity:
-    def __init__(self,id,name):
+    def __init__ (self,id,name):
         self.id = id
         self.name = name
 
@@ -12,7 +12,7 @@ class Activity:
         }
 
 class ActivityRepository:
-    def __init__(self, database_path):
+    def __init__ (self, database_path):
         self.database_path = database_path
         self.init_tables()
 

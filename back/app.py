@@ -5,7 +5,6 @@ from src.domain.info import InfoRepository
 from src.domain.activities import ActivityRepository
 from src.domain.wordbyword import WordbywordRepository
 
-
 database_path = "data/database.db"
 
 repositories = {

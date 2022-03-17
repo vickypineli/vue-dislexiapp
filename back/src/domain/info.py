@@ -6,7 +6,9 @@ class Info:
         self.app_name = app_name
 
     def to_dict(self):
-        return {"app_name": self.app_name}
+        return {
+               "app_name": self.app_name
+        }
 
 
 class InfoRepository:
@@ -43,7 +45,8 @@ class InfoRepository:
     def save(self, info):
         sql = """insert into info (app_name) values (
             :app_name
-        ) """
+        ) 
+        """
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql, info.to_dict())
