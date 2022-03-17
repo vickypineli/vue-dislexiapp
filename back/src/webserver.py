@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from src.lib.utils import object_to_json
-from domain.activites import Activity
+from src.domain.activities import Activity
 from src.domain.wordbyword import Wordbyword
 
 
