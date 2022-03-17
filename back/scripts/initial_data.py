@@ -5,7 +5,7 @@ def main():
     sys.path.insert(0, "")
 
     from src.domain.info import Info, InfoRepository
-    from domain.activites import Activity, ActivityRepository
+    from src.domain.activities import Activity, ActivityRepository
     from src.domain.wordbyword import Wordbyword, WordbywordRepository
 
     database_path = "data/database.db"
