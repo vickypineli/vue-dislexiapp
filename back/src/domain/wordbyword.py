@@ -1,16 +1,18 @@
 import sqlite3
 
 class Wordbyword:
-    def __init__(self, text):
+    def __init__(self, id, text):
+        self.id = id
         self.text = text
 
     def to_dict(self):
         return {
+            'id': self.id,
             'text': self.text
         }
 
 class WordbywordRepository:
-    def __init__(self, database_path):
+    def __init__ (self, database_path):
         self.database_path = database_path
         self.init_tables()
 
@@ -22,7 +24,8 @@ class WordbywordRepository:
     def init_tables(self):
         sql = """
             create table if not exists wordbyword (
-                "text" TEXT
+                "id" varchar,
+                "text" text
             )
         """
         conn = self.create_conn()
@@ -39,13 +42,13 @@ class WordbywordRepository:
         return cursor.fetchall()
 
     def save(self, wordbyword):
-        sql = """insert into wordbyword (text) values (:text
+        sql = """insert into wordbyword (id, text) values (:id, :text
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(
             sql,
-            wordbyword.to_dict(),
+            wordbyword.to_dict()
         )
         conn.commit()
 
