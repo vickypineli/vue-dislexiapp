@@ -8,8 +8,8 @@ class Wordbyword:
     def to_dict(self):
         return {
             'id': self.id,
-            "text": self.text}
-
+            'text': self.text
+        }
 
 class WordbywordRepository:
     def __init__(self, database_path):
@@ -24,7 +24,7 @@ class WordbywordRepository:
     def init_tables(self):
         sql = """
             create table if not exists wordbyword (
-                id,
+                "id" varchar,
                 "text" TEXT
             )
         """

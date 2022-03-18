@@ -1,14 +1,14 @@
 import sqlite3
 
 class Activity:
-    def __init__ (self,id,name):
+    def __init__ (self, id, name):
         self.id = id
         self.name = name
 
     def to_dict(self):
         return {
             'id': self.id,
-            'name': self.name,
+            'name': self.name
         }
 
 class ActivityRepository:
@@ -24,8 +24,8 @@ class ActivityRepository:
     def init_tables(self):
         sql = """
             create table if not exists activities  (
-                id,
-                name varchar,
+                "id"  varchar,
+                "name" varchar
             )  
         """
         conn = self.create_conn()
