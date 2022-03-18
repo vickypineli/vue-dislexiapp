@@ -1,18 +1,18 @@
 import sqlite3
 
 class Activity:
-    def __init__(self,id,text):
+    def __init__ (self,id,name):
         self.id = id
-        self.text = text
+        self.name = name
 
     def to_dict(self):
         return {
             'id': self.id,
-            'text': self.text
+            'name': self.name,
         }
 
 class ActivityRepository:
-    def __init__(self, database_path):
+    def __init__ (self, database_path):
         self.database_path = database_path
         self.init_tables()
 
@@ -23,23 +23,27 @@ class ActivityRepository:
 
     def init_tables(self):
         sql = """
-            create table if not exists activities (
-                id varchar primary key,
-                text varchar
-            )
-            
+            create table if not exists activities  (
+                id,
+                name varchar,
+            )  
         """
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql)
         conn.commit()
 
-    def get_texts(self):
+    def get_all(self):
         sql = """select * from activities"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql)
 
-        return cursor.fetchall()
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            activity = Activity(**item)
+            result.append(activity)
+        return result
      
  
