@@ -61,11 +61,12 @@
 <script>
 export default {
 
+
 }
 </script>
 methods:{
   const.response = await fetch ('http:localhost:5000/api/activities/word-by-word')
-  this.word-by-word = await response.jason()
+  this.word-by-word = await response.json()
 }
 <style>
 
