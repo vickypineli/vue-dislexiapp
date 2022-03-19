@@ -2,7 +2,7 @@ import sqlite3
 
 class Activity:
     def __init__ (self, id, name):
-        self.id = name
+        self.id = id
         self.name = name
 
     def to_dict(self):
@@ -46,5 +46,16 @@ class ActivityRepository:
             result.append(activity)
 
         return result
+
+    def save(self, activity):
+        sql = """insert into activity (id, name) values (:id, :name
+        ) """
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(
+            sql,
+            activity.to_dict()
+        )
+        conn.commit()
      
  

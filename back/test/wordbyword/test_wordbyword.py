@@ -17,17 +17,17 @@ def test_should_return_list_of_texts():
     app = create_app(repositories={"wordbyword": wordbyword_repository})
     client = app.test_client()
 
-    textoriginal1 = Wordbyword()
-    textoriginal2 = Wordbyword()
+    textoriginal_1 = Wordbyword(id="1", text="En un lugar la Mancha de cuyo nombre no quiero acordarme")
+    textoriginal_2 = Wordbyword(id="2", text="I can't believe the news today, y close my eyes it make it away")
 
-    wordbyword_repository.save(textoriginal1)
-    wordbyword_repository.save(textoriginal2)
+    wordbyword_repository.save(textoriginal_1)
+    wordbyword_repository.save(textoriginal_2)
 
     # ACT (when)
     response = client.get("/api/activities/wordbyword")
 
     # ASSERT (then)
     assert response.json == [
-        {"id": 1, "test": "En un lugar la Mancha de cuyo nombre no quiero acordarme"},
-        {"id": 2, "test": "I can't believe the news today, y close my eyes it make it away"},
+        {"id":"1", "text":"En un lugar la Mancha de cuyo nombre no quiero acordarme"},
+        {"id":"2", "text":"I can't believe the news today, y close my eyes it make it away"},
     ]

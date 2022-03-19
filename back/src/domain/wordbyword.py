@@ -39,7 +39,13 @@ class WordbywordRepository:
         cursor = conn.cursor()
         cursor.execute(sql)
 
-        return cursor.fetchall()
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            wordbyword = Wordbyword(**item)
+            result.append(wordbyword)
+
+        return result
 
     def save(self, wordbyword):
         sql = """insert into wordbyword (id, text) values (:id, :text
