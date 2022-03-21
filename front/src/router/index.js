@@ -16,6 +16,11 @@ const routes = [
     name: 'WordByWord',
     component: () => import('@/pages/word-by-word/WordByWordPage.vue'),
   },
+  {
+    path: '/activities/word-by-word/play-word-by-word',
+    name: 'PlayWordByWord',
+    component: () => import('@/pages/play-word-by-word/PlayWordByWordPage.vue'),
+  },
 ]
 
 const router = createRouter({

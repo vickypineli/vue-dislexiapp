@@ -1,73 +1,85 @@
 <template>
     <h1>HITZEZ HITZ</h1>
-
 <form>
-   <p>
-    <label>Letra-tipo</label>
-    <select
-      id="font"
-      v-model="fontseleted"
-    >
-      <option>Arial</option>
-      <option>Escolar</option>
-      <option>Dislexia</option>
-    </select>
-  </p> 
-  <p>
-    <label>Hitz-minuturo</label>
-    <input
-      id="wordByWord"
-      v-model="wordByWord"
-      type="number"
-      min="30"
-      max="100">
-  </p>
+      <article>
+          <p>
+            <label></label>
+            <input type=radio name="text" v-model="textselected">Euskera
+            <input type=radio name="text" v-model="textselected">Ingelesa
+            <input type=radio name="text" v-model="textselected">Gaztelania
+          </p>
+          <!-- <textarea v-model="message" placeholder="add multiple lines"></textarea> -->
+      </article>
+      <article>
+        <label>Hitz-minuturo</label>
+        <input v-model="hitzminuturo" type="number" min="30" max="100">
 
-  <p>
-    <label>Aukeratu testua</label>
-    <select
-      
-      id="textselected"
-      v-model="textselected"
-      name="textselected"
-    >
-      <option>Testu 1</option>
-      <option>Testu 2</option>
-      <option>Testu 3</option>
-    </select>
-  </p>
-  <p>
-    <label>Entzun</label>
-    <select
-      
-      id="voiceselected"
-      v-model="voiceselected"
-    >
-      <option>Bai</option>
-      <option>Ez</option>
-    </select>
-  </p>
+        <label>Letra-tipo</label>
+        <select v-model="fontseleted">
+          <option disabled value="">Select</option>
+          <option>Arial</option>
+          <option>Escolar</option>
+          <option>Dislexia</option>
+        </select>
+      </article>
 
-  <p>
-    <input
-      type="submit"
-      value="Datuak gorde"
-    >
-  </p>
+      <article>
+        <input type="checkbox" id="checkbox" v-model="voiceselected" />
+        <label for="checkbox">Entzun:{{ voiceselected }}</label>
+      </article>
 
+      <article>
+        <input type="submit" value="Datuak gorde">
+      </article>
 </form>
+    <article>
+      <ul>Hau da zure aukera:</ul>
+          <li>{{"Testu: " + textselected}}</li>
+          <li>{{"Letra: "  + fontseleted}}</li> 
+          <li>{{"Hitz/m: " + hitzminuturo}}</li>
+          <li>{{"Entzun: " + voiceselected}}</li>
+    </article>
+    <h2>{{texts}}</h2>
+    <router-link to='/activities/word-by-word/play-word-by-word'><button>play</button></router-link>
 </template>
-
 <script>
 export default {
-
-
-}
+    data(){
+        return{
+          textselected:'',
+          fontselected:'',
+          hitzminuturo:'',
+          voiceselected:'',
+          texts:{},
+        };
+    },
+    mounted(){
+      this.loadData()
+    },
+    methods:{
+      async loadData() {
+      const response = await fetch('http:localhost:5000/api/activities/word-by-word')
+      this.texts = await response.json()
+      
+      }
+    },
+};
 </script>
-methods:{
-  const.response = await fetch ('http:localhost:5000/api/activities/word-by-word')
-  this.word-by-word = await response.json()
-}
-<style>
 
+<style>
+p{
+  font-size: 1.5em;
+}
+
+li{
+  text-align: left;
+  margin-left:35.5px;
+}
+form{
+  border: 0.5em solid gray;
+  background: rgb(179, 176, 176);
+}
+label{
+  padding: 1.2em;
+}
 </style>

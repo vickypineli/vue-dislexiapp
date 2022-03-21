@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="@/assets/img/logo.png" /> -->
-    <h1>ONGI ETORRI</h1>
+      <div>
+        <h1>IRLA-KURRI</h1>
+        </div>
   </div>
 </template>
 
@@ -29,7 +30,18 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
 h1 {
   font-style: italic;
+  font-family: 'Slackey';
+}
+h1 {
+  
+
+ 
+ 
+  transform-origin: bottom center;
+  -webkit-transform-origin: bottom center;
+  text-transform: uppercase;
 }
 </style>
