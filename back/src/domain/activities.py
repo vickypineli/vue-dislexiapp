@@ -48,7 +48,7 @@ class ActivityRepository:
         return result
 
     def save(self, activity):
-        sql = """insert into activity (id, name) values (:id, :name
+        sql = """insert into activities (id, name) values (:id, :name
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()

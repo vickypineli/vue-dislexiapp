@@ -25,10 +25,10 @@ def main():
     wordbyword_repository.save(textoriginal_3)
 
     # Activities
-    Activity_1 = Activity (id="1", name = "1ª wordbyword")
-    Activity_2 = Activity (id="2", name = "2ª Actividad")
-    Activity_3 = Activity (id="3", name = "3ª Actividad")
-    Activity_4 = Activity (id="4", name = "4ª Actividad")
+    Activity_1 = Activity (id="act-1", name = "Wordbyword")
+    Activity_2 = Activity (id="act-2", name = "C.semantica")
+    Activity_3 = Activity (id="act-3", name = "C.fonologica")
+    Activity_4 = Activity (id="act-4", name = "memoria secuencial")
 
     activity_repository = ActivityRepository(database_path)
    

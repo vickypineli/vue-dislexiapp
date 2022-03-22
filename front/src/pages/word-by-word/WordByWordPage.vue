@@ -3,16 +3,15 @@
 <form>
       <article>
           <p>
-            <label></label>
-            <input type=radio name="text" v-model="textselected">Euskera
-            <input type=radio name="text" v-model="textselected">Ingelesa
-            <input type=radio name="text" v-model="textselected">Gaztelania
+            <input type=radio name="text" v-model="lenguajeselected">Euskera
+            <input type=radio name="text" v-model="lenguajeselected">Ingelesa
+            <input type=radio name="text" v-model="lenguajeselected">Gaztelania
           </p>
-          <!-- <textarea v-model="message" placeholder="add multiple lines"></textarea> -->
+          <!-- <textarea v-model="textinput" placeholder="add multiple lines"></textarea> -->
       </article>
       <article>
         <label>Hitz-minuturo</label>
-        <input v-model="hitzminuturo" type="number" min="30" max="100">
+        <input v-model="wordsperminute" type="number" min="30" max="100">
 
         <label>Letra-tipo</label>
         <select v-model="fontseleted">
@@ -22,35 +21,38 @@
           <option>Dislexia</option>
         </select>
       </article>
+      <br>
 
       <article>
-        <input type="checkbox" id="checkbox" v-model="voiceselected" />
+        <input type="checkbox"  v-model="voiceselected" />
         <label for="checkbox">Entzun:{{ voiceselected }}</label>
       </article>
-
+      <br>
       <article>
         <input type="submit" value="Datuak gorde">
       </article>
 </form>
     <article>
-      <ul>Hau da zure aukera:</ul>
-          <li>{{"Testu: " + textselected}}</li>
+      <h3>{{texts}}</h3>
+      <ul>
+          <li>{{"Testu: " + lenguageselected}}</li>
           <li>{{"Letra: "  + fontseleted}}</li> 
-          <li>{{"Hitz/m: " + hitzminuturo}}</li>
+          <li>{{"Hitz/m: " + wordsperminute}}</li>
           <li>{{"Entzun: " + voiceselected}}</li>
+      </ul>
     </article>
-    <h2>{{texts}}</h2>
+   <br>
     <router-link to='/activities/word-by-word/play-word-by-word'><button>play</button></router-link>
 </template>
 <script>
 export default {
     data(){
         return{
-          textselected:'',
+          lenguajeselected:'',
           fontselected:'',
           hitzminuturo:'',
           voiceselected:'',
-          texts:{},
+          texts:[],
         };
     },
     mounted(){
@@ -58,9 +60,9 @@ export default {
     },
     methods:{
       async loadData() {
-      const response = await fetch('http:localhost:5000/api/activities/word-by-word')
-      this.texts = await response.json()
-      
+        const response = await fetch('http:localhost:5000/api/activities/wordbyword')
+        this.texts = await response.json()
+        console.table(response);
       }
     },
 };
@@ -80,6 +82,13 @@ form{
   background: rgb(179, 176, 176);
 }
 label{
-  padding: 1.2em;
+  padding: 0.5em;
+  font-size: 1.5em;
+}
+button, input, select {
+  font-size:1.5em;
+}
+li{
+  font-size: 1.5em;
 }
 </style>

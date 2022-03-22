@@ -25,7 +25,7 @@ def create_app(repositories):
         return object_to_json(all_activities) 
 
     @app.route("/api/activities/wordbyword", methods=["GET"])
-    def get_text_to_wordbyword():
+    def get_texts_to_wordbyword():
         texts = repositories["wordbyword"].get_texts()
         return object_to_json(texts)
  
