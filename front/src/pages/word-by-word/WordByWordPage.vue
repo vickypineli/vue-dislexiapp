@@ -3,9 +3,9 @@
 <form>
       <article>
           <p>
-            <input type=radio name="text" v-model="lenguajeselected">Euskera
-            <input type=radio name="text" v-model="lenguajeselected">Ingelesa
-            <input type=radio name="text" v-model="lenguajeselected">Gaztelania
+            <input type="radio" name="euskera" v-model="lenguajeselected">Euskera
+            <input type="radio" name="ingles" v-model="lenguajeselected">Ingelesa
+            <input type="radio" name="español" v-model="lenguajeselected">Gaztelania
           </p>
           <!-- <textarea v-model="textinput" placeholder="add multiple lines"></textarea> -->
       </article>
@@ -46,6 +46,7 @@
 </template>
 <script>
 export default {
+  name:"WordByWord",
     data(){
         return{
           lenguajeselected:'',
@@ -53,10 +54,12 @@ export default {
           hitzminuturo:'',
           voiceselected:'',
           texts:[],
+          wordbyword:[],
         };
     },
     mounted(){
       this.loadData()
+      this.gettexts
     },
     methods:{
       async loadData() {
@@ -65,6 +68,7 @@ export default {
         console.table(response);
       }
     },
+
 };
 </script>
 

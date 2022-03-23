@@ -1,13 +1,16 @@
 import sqlite3
 
 class Wordbyword:
-    def __init__(self, id, text):
-        self.id = id
+    def __init__(self, language, text):
+        self.language = language
+
+
+
         self.text = text
 
     def to_dict(self):
         return {
-            'id': self.id,
+            'language': self.language,
             'text': self.text
         }
 
@@ -24,7 +27,7 @@ class WordbywordRepository:
     def init_tables(self):
         sql = """
             create table if not exists wordbyword (
-                "id" varchar,
+                "language" varchar,
                 "text" text
             )
         """
@@ -33,7 +36,7 @@ class WordbywordRepository:
         cursor.execute(sql)
         conn.commit()
 
-    def get_texts(self):
+    def get_all_texts(self):
         sql = """select * from wordbyword"""
         conn = self.create_conn()
         cursor = conn.cursor()
@@ -48,7 +51,7 @@ class WordbywordRepository:
         return result
 
     def save(self, wordbyword):
-        sql = """insert into wordbyword (id, text) values (:id, :text
+        sql = """insert into wordbyword (language, text) values (:language, :text
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
@@ -58,3 +61,14 @@ class WordbywordRepository:
         )
         conn.commit()
 
+    def get_text_by_language(self, language):
+        sql = """ SELECT * FROM wordbyword WHERE language= :language"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql,{"language":language})
+
+        data = cursor.fetchone()
+        textselected = Wordbyword(**data)
+        return textselected
+            
+     

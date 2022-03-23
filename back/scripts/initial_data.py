@@ -14,9 +14,9 @@ def main():
     info_repository.save(Info(app_name="irla-kurri"))
 
     #Wordbyword
-    textoriginal_1 = Wordbyword (id="1", text = "En un lugar la Mancha de cuyo nombre no quiero acordarme ")
-    textoriginal_2 = Wordbyword (id="2", text = "I can't believe the news today, y close my eyes it make it away ")
-    textoriginal_3 = Wordbyword (id="3", text = "Hala bazan ala ez bazan, sar dadila kalabazan eta atera dadila Foruko plazan ")
+    textoriginal_1 = Wordbyword (language ="spanish_text", text = "En un lugar la Mancha de cuyo nombre no quiero acordarme ")
+    textoriginal_2 = Wordbyword (language ="english_text", text = "I can't believe the news today, y close my eyes it make it away ")
+    textoriginal_3 = Wordbyword (language ="basque_text", text = "Hala bazan ala ez bazan, sar dadila kalabazan eta atera dadila Foruko plazan ")
     
     wordbyword_repository = WordbywordRepository(database_path)
     
