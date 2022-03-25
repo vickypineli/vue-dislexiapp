@@ -7,7 +7,7 @@
             <input type="radio" name="ingles" v-model="lenguajeselected">Ingelesa
             <input type="radio" name="español" v-model="lenguajeselected">Gaztelania
           </p>
-          <!-- <textarea v-model="textinput" placeholder="add multiple lines"></textarea> -->
+          <textarea v-model="textinput" placeholder="add multiple lines"></textarea>
       </article>
       <article>
         <label>Hitz-minuturo</label>
