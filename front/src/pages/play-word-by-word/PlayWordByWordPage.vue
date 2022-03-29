@@ -2,7 +2,7 @@
     <h1>PLAY TEXT</h1>
         <section>
           <div id="read_List">
-              <h1>{{textArray}}</h1>
+              <h1>{{textInDisplay}}</h1>
           </div>
           <button @click="textStart();">PLAY</button>
           <button @click="textStop();">PAUSE</button> 
@@ -14,33 +14,32 @@ export default {
     name: 'PlayText',
     data() {
       return {
-          text: "",
+          text: "I can't believe the news today. Oh I can't close my eyes and make it go away",
+          word:"",
           timeInterval: 5000,
-          textArray:[],
+          textByWords:[],
       }
     },
     mounted() {
-         this.loadData()
-         this.showLocaleTime()
-    },
-    methods() { 
-        converTextToArray() {
-            this.text = "I can't believe the news today. Oh I can't close my eyes and make it go away";
-            this.textArray  = this.text.split(" ");
-            console.log(textArray);
-            return
-        }
-
-        textStart(){
-            setInterval(converTextToArray), this.timeInterval)
-        }
-
-        textStop(){
-            clearInterval()
-        }
+         this.loadData();
         
-    }
-}
+    },
+    methods: { 
+        textInDisplay(word){
+            this.textByWords = this.text.split(" ");
+            if(word >= this.textByWords.length -1){
+                clearInterval()
+            }else{
+                word++;
+            }
+        },   
+    textStart(setInterval(() => {
+        
+    }, timeinterval)) 
+
+    textStop(clearInterval) 
+    },
+};
 
 </script>
 
