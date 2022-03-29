@@ -2,83 +2,46 @@
     <h1>PLAY TEXT</h1>
         <section>
           <div id="read_List">
-              <h1 id="salida"></h1>
+              <h1>{{textArray}}</h1>
           </div>
-          <button onclick="textStart();">PLAY</button>
-          <button onclick="textStop();">PAUSE</button> 
-      </section>
-      <!-- <section>
-      <form>
-          <h3> AUKERATU TESTUA: </h3>
-              <input type="checkbox" id="TESTUA">1-ingles
-              <input type="checkbox" id="TESTUA">2-euskera
-              <input type="checkbox" id="TESTUA">3-castellano  
-        
-          <h3> HITZ MINUTURO: </h3>
-              <input type="number" id="ppp" value="3000">
-          
-          <h3> TIPO DE LETRA:</h3>
-              <input type="checkbox" id="fuente">Arial
-              <input type="checkbox" id="fuente">Escolar
-              <input type="checkbox" id="fuente">Dislexia  
-      </form>
-      <form>
-          <button type="button" onclick="saveValues()">
-              SAVE
-          </button>
-      </form>  
-  </section> -->
+          <button @click="textStart();">PLAY</button>
+          <button @click="textStop();">PAUSE</button> 
+        </section>
 </template>
 
 <script>
 export default {
     name: 'PlayText',
-    data(){
+    data() {
       return {
-      texto: "",
-      palabra: 'null',
-      textArray: [],
-      texto1: "",
-
-
+          text: "",
+          timeInterval: 5000,
+          textArray:[],
       }
     },
-mounted(){
-  this.loadData()
-},
-methods(){
-  async loadData() {
-    this.texto1 = {"language" : "spanish", 'text': "I can't believe the news today. Oh I can't close my eyes and make it go away"}
-  }
-},
+    mounted() {
+         this.loadData()
+         this.showLocaleTime()
+    },
+    methods() { 
+        converTextToArray() {
+            this.text = "I can't believe the news today. Oh I can't close my eyes and make it go away";
+            this.textArray  = this.text.split(" ");
+            console.log(textArray);
+            return
+        }
 
+        textStart(){
+            setInterval(converTextToArray), this.timeInterval)
+        }
+
+        textStop(){
+            clearInterval()
+        }
+        
+    }
 }
-        this.texto1 = "I can't believe the news today. Oh I can't close my eyes and make it go away";
-        this.palabra = 0;
-        var textArray  = this.texto1.split(" ");
-       
-        // saveValues = function (){
-        //      fuente = document.getElementById("fuente").value;
-        //      texto = document.getElementById("texto").value;
-        //      ppp = document.getElementById("ppp").value;
-        //      lector = document.getElementById("lector").value;
-        //     console.log(fuente+""+ 
-        //     texto+" "+ ppp+ " "+ lector);
-        // }
-        function textStart() {
-            play = setInterval(textInDisplay,400);  
-        }
-        function textStop() {
-            pause = clearInterval(textInDisplay);
-        }
-        function textInDisplay() {
-            document.getElementById("salida").innerHTML = textArray[palabra];                             
-            if(palabra >= textArray.length -1){       
-                clearInterval(textInDisplay);
-            }else{
-                palabra++; 
-            } 
-    }; 
+
 </script>
 
 <style>
