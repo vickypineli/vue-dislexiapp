@@ -1,13 +1,17 @@
 <template>
     <h1>HITZEZ HITZ</h1>
+    <section> 
+        <article class="get-text" v-for="text in texts" :value="text" :key="text">
+          <p>{{texts.text}}</p>
+        </article>
+    </section>
 <form>
       <article>
           <p>
-            <input type="radio" name="euskera" v-model="lenguajeselected">Euskera
-            <input type="radio" name="ingles" v-model="lenguajeselected">Ingelesa
-            <input type="radio" name="español" v-model="lenguajeselected">Gaztelania
+            <input type="checkbox" name="euskera" v-model="lenguajeselected">Euskera
+            <input type="checkbox" name="ingles" v-model="lenguajeselected">Ingelesa
+            <input type="checkbox" name="español" v-model="lenguajeselected">Gaztelania
           </p>
-          <textarea v-model="textinput" placeholder="add multiple lines"></textarea>
       </article>
       <article>
         <label>Hitz-minuturo</label>
@@ -85,7 +89,7 @@ form{
   border: 0.5em solid gray;
   background: rgb(179, 176, 176);
 }
-label{
+label, get-text {
   padding: 0.5em;
   font-size: 1.5em;
 }
