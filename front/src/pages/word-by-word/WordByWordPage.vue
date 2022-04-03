@@ -7,13 +7,18 @@
           <input type="radio" id="euskera" value="basque_text" v-model="lenguageselected">
           <label for="Dos">Euskera</label>
 
-          <input type="radio" id="español" value="spanish_text" v-model="lenguageselected">
+          <input type="radio" id="text.text" value="spanish_text" v-model="lenguageselected">
           <label for="Gazte">Gaztelania</label>
           <br>
           <span>{{ lenguageselected }}</span>
           <br>
       </article>
-
+      <article>
+          <!-- <button @click.prevent="">EUSKERA</button>
+          <button @click.prevent="">INGELESA</button>
+          <button @click.prevent="">GAZTELANIA</button> -->
+          <!-- {{text.text}} -->
+      </article>    
       <article>
         <label>Hitz-minuturo</label>
         <input v-model="wordsperminute" type="number" min="30" max="100">
@@ -33,23 +38,20 @@
         <span> {{ fontselected }}</span>
       </article>
       <article>
-        <label for="checkbox">entxun {{ voiceselected }}</label>
+        <label for="checkbox">Entzun: {{ voiceselected }}</label>
         <input type="checkbox" id="checkbox" true-value="BAI" false-value="EZ" v-model="voiceselected">
-        
       </article>
       <article>
         <input type="submit" value="Datuak gorde">
       </article>
-
-
     <article class="text-list">
           <li class="text-item" v-for="text in texts" :key="text">{{text.text}}</li>
       <ul>
           <li class="text-item" v-for="text, index in texts" :key="index">{{text.language}}</li>
       </ul>
     </article>    
-    <router-link to='/activities/word-by-word/play-word-by-word'><button>GOAZEN IRAKURTZERA</button></router-link>
-</template>
+    <router-link to="/activities/word-by-word/play-word-by-word"><button>GOAZEN IRAKURTZERA..!!</button></router-link>
+</template>"
 <script>
 export default {
   name:"WordByWord",
@@ -59,25 +61,23 @@ export default {
           fontselected:'',
           wordsperminute:'',
           voiceselected:'',
-          texts:[
-                {language: "spanish_text", text: "En un lugar la Mancha de cuyo nombre no quiero acordarme "},
-                {language:"english_text", text: "I can't believe the news today, y close my eyes it make it away "},
-                {language:"basque_text", text: "Hala bazan ala ez bazan, sar dadila kalabazan eta atera dadila Foruko plazan "}
-          ],
-        
-        };
+          texts:[],
+        }
     },
     mounted(){
-      // this.loadData()
-      
+      this.loadData()
     },
     methods:{
-      // async loadData() {
-      //   const response = await fetch('http:localhost:5000/api/activities/wordbyword')
-      //   this.texts = await response.json()
-      // }
-    },
-};
+      async loadData() {
+        const response = await fetch('http://localhost:5000/api/activities/wordbyword')
+        this.texts = await response.json()
+      },
+      async textselected(){
+        const response = await fetch('http://localhost:5000/api/activities/wordbyword/<language>')
+        this.text = await response.json()
+      },
+    }    
+}
 </script>
 
 <style>
@@ -95,10 +95,10 @@ form{
 }
 label, get-text {
   padding: 1em;
-  font-size: 1.9em;
+  font-size: 1.5em;
 }
 button, input, select, span {
-  font-size:2em;
+  font-size:1.5em;
   color:green;
 }
 li{
