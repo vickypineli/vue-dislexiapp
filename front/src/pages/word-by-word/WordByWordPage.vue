@@ -1,78 +1,82 @@
 <template>
     <h1>HITZEZ HITZ</h1>
-    <section> 
-        <article class="get-text" v-for="text in texts" :value="text" :key="text">
-          <p>{{texts.text}}</p>
-        </article>
-    </section>
-<form>
       <article>
-          <p>
-            <input type="checkbox" name="euskera" v-model="lenguajeselected">Euskera
-            <input type="checkbox" name="ingles" v-model="lenguajeselected">Ingelesa
-            <input type="checkbox" name="español" v-model="lenguajeselected">Gaztelania
-          </p>
+          <input type="radio" id="ingles" value="english_text" v-model="lenguageselected">
+          <label for="uno">Inglesa</label>
+          
+          <input type="radio" id="euskera" value="basque_text" v-model="lenguageselected">
+          <label for="Dos">Euskera</label>
+
+          <input type="radio" id="español" value="spanish_text" v-model="lenguageselected">
+          <label for="Gazte">Gaztelania</label>
+          <br>
+          <span>{{ lenguageselected }}</span>
+          <br>
       </article>
+
       <article>
         <label>Hitz-minuturo</label>
         <input v-model="wordsperminute" type="number" min="30" max="100">
-
-        <label>Letra-tipo</label>
-        <select v-model="fontseleted">
-          <option disabled value="">Select</option>
-          <option>Arial</option>
-          <option>Escolar</option>
-          <option>Dislexia</option>
-        </select>
-      </article>
-      <br>
-
+        <br>
+        <span> {{wordsperminute}}</span>
       <article>
-        <input type="checkbox"  v-model="voiceselected" />
-        <label for="checkbox">Entzun:{{ voiceselected }}</label>
+        <br>
       </article>
-      <br>
+        <label>Letra-tipo</label>
+        <select v-model="fontselected">
+          <option disabled value="letra-tipo">Select</option>
+          <option value ="arial">Arial</option>
+          <option value ="escolar">Escolar</option>
+          <option value ="dislexia">Dislexia</option>
+        </select>
+        <br>
+        <span> {{ fontselected }}</span>
+      </article>
+      <article>
+        <label for="checkbox">entxun {{ voiceselected }}</label>
+        <input type="checkbox" id="checkbox" true-value="BAI" false-value="EZ" v-model="voiceselected">
+        
+      </article>
       <article>
         <input type="submit" value="Datuak gorde">
       </article>
-</form>
-    <article>
-      <h3>{{texts}}</h3>
+
+
+    <article class="text-list">
+          <li class="text-item" v-for="text in texts" :key="text">{{text.text}}</li>
       <ul>
-          <li>{{"Testu: " + lenguageselected}}</li>
-          <li>{{"Letra: "  + fontseleted}}</li> 
-          <li>{{"Hitz/m: " + wordsperminute}}</li>
-          <li>{{"Entzun: " + voiceselected}}</li>
+          <li class="text-item" v-for="text, index in texts" :key="index">{{text.language}}</li>
       </ul>
-    </article>
-   <br>
-    <router-link to='/activities/word-by-word/play-word-by-word'><button>play</button></router-link>
+    </article>    
+    <router-link to='/activities/word-by-word/play-word-by-word'><button>GOAZEN IRAKURTZERA</button></router-link>
 </template>
 <script>
 export default {
   name:"WordByWord",
     data(){
         return{
-          lenguajeselected:'',
+          lenguageselected:'',
           fontselected:'',
-          hitzminuturo:'',
+          wordsperminute:'',
           voiceselected:'',
-          texts:[],
-          wordbyword:[],
+          texts:[
+                {language: "spanish_text", text: "En un lugar la Mancha de cuyo nombre no quiero acordarme "},
+                {language:"english_text", text: "I can't believe the news today, y close my eyes it make it away "},
+                {language:"basque_text", text: "Hala bazan ala ez bazan, sar dadila kalabazan eta atera dadila Foruko plazan "}
+          ],
+        
         };
     },
     mounted(){
-      this.loadData()
-      this.gettexts
+      // this.loadData()
+      
     },
     methods:{
-      async loadData() {
-        const response = await fetch('http:localhost:5000/api/activities/wordbyword')
-        this.texts = await response.json()
-        console.table(response);
-      }
+      // async loadData() {
+      //   const response = await fetch('http:localhost:5000/api/activities/wordbyword')
+      //   this.texts = await response.json()
+      // }
     },
-
 };
 </script>
 
@@ -90,13 +94,29 @@ form{
   background: rgb(179, 176, 176);
 }
 label, get-text {
-  padding: 0.5em;
-  font-size: 1.5em;
+  padding: 1em;
+  font-size: 1.9em;
 }
-button, input, select {
-  font-size:1.5em;
+button, input, select, span {
+  font-size:2em;
+  color:green;
 }
 li{
-  font-size: 1.5em;
+  font-size: 1 em;
+}
+article{
+  background: rgb(204, 243, 198);
+}
+.ingles{
+  font-family: arial;
+  color: blue;
+}
+.euskera{
+  font-family: escolar;
+  color: red;
+}
+.ingles{
+  font-family: dislexia;
+  color:green;
 }
 </style>
