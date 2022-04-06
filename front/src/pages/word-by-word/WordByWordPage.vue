@@ -5,7 +5,7 @@
       type="radio"
       id="ingles"
       value="english_text"
-      v-model="lenguageselected"
+      v-model="languageselected"
     />
     <label for="uno">Inglesa</label>
 
@@ -13,7 +13,7 @@
       type="radio"
       id="euskera"
       value="basque_text"
-      v-model="lenguageselected"
+      v-model="languageselected"
     />
     <label for="Dos">Euskera</label>
 
@@ -21,19 +21,12 @@
       type="radio"
       id="text.text"
       value="spanish_text"
-      v-model="lenguageselected"
+      v-model="languageselected"
     />
     <label for="Gazte">Gaztelania</label>
     <br />
-    <span>{{ lenguageselected }}</span>
-    {{ texts }}
+    <span>{{ languageselected }}</span>
     <br />
-  </article>
-  <article>
-    <!-- <button @click.prevent="">EUSKERA</button>
-          <button @click.prevent="">INGELESA</button>
-          <button @click.prevent="">GAZTELANIA</button> -->
-    <!-- {{text.text}} -->
   </article>
   <article>
     <label>Hitz-minuturo</label>
@@ -74,6 +67,11 @@
       </li>
     </ul>
   </article>
+  <section class="textselect"> 
+      <button v-for="(text, index) in texts" :key="index" @click="languageselected(index)">{{text.text}}</button>
+      <button v-for="(text, index) in texts" :key="index" @click="languageselected(index)">{{text.language}}</button>
+  </section> 
+
   <router-link to="/activities/word-by-word/play-word-by-word"
     ><button>GOAZEN IRAKURTZERA..!!</button></router-link
   >
@@ -83,12 +81,12 @@ export default {
   name:"WordByWord",
     data(){
         return{
-          lenguageselected:'',
+          languageselected:'',
           fontselected:'',
           wordsperminute:'',
           voiceselected:'',
           texts:[],
-          actualtext:"",
+          textselected:"",
         }
     },
     mounted(){
@@ -99,9 +97,9 @@ export default {
         const response = await fetch('http://localhost:5000/api/activities/wordbyword')
         this.texts = await response.json()
       },
-      textselected(){
-        this.texts.filter((text)=>text.language==this.lenguageselected)
-      }
+      // textselected(){
+      //   this.texts.filter((text)=>text.language==this.languageselected)
+      // }
     }    
 }
 </script>
