@@ -1,92 +1,90 @@
 <template>
   <h1>HITZEZ HITZ</h1>
-  <article>
+  <section id="container">
+  <article class="text">
+        <select v-model="textSelected">
+        <option v-for="text in texts" :key="text" :value="text.text">
+          {{ text.language }}
+        </option>
+      </select>
+  </article>
+  <br>
+<textarea v-model="textSelected" placeholder="add multiple lines"></textarea>
+  <article class="language">
     <input
       type="radio"
-      id="ingles"
-      value="english_text"
-      v-model="languageselected"
+      id="Basque-text"
+      value="euskera"
+      v-model="languageSelected"
     />
-    <label for="uno">Inglesa</label>
+    <label for="">Inglesa</label>
 
     <input
       type="radio"
-      id="euskera"
-      value="basque_text"
-      v-model="languageselected"
+      id="english-text"
+      value="ingesela"
+      v-model="languageSelected"
     />
-    <label for="Dos">Euskera</label>
+    <label for="">Euskera</label>
 
     <input
       type="radio"
-      id="text.text"
-      value="spanish_text"
-      v-model="languageselected"
+      id="spanish-text"
+      :value="gastelania"
+      v-model="languageSelected"
     />
-    <label for="Gazte">Gaztelania</label>
+    <label for="">Gaztelania</label>
     <br />
-    <span>{{ languageselected }}</span>
+    <span>{{ languageSelected }}</span>
     <br />
   </article>
-  <article>
+  <article class="speed">
     <label>Hitz-minuturo</label>
-    <input v-model="wordsperminute" type="number" min="30" max="100" />
+    <input v-model="wordsByMinute" type="number" min="30" max="100" />
     <br />
     <span> {{ wordsperminute }}</span>
     <article>
       <br />
     </article>
     <label>Letra-tipo</label>
-    <select v-model="fontselected">
+    <select v-model="fontSelected">
       <option disabled value="letra-tipo">Select</option>
-      <option value="arial">Arial</option>
-      <option value="escolar">Escolar</option>
-      <option value="dislexia">Dislexia</option>
+      <option  @click="open = !open" value="arial"> Arial</option>
+      <option value="escolar" >Escolar</option>
+      <option value="dislexia" >Dislexia</option>
     </select>
     <br />
-    <span> {{ fontselected }}</span>
+    <span> {{ fontSelected }}</span>
   </article>
   <article>
-    <label for="checkbox">Entzun: {{ voiceselected }}</label>
+    <label for="checkbox">Entzun: {{ voiceSelected }}</label>
     <input
       type="checkbox"
       id="checkbox"
       true-value="BAI"
       false-value="EZ"
-      v-model="voiceselected"
+      v-model="voiceSelected"
     />
   </article>
   <article>
     <input type="submit" value="Datuak gorde" />
   </article>
-  <article class="text-list">
-    <li class="text-item" v-for="text in texts" :key="text">{{ text.text }}</li>
-    <ul>
-      <li class="text-item" v-for="(text, index) in texts" :key="index">
-        {{ text.language }}
-      </li>
-    </ul>
-  </article>
-  <section class="textselect"> 
-      <button v-for="(text, index) in texts" :key="index" @click="languageselected(index)">{{text.text}}</button>
-      <button v-for="(text, index) in texts" :key="index" @click="languageselected(index)">{{text.language}}</button>
-  </section> 
-
+  </section>
+ 
   <router-link to="/activities/word-by-word/play-word-by-word"
-    ><button>GOAZEN IRAKURTZERA..!!</button></router-link
-  >
+    ><button>GOAZEN IRAKURTZERA..!!</button></router-link>
 </template>"
 <script>
 export default {
   name:"WordByWord",
     data(){
         return{
-          languageselected:'',
-          fontselected:'',
-          wordsperminute:'',
-          voiceselected:'',
+          languageSelected:'',
+          fontSelected:'',
+          wordsByMinute:'',
+          voiceSelected:'',
           texts:[],
-          textselected:"",
+          textSelected:"",
         }
     },
     mounted(){
@@ -97,54 +95,30 @@ export default {
         const response = await fetch('http://localhost:5000/api/activities/wordbyword')
         this.texts = await response.json()
       },
-      // textselected(){
-      //   this.texts.filter((text)=>text.language==this.languageselected)
-      // }
     }    
 }
 </script>
 
-<style>
-p {
-  font-size: 1.5em;
+<style scoped>
+#container{
+  margin: auto;
 }
-
-li {
-  text-align: left;
-  margin-left: 35.5px;
+textarea {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 80vw;
+  height: 10vh;
 }
-form {
-  border: 0.5em solid gray;
-  background: rgb(179, 176, 176);
+style-font-arial{
+  font-family: Arial, Helvetica, sans-serif;
 }
-label,
-get-text {
-  padding: 1em;
-  font-size: 1.5em;
+style-font-arial{
+  font-family: 'Times New Roman', Times, serif;
 }
-button,
-input,
-select,
-span {
-  font-size: 1.5em;
-  color: green;
-}
-li {
-  font-size: 1 em;
+style-font-arial{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 article {
-  background: rgb(204, 243, 198);
+  padding: 0.7em;
 }
-.ingles {
-  font-family: arial;
-  color: blue;
-}
-.euskera {
-  font-family: escolar;
-  color: red;
-}
-.ingles {
-  font-family: dislexia;
-  color: green;
-}
+
 </style>
