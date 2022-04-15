@@ -20,11 +20,11 @@ def test_should_return_list_of_texts():
     client = app.test_client()
 
     textoriginal_1 = Wordbyword(
-        language="spanish_text",
+        language="Gaztelania",
         text="En un lugar la Mancha de cuyo nombre no quiero acordarme",
     )
     textoriginal_2 = Wordbyword(
-        language="english_text",
+        language="Ingelesa",
         text="I can't believe the news today, y close my eyes it make it away",
     )
 
@@ -35,11 +35,11 @@ def test_should_return_list_of_texts():
     # ASSERT (then)
     assert response.json == [
         {
-            "language": "spanish_text",
+            "language": "Gaztelania",
             "text": "En un lugar la Mancha de cuyo nombre no quiero acordarme",
         },
         {
-            "language": "english_text",
+            "language": "Ingelesa",
             "text": "I can't believe the news today, y close my eyes it make it away",
         },
     ]
@@ -52,11 +52,11 @@ def test_should_return_text_by_language():
     client = app.test_client()
 
     textoriginal_1 = Wordbyword(
-        language="spanish_text",
+        language="Gaztelania",
         text="En un lugar de la Mancha de cuyo nombre no quiero acordarme",
     )
     textoriginal_2 = Wordbyword(
-        language="english_text",
+        language="Ingelesa",
         text="I can't believe the news today, y close my eyes it make it away",
     )
 
@@ -64,15 +64,15 @@ def test_should_return_text_by_language():
     wordbyword_repository.save(textoriginal_2)
 
     # ACT(then)
-    response_textoriginal_1 = client.get("/api/activities/wordbyword/spanish_text")
-    response_textoriginal_2 = client.get("/api/activities/wordbyword/english_text")
+    response_textoriginal_1 = client.get("/api/activities/wordbyword/Gaztelania")
+    response_textoriginal_2 = client.get("/api/activities/wordbyword/Ingelesa")
 
     # ASSERT(then)
     assert response_textoriginal_1.json == {
-        "language": "spanish_text",
+        "language": "Gaztelania",
         "text": "En un lugar de la Mancha de cuyo nombre no quiero acordarme",
     }
     assert response_textoriginal_2.json == {
-        "language": "english_text",
+        "language": "Ingelesa",
         "text": "I can't believe the news today, y close my eyes it make it away",
     }

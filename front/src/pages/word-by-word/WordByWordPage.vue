@@ -1,5 +1,7 @@
 <template>
-  <h1>HITZEZ HITZ</h1>z
+<div :style="fontSelected">
+  <h1>HITZEZ HITZ</h1>
+</div>
   <section id="container">
   <article class="text">
         <select v-model="textSelected">
@@ -10,7 +12,7 @@
   </article>
   <br>
 <textarea v-model="textSelected" placeholder="add multiple lines"></textarea>
-  <article class="language">
+  <!-- <article class="language">
     <input
       type="radio"
       id="ingelesa-text"
@@ -37,7 +39,7 @@
     <br />
     <span>{{ languageSelected }}</span>
     <br />
-  </article>
+  </article> -->
   <article class="speed">
     <label>Hitz-minuturo</label>
     <input v-model="wordsByMinute" type="number" min="30" max="100" />
@@ -49,9 +51,9 @@
     <label>Letra-tipo</label>
     <select v-model="fontSelected">
       <option disabled value="letra-tipo">Select</option>
-      <option  @click="open = !open" value="arial"> Arial</option>
-      <option value="escolar" >Escolar</option>
-      <option value="dislexia" >Dislexia</option>
+      <option value="arial" :style="arial"> Arial</option>
+      <option value="times" :style="times">times</option>
+      <option value="impact" :style="impact">impact</option>
     </select>
     <br />
     <span> {{ fontSelected }}</span>
@@ -70,7 +72,6 @@
     <input type="submit" value="Datuak gorde" />
   </article>
   </section>
- 
   <router-link to="/activities/word-by-word/play-word-by-word"
     ><button>GOAZEN IRAKURTZERA..!!</button></router-link>
 </template>"
@@ -81,14 +82,31 @@ export default {
         return{
           languageSelected:'',
           fontSelected:'',
-          wordsByMinute:'',
+          wordsByMinute:0,
           voiceSelected:'',
           texts:[],
           textSelected:"",
+          arial: {
+                fontFamily: 'Arial',
+                color:'blue',
+          },
+          times: {
+                fontFamily: 'Times New Roman', 
+                color: 'brown',
+                },
+          impact: {
+                fontFamily: 'Impact',
+                color:'red',
+          }
         }
     },
     mounted(){
-      this.loadData()
+        this.loadData()
+      },
+     computed:{
+    timeInterval(){
+        return (this.wordsperminute * 100);
+        }
     },
     methods:{
       async loadData() {
@@ -100,23 +118,16 @@ export default {
 </script>
 
 <style scoped>
-#container{
+#container {
   margin: auto;
 }
 textarea {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
   width: 80vw;
   height: 10vh;
 }
-style-font-arial{
-  font-family: Arial, Helvetica, sans-serif;
-}
-style-font-arial{
-  font-family: 'Times New Roman', Times, serif;
-}
-style-font-arial{
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
+
+
 article {
   padding: 0.7em;
 }
