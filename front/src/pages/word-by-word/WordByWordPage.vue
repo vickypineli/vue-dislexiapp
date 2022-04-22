@@ -1,135 +1,113 @@
 <template>
-<div :style="fontSelected">
-  <h1>HITZEZ HITZ</h1>
-</div>
-  <section id="container">
-  <article class="text">
-        <select v-model="textSelected">
-        <option v-for="text in texts" :key="text" :value="text.text">
-          {{ text.language }}
-        </option>
-      </select>
-  </article>
-  <br>
-<textarea v-model="textSelected" placeholder="add multiple lines"></textarea>
-  <!-- <article class="language">
-    <input
-      type="radio"
-      id="ingelesa-text"
-      value="english"
-      v-model="languageSelected"
-    />
-    <label for="">Inglesa</label>
-
-    <input
-      type="radio"
-      id="basque-text"
-      value="Basque"
-      v-model="languageSelected"
-    />
-    <label for="">Euskera</label>
-
-    <input
-      type="radio"
-      id="spanish-text"
-      value="spanish"
-      v-model="languageSelected"
-    />
-    <label for="">Gaztelania</label>
-    <br />
-    <span>{{ languageSelected }}</span>
-    <br />
-  </article> -->
-  <article class="speed">
-    <label>Hitz-minuturo</label>
-    <input v-model="wordsByMinute" type="number" min="30" max="100" />
-    <br />
-    <span> {{ wordsperminute }}</span>
-    <article>
-      <br />
-    </article>
-    <label>Letra-tipo</label>
-    <select v-model="fontSelected">
-      <option disabled value="letra-tipo">Select</option>
-      <option value="arial" :style="arial"> Arial</option>
-      <option value="times" :style="times">times</option>
-      <option value="impact" :style="impact">impact</option>
-    </select>
-    <br />
-    <span> {{ fontSelected }}</span>
-  </article>
-  <article>
-    <label for="checkbox">Entzun: {{ voiceSelected }}</label>
-    <input
-      type="checkbox"
-      id="checkbox"
-      true-value="BAI"
-      false-value="EZ"
-      v-model="voiceSelected"
-    />
-  </article>
-  <article>
-    <input type="submit" value="Datuak gorde" />
-  </article>
+  <div>
+    <h1>HITZEZ-HITZ</h1>
+  </div>
+  <section class="text">
+    <div>
+      <h1 :style="fontSelected">{{ word }}</h1>
+    </div>
+    <div>
+      <button @click="PlayText()">PLAY</button>
+      <button @click="PauseText()">STOP</button>
+    </div>
   </section>
-  <router-link to="/activities/word-by-word/play-word-by-word"
-    ><button>GOAZEN IRAKURTZERA..!!</button></router-link>
-</template>"
+  <section class="settings">
+      <textarea v-model="textSelected" placeholder="Aukeratu testua....." :style="fontSelected"></textarea>
+      <article >
+        <select v-model="textSelected">
+            <option disabled >Aukeratu testua</option>
+            <option v-for="text in texts" :key="text" :value="text.text" >
+              {{ text.language }}
+            </option>
+        </select>
+        <select v-model="fontSelected">
+          <option disabled >letra-tipo</option>
+          <option :value="arial" :style="arial"> ARIAL</option>
+          <option :value="tahoma" :style="tahoma">TAHOMA</option>
+          <option :value="impact" :style="impact">IMPACT</option>
+        </select>
+            <label> Hitz-min. </label>
+            <input v-model="wordsByMinute" type="number" min="10" max="90" />
+      </article>
+  </section>
+</template>
+
 <script>
 export default {
-  name:"WordByWord",
-    data(){
-        return{
-          languageSelected:'',
-          fontSelected:'',
-          wordsByMinute:0,
-          voiceSelected:'',
-          texts:[],
-          textSelected:"",
-          arial: {
-                fontFamily: 'Arial',
-                color:'blue',
-          },
-          times: {
-                fontFamily: 'Times New Roman', 
-                color: 'brown',
-                },
-          impact: {
-                fontFamily: 'Impact',
-                color:'red',
-          }
+  name: "Setting-Text",
+  data() {
+    return {
+      text: "",
+      word: "",
+      wordsByMinute: 0,
+      textByWords: [],
+      play: 0,
+      texts:[],
+      textSelected:"",
+      arial: {
+        fontFamily: 'Arial',
+        color:'blue',
+        },
+      tahoma: {
+        fontFamily: 'Tahoma', 
+        color:'green',
+        },
+      impact: {
+        fontFamily: 'Impact',
+        color:'red',
         }
-    },
-    mounted(){
-        this.loadData()
-      },
-     computed:{
+    };
+  },
+  computed:{
     timeInterval(){
-        return (this.wordsperminute * 100);
-        }
-    },
-    methods:{
-      async loadData() {
+      return this.wordsByMinute*100;
+    }
+  },
+  mounted(){
+    this.loadData()
+  },
+  methods: {
+    async loadData() {
         const response = await fetch('http://localhost:5000/api/activities/wordbyword')
         this.texts = await response.json()
       },
-    }    
-}
+
+    PauseText() {
+      this.pause = clearInterval(this.play);
+    },
+
+    PlayText() {
+      this.textByWords = this.textSelected.split(" ");
+      let item = 0;
+      this.play = setInterval(() => {
+      this.word = this.textByWords[item];
+      item += 1;
+          }, this.timeInterval);   
+    },
+  },
+};
 </script>
 
-<style scoped>
-#container {
-  margin: auto;
+<style>
+
+.text {
+  margin: 10px;
+  width: 80vw;
+  height: 20vh;
+  border: 0.4px double  #2c3e50;
+  border-radius: 10px;
+  padding: 1em;
+  font-size: 2.5em;
 }
 textarea {
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
-  width: 80vw;
+  font-size: 1.0em;
+  border: 0.1px solid  #42b983;
+  border-radius: 15px;
+  width: 90vw;
   height: 10vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-
-article {
-  padding: 0.7em;
+select {
+  margin: 10px;
 }
-
 </style>

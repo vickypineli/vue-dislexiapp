@@ -2,9 +2,8 @@
     <h1>JARDUERAK </h1>
   <section>
         <router-link to="/activities/word-by-word"><button>HITZEZ HITZ</button></router-link>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
+        <router-link to="/activities/word-by-word/play-word-by-word"><button>IRAKUR-LAGUN</button></router-link>
+        <router-link to="/activities/word-by-word/speech-to-text"><button>SPEECH TO TEXT</button></router-link>
   </section>
 </template>
 

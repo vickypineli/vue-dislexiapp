@@ -21,6 +21,11 @@ const routes = [
     name: 'PlayWordByWord',
     component: () => import('@/pages/play-word-by-word/PlayWordByWordPage.vue'),
   },
+  {
+    path: '/activities/word-by-word/speech-to-text',
+    name: 'SpeechToText',
+    component: () => import('@/pages/speech-to-text/SpeechToTextPage.vue'),
+  },
 ]
 
 const router = createRouter({

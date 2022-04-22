@@ -1,116 +1,145 @@
 <template>
-  <div :class="styles">
-    <h1>IRAKURTZAILE</h1>
-  </div>
-  <section>
-    <button @click="StartText()">PLAY</button>
-    <button @click="PauseText()">STOP</button>  
-    <div :class="styles">
-      <h2>{{ word }}</h2>
-    </div>
+  <div>
+    <h1>IRAKUR-LAGUN</h1>
+  </div>    
+  <section id="text">
+        <label for="text">
+          <textarea v-model="textSelected" placeholder="Testua....."></textarea>
+        </label>
   </section>
-    <button @click="open = !open">
-          <div v-if="!open">IMPACT</div>
-          <div v-else>impact</div>
-    </button>
-
-    <button @click="open = !open">
-          <div v-if="!open">escolar</div>
-          <div v-else>ESCOLAR</div>
-    </button>
-    <button :class="styles.segoe">segoe</button>
-           
+  <section id="options-selec">
+        <select v-model="textSelected">
+          <option disabled >Aukeratu</option>
+          <option v-for="text in texts" :key="text" :value="text.text" >{{ text.language }}</option>
+        </select>
+        <label>
+          <select v-model="selectedVoice" >
+            <option v-for="(voice, index) in voices" :value="index" :key="index">
+              {{ voice.name }}({{ voice.lang }})
+            </option>
+          </select>
+        </label>
+          <div class="volume">
+              <label for="volume">Volumen: </label>
+              <input v-model="volumeSelected" type="range" min="0" max="1" step="0.1"  name="volume" id="volume">
+              {{ volumeSelected }}
+          </div>
+          <div class="rate">
+              <label for="rate">Velocidad: </label>
+              <input v-model="rateSelected" type="range" min="0.1" max="10" step="0.1" name="rate" id="rate" >
+              {{ rateSelected }}
+          </div>
+          <div class="pitch">
+              <label for="pitch">Tono: </label>
+              <input v-model="pitchSelected" type="range" min="0" max="2" step="0.1" name="pitch" id="pitch" >
+              {{ pitchSelected }}
+          </div>
+  </section>
+  <section id="btn-selector" > 
+        <button @click="onButtonClick()"> PLAY </button>
+        <button @click="stop()"> STOP </button>
+        <button @click="pause()"> PAUSE </button>
+        <button @click="resume()"> RESUME </button>
+  </section>      
+     
+        
 </template>
 
 <script>
 export default {
-  name: "PlayText",
-  data() {
-    return {
-      text: "I can't believe the news today. Oh I can't close my eyes and make it go away",
-      word: "",
-      wordsperminute:1000,
-      textByWords: [],
-      play: 0,
-      open: true,
-     
-    };
-  },
-  mounted() {
-   
-  },
-  watch: {
-  open(value) {
-      if (value) {
-          return this.word;
-      } else {
-          return this.word;
-      }
+  name:"Play-text",
+  data(){
+    return{
+      text:"",
+      texts:[],
+      textSelected:"",
+      volumeSelected: 0,
+      rateSelected: 0,
+      pitchSelected: 0,
+      langs: [],
+      selectedLang:"",
+      selectedVoice: 0,
+      voices: [],
     }
   },
-  computed:{
-    timeInterval(){
-      return this.wordsperminute;
+mounted(){
+  this.loadData()
+  this.loadVoicesList()
+},
+  
+methods: {
+  async loadData() {
+        const response = await fetch('http://localhost:5000/api/activities/wordbyword')
+        this.texts = await response.json()
     },
-    styles(){
-      return this.open ? ['open'] : ['close'] ;
-    },
+  async loadVoicesList() {
+    if (
+      typeof speechSynthesis !== "undefined" &&
+      speechSynthesis.onvoiceschanged !== undefined
+    ) {
+      window.speechSynthesis.onvoiceschanged = () => this.onVoiceChanged();
+    } else {
+      this.onVoiceChanged();
+    }
   },
-  methods: {
-    PauseText() {
-      this.pause = clearInterval(this.play);
+  onVoiceChanged() {
+      // if (typeof speechSynthesis === "undefined") {
+      //   this.$data.errorMessage = "speechSynthesis is undefined";
+      //   return;
+      // }
+      const voices = speechSynthesis.getVoices();
+      this.$data.voices = voices;
+      this.$data.selectedVoice = 0;
     },
-    StartText() {
-      this.textByWords = this.text.split(" ");
-      let item = 0;
-      this.play = setInterval(() => {
-      this.word = this.textByWords[item];
-      item += 1;
-          }, this.timeInterval);
+  onButtonClick() {
+      if (typeof speechSynthesis === "undefined") {
+        this.$data.errorMessage = "speechSynthesis is undefined";
+        return;
+      }
+      const utterance = new SpeechSynthesisUtterance(this.textSelected);
+        utterance.voice = this.$data.voices[this.$data.selectedVoice];
+        utterance.pitch = this.pitchSelected;
+        utterance.volume = this.volumeSelected;
+        utterance.rate = this.rateSelected;
+      speechSynthesis.speak(utterance);
     },
-  },
+  stop() {
+      speechSynthesis.cancel(this.utterance);
+      },
+  pause() {
+      speechSynthesis.pause(this.utterance);
+      },
+  resume() {
+      speechSynthesis.resume(this.utterance);
+      },
+  }
 };
 </script>
 
 <style>
-body {
-  text-align: center;
+textarea {
+  margin: 10px;
+  width: 90vw;
+  height: 10vh;
+  border: 0.3em double  #384d62;
+  border-radius: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
 }
-section {
-  margin: 1.5em;
-  border: 0.3em solid red;
-  padding: 1.5em;
+input[type='range']:focus {
+  outline: none;
+  color: red;
 }
-button {
-  color: blue;
-  font-size: 1.5em;
-}
-#output{
-    height: 2em;
-    font-size: 3em;
-}
-button {
-  margin: 24px;
-  background-color: white;
-  padding: 8px 24px;
-  border-radius: 10px;
-}
-.close {
-  font-family:BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell;
+#options-selec {
+  margin: 5px;
+  padding: 15px;
+  font-size: 1.1em;
  
 }
-.open {
-  font-family:Impact;
-   
+#btn-selector {
+  margin: 10px;
 }
-.segoe {
-font-family:'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
-}
-.impact {
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-.arial {
-font-family: Arial, Helvetica, sans-serif;
+.rate .volume .pitch{
+  margin: 10px;
 }
 </style>
 

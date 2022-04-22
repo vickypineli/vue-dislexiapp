@@ -2,7 +2,9 @@
   <div class="home">
       <div>
         <h1>IRLA-KURRI</h1>
-        </div>
+      </div>
+       <router-link to="/activities"
+    ><button>SARTU</button></router-link>
   </div>
 </template>
 
@@ -29,19 +31,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
 h1 {
   font-style: italic;
   font-family: 'Slackey';
-}
-h1 {
-  
-
- 
- 
-  transform-origin: bottom center;
-  -webkit-transform-origin: bottom center;
   text-transform: uppercase;
+}
+button {
+  margin: 10px;
+  padding: 5px 10px;
+  border-color:gray;
+  border-radius: 25px;
+  font-size: 1em;
+  background: #42b983;
+  color:white;
 }
 </style>
