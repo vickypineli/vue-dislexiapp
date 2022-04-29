@@ -19,7 +19,7 @@ export default {
     return{
       voces:"",
       vocesDisponibles:[],
-      IDIOMAS_PREFERIDOS:["eu-ES", "en-GB", "es_ES"],
+      IDIOMAS_PREFERIDOS:["eu-ES", "en-GB", "es-ES"],
       posibleIndice:0,
     }
   },

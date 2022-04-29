@@ -2,6 +2,7 @@
   <div class="home">
       <div>
         <h1>IRLA-KURRI</h1>
+    
       </div>
        <router-link to="/activities"
     ><button>SARTU</button></router-link>
