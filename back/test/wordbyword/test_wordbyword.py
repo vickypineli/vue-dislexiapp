@@ -13,6 +13,7 @@ def test_should_return_empty_list_of_texts():
     assert response.json == []
 
 
+
 def test_should_return_list_of_texts():
     # ARRANGE (given)
     wordbyword_repository = WordbywordRepository(temp_file())

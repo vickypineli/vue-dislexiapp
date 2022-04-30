@@ -7,6 +7,7 @@ def main():
     from src.domain.info import Info, InfoRepository
     from src.domain.activities import Activity, ActivityRepository
     from src.domain.wordbyword import Wordbyword, WordbywordRepository
+    from src.domain.users import UserRepository, User
 
     database_path = "data/database.db"
 
@@ -36,6 +37,15 @@ def main():
     activity_repository.save(Activity_2)
     activity_repository.save(Activity_3)
     activity_repository.save(Activity_4)
+
+
+    user_repository = UserRepository(database_path)
+
+    user1 = User('user_2', 'Ander')
+    user2 = User('user_3', 'Alba')
+
+    user_repository.save(user1)
+    user_repository.save(user2)
 
     print("Base de datos inicializada en" + database_path)
 

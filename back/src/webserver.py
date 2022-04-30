@@ -34,4 +34,9 @@ def create_app(repositories):
         text = repositories["wordbyword"].get_text_by_language(language)
         return object_to_json(text)
 
+    @app.route("/api/users", methods=["GET"])
+    def get_users():
+        all_users = repositories["users"].get_users()
+        return object_to_json(all_users)
+
     return app
