@@ -117,13 +117,14 @@ methods: {
 </script>
 
 <style>
+
 textarea {
   margin: 10px;
   width: 90vw;
   height: 10vh;
   border: 0.3em double  #384d62;
   border-radius: 15px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif
+  font-family: sarakanda;
 }
 input[type='range']:focus {
   outline: none;

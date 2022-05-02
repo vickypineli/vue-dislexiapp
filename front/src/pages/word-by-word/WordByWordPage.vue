@@ -6,11 +6,12 @@
     <div>
       <h1 :style="fontSelected">{{ word }}</h1>
     </div>
-    <div>
+
+  </section>
+      <div>
       <button @click="PlayText()">PLAY</button>
       <button @click="PauseText()">STOP</button>
     </div>
-  </section>
   <section class="settings">
       <textarea v-model="textSelected" placeholder="Aukeratu testua....." :style="fontSelected"></textarea>
       <article >
@@ -22,9 +23,9 @@
         </select>
         <select v-model="fontSelected">
           <option disabled >letra-tipo</option>
-          <option :value="arial" :style="arial"> ARIAL</option>
-          <option :value="tahoma" :style="tahoma">TAHOMA</option>
-          <option :value="impact" :style="impact">IMPACT</option>
+          <option :value="escolar" :style="escolar">ESCOLAR</option>
+          <option :value="dislexia" :style="dislexia">DISLEXIA</option>
+          <option :value="sarakanda" :style="sarakanda">SARAKANDA</option>
         </select>
             <label> Hitz-min. </label>
             <input v-model="wordsByMinute" type="number" min="10" max="90" />
@@ -44,16 +45,16 @@ export default {
       play: 0,
       texts:[],
       textSelected:"",
-      arial: {
-        fontFamily: 'Arial',
+      escolar: {
+        fontFamily: 'escolar',
         color:'blue',
         },
-      tahoma: {
-        fontFamily: 'Tahoma', 
+      dislexia: {
+        fontFamily: 'dislexia', 
         color:'green',
         },
-      impact: {
-        fontFamily: 'Impact',
+      sarakanda: {
+        fontFamily: 'sarakanda',
         color:'red',
         }
     };
@@ -89,7 +90,10 @@ export default {
 </script>
 
 <style>
-
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+@import url('/src/assets/fonts/escolar_N.TTF');
+@import url('/src/assets/fonts/OpenDyslexic-Regular.otf');
+@import url('/src/assets/fonts/sarakanda.ttf');
 .text {
   margin: 10px;
   width: 80vw;
@@ -105,7 +109,7 @@ textarea {
   border-radius: 15px;
   width: 90vw;
   height: 10vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'escolar_N.TTF';
 }
 select {
   margin: 10px;
