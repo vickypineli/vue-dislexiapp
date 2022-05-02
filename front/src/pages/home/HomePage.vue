@@ -28,26 +28,28 @@ export default {
     }
   },
   mounted() {
-    this.loadData()
+    this.loadData(),
     this.loadUsers()
   },
   methods: {
     async loadData() {
       const response = await fetch('http://localhost:5000/api/activities')
       this.info = await response.json()
-  
   },
-  async loadUsers() {
-      this.users = [
-        {
-          id: "user-1",
-          name: "pepa",
-        },
-        {
-          id: "user-2",
-          name: "pepe",
-        },
-      ];
+    async loadUsers() {
+      const response = await fetch('http://localhost:5000/api/users')
+        this.users = await response.json()
+
+      // this.users = [
+      //   {
+      //     id: "user-1",
+      //     name: "pepa",
+      //   },
+      //   {
+      //     id: "user-2",
+      //     name: "pepe",
+      //   },
+      // ];
     },
 
    onButtonClicked() {
