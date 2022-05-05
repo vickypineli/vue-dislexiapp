@@ -41,8 +41,8 @@ def main():
 
     user_repository = UserRepository(database_path)
 
-    user1 = User('user_2', 'Ander')
-    user2 = User('user_3', 'Alba')
+    user1 = User('user_1', 'Ander')
+    user2 = User('user_2', 'Alba')
 
     user_repository.save(user1)
     user_repository.save(user2)
