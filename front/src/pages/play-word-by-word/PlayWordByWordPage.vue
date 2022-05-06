@@ -19,21 +19,6 @@
             </option>
           </select>
         </label>
-          <div class="volume">
-              <label for="volume">Volumen: </label>
-              <input v-model="volumeSelected" type="range" min="0" max="1" step="0.1"  name="volume" id="volume">
-              {{ volumeSelected }}
-          </div>
-          <div class="rate">
-              <label for="rate">Velocidad: </label>
-              <input v-model="rateSelected" type="range" min="0.1" max="10" step="0.1" name="rate" id="rate" >
-              {{ rateSelected }}
-          </div>
-          <div class="pitch">
-              <label for="pitch">Tono: </label>
-              <input v-model="pitchSelected" type="range" min="0" max="2" step="0.1" name="pitch" id="pitch" >
-              {{ pitchSelected }}
-          </div>
   </section>
   <section id="btn-selector" > 
         <button @click="onButtonClick()"> PLAY </button>
@@ -83,26 +68,20 @@ methods: {
     }
   },
   onVoiceChanged() {
+      const voices = speechSynthesis.getVoices();
+      this.$data.voices = voices;
+      this.$data.selectedVoice = 0;
+  },
+  onButtonClick() {
       // if (typeof speechSynthesis === "undefined") {
       //   this.$data.errorMessage = "speechSynthesis is undefined";
       //   return;
       // }
-      const voices = speechSynthesis.getVoices();
-      this.$data.voices = voices;
-      this.$data.selectedVoice = 0;
-    },
-  onButtonClick() {
-      if (typeof speechSynthesis === "undefined") {
-        this.$data.errorMessage = "speechSynthesis is undefined";
-        return;
-      }
       const utterance = new SpeechSynthesisUtterance(this.textSelected);
         utterance.voice = this.$data.voices[this.$data.selectedVoice];
-        utterance.pitch = this.pitchSelected;
-        utterance.volume = this.volumeSelected;
-        utterance.rate = this.rateSelected;
+
       speechSynthesis.speak(utterance);
-    },
+  },
   stop() {
       speechSynthesis.cancel(this.utterance);
       },

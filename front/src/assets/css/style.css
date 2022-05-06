@@ -18,3 +18,15 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+@font-face{
+  font-family:'Dislexia';
+  src:url("../fonts/dislexia.otf");
+}
+@font-face{
+  font-family:'escolar';
+  src:url("../fonts/escolar.ttf");
+}
+@font-face{
+  font-family:'sarakanda';
+  src:url("../fonts/sarakanda.ttf");
+}
