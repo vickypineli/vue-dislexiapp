@@ -21,10 +21,9 @@
         </label>
   </section>
   <section id="btn-selector" > 
-        <button @click="onButtonClick()"> PLAY </button>
+        <button @click="play()"> PLAY </button>
         <button @click="stop()"> STOP </button>
         <button @click="pause()"> PAUSE </button>
-        <button @click="resume()"> RESUME </button>
   </section>      
      
         
@@ -35,12 +34,8 @@ export default {
   name:"Play-text",
   data(){
     return{
-      text:"",
-      texts:[],
+      texts: [],
       textSelected:"",
-      volumeSelected: 0,
-      rateSelected: 0,
-      pitchSelected: 0,
       langs: [],
       selectedLang:"",
       selectedVoice: 0,
@@ -72,14 +67,9 @@ methods: {
       this.$data.voices = voices;
       this.$data.selectedVoice = 0;
   },
-  onButtonClick() {
-      // if (typeof speechSynthesis === "undefined") {
-      //   this.$data.errorMessage = "speechSynthesis is undefined";
-      //   return;
-      // }
+  play() {
       const utterance = new SpeechSynthesisUtterance(this.textSelected);
-        utterance.voice = this.$data.voices[this.$data.selectedVoice];
-
+      utterance.voice = this.$data.voices[this.$data.selectedVoice];
       speechSynthesis.speak(utterance);
   },
   stop() {
@@ -103,12 +93,8 @@ textarea {
   height: 10vh;
   border: 0.3em double  #384d62;
   border-radius: 15px;
-  font-family: sarakanda;
 }
-input[type='range']:focus {
-  outline: none;
-  color: red;
-}
+
 #options-selec {
   margin: 5px;
   padding: 15px;
@@ -118,9 +104,7 @@ input[type='range']:focus {
 #btn-selector {
   margin: 10px;
 }
-.rate .volume .pitch{
-  margin: 10px;
-}
+
 </style>
 
     

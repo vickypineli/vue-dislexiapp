@@ -19,7 +19,7 @@ export default {
     return{
       voces:"",
       vocesDisponibles:[],
-      IDIOMAS_PREFERIDOS:["eu-ES", "en-GB", "es-ES"],
+      idiomas_preferidos:[],
       posibleIndice:0,
     }
   },
@@ -49,7 +49,7 @@ methods:{
         }
         this.vocesDisponibles = speechSynthesis.getVoices();
         console.log( this.vocesDisponibles )
-        let posibleIndice = this.vocesDisponibles.findIndex(voz => this.IDIOMAS_PREFERIDOS.includes(voz.lang));
+        let posibleIndice = this.vocesDisponibles.findIndex(voz => this.idiomas_preferidos.includes(voz.lang));
         if (posibleIndice === -1) posibleIndice = 0;
         this.vocesDisponibles.forEach((voz, indice) => {
           const opcion = document.createElement("option");

@@ -96,9 +96,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Slackey&display=swap");
-@import url("/src/assets/fonts/escolar_N.TTF");
-@import url("/src/assets/fonts/OpenDyslexic-Regular.otf");
-@import url("/src/assets/fonts/sarakanda.ttf");
+
 .text {
   margin: 10px;
   width: 80vw;
