@@ -3,9 +3,6 @@ import sqlite3
 class Wordbyword:
     def __init__(self, language, text):
         self.language = language
-
-
-
         self.text = text
 
     def to_dict(self):
