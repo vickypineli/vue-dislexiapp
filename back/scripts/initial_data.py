@@ -78,4 +78,4 @@ def main():
     
     print("Base de datos inicializada en" + database_path)
 
-    main()
+main()
