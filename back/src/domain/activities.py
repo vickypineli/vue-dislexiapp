@@ -40,6 +40,7 @@ class ActivityRepository:
         cursor.execute(sql)
 
         data = cursor.fetchall()
+        
         result = []
         for item in data:
             activity = Activity(**item)

@@ -16,6 +16,7 @@ class Countletters:
             'letters': self.letters,
             'syllables': self.syllables
         }
+
 class CountlettersRepository:
     def __init__ (self, database_path):
         self.database_path = database_path
@@ -28,13 +29,12 @@ class CountlettersRepository:
 
     def init_tables(self):
         sql = """
-            create table if not exists countLetters (
-                "id" varchar, 
+            create table if not exists countLetters(
+                "id" varchar PRIMARY KEY, 
                 "word" varchar,
-                "img" text,
+                "img" varchar,
                 "letters" varchar,
-                "syllables" varchar,
-
+                "syllables" varchar
             )
         """
         conn = self.create_conn()

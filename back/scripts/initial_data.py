@@ -48,9 +48,8 @@ def main():
     user_repository.save(user1)
     user_repository.save(user2)
 
+
     #countletters
-    countletters_repository = CountlettersRepository(database_path)
-   
     word1 = Countletters (id ='word_1', word='klariona', img='https://ibb.co/6vDRmyb', letters='8', syllables='3')
     word2 = Countletters (id ='word_2', word='platera', img='https://ibb.co/0jrhGvz', letters='7', syllables='3')
     word3 = Countletters (id ='word_3', word='globoa', img='https://ibb.co/N931KLs', letters='6', syllables='3')
@@ -62,6 +61,8 @@ def main():
     word9 = Countletters (id ='word_9', word='prakak', img='https://ibb.co/QkrFnrV', letters='6', syllables='2')
     word10 = Countletters (id ='word_10', word='tigrea', img='https://ibb.co/QkrFnrV', letters='6', syllables='3')
     
+    countletters_repository = CountlettersRepository(database_path)
+
     countletters_repository.save(word1)
     countletters_repository.save(word2)
     countletters_repository.save(word3)
@@ -77,4 +78,4 @@ def main():
     
     print("Base de datos inicializada en" + database_path)
 
-main()
+    main()

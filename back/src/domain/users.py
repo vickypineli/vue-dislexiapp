@@ -46,12 +46,14 @@ class UserRepository:
             return users
 
         def save(self, user):
-            sql = """insert into users (id, name) values (
-                :id, :name
+            sql = """insert into users (id, name) values (:id, :name
             ) """
             conn = self.create_conn()
             cursor = conn.cursor()
-            cursor.execute(sql, user.to_dict())
+            cursor.execute(
+                sql, 
+                user.to_dict()
+                )
             conn.commit()
 
         # def get_user_by_id(self, id):
