@@ -39,4 +39,15 @@ def create_app(repositories):
         all_users = repositories["users"].get_users()
         return object_to_json(all_users)
 
+    @app.route("/api/activities/countletters", methods=["GET"])
+    def get_all_words():
+        all_words = repositories["countletters"].get_all_words()
+        return object_to_json(all_words)
+
+    @app.route("/api/activities/countletters/<id>", methods=["GET"])
+    def get_word_by_id(id):
+        word = repositories["countletters"].get_word_by_id(id)
+        return object_to_json(word)
+
+
     return app

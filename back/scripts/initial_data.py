@@ -48,7 +48,6 @@ def main():
     user_repository.save(user1)
     user_repository.save(user2)
 
-
     #countletters
     word1 = Countletters (id ='word_1', word='klariona', img='https://ibb.co/6vDRmyb', letters='8', syllables='3')
     word2 = Countletters (id ='word_2', word='platera', img='https://ibb.co/0jrhGvz', letters='7', syllables='3')
@@ -56,10 +55,10 @@ def main():
     word4 = Countletters (id ='word_4', word='kablea', img='https://ibb.co/ryPhn2q', letters='6', syllables='3')
     word5 = Countletters (id ='word_5', word='palmera', img='https://ibb.co/y8Dyb8R', letters='7', syllables='3')
     word6 = Countletters (id ='word_6', word='termometroa', img='https://ibb.co/QkrFnrV', letters='11', syllables='5')
-    word7 = Countletters (id ='word_7', word='kalkulagailua', img='https://ibb.co/QkrFnrV', letters='13', syllables='6')
-    word8 = Countletters (id ='word_8', word='galtzerdiak', img='https://ibb.co/QkrFnrV', letters='11', syllables='4')
-    word9 = Countletters (id ='word_9', word='prakak', img='https://ibb.co/QkrFnrV', letters='6', syllables='2')
-    word10 = Countletters (id ='word_10', word='tigrea', img='https://ibb.co/QkrFnrV', letters='6', syllables='3')
+    word7 = Countletters (id ='word_7', word='kalkulagailua', img='https://ibb.co/jLwq99T', letters='13', syllables='6')
+    word8 = Countletters (id ='word_8', word='galtzerdiak', img='https://ibb.co/Y22SDn4', letters='11', syllables='4')
+    word9 = Countletters (id ='word_9', word='prakak', img='https://ibb.co/K0L0c2g', letters='6', syllables='2')
+    word10 = Countletters (id ='word_10', word='tigrea', img='https://ibb.co/BzD6qBQ', letters='6', syllables='3')
     
     countletters_repository = CountlettersRepository(database_path)
 

@@ -42,8 +42,8 @@ class CountlettersRepository:
         cursor.execute(sql)
         conn.commit()
 
-    def get_all_texts(self):
-        sql = """select * from countletter"""
+    def get_all_words(self):
+        sql = """select * from countletters"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql)
@@ -55,3 +55,25 @@ class CountlettersRepository:
             result.append(countletter)
 
         return result
+    
+    def save(self, countletters):
+            sql = """insert into countletters (id, word, img, letters, syllables) 
+                        values (:id, :word, :img, :letters, :syllables 
+                        ) """
+            conn = self.create_conn()
+            cursor = conn.cursor()
+            cursor.execute(
+                sql, 
+                countletters.to_dict()
+                )
+            conn.commit()
+    
+    def get_word_by_id(self, id):
+        sql = """ SELECT * FROM countletters WHERE id = :id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql,{"id":id})
+
+        data = cursor.fetchone()
+        word = Countletters(**data)
+        return word
