@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: "Setting-Text",
+  name: "Word-by-word",
   data() {
     return {
       word: "",

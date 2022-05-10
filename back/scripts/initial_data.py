@@ -8,6 +8,7 @@ def main():
     from src.domain.activities import Activity, ActivityRepository
     from src.domain.wordbyword import Wordbyword, WordbywordRepository
     from src.domain.users import UserRepository, User
+    from src.domain.countletters import CountlettersRepository, Countletters
 
     database_path = "data/database.db"
 
@@ -38,15 +39,42 @@ def main():
     activity_repository.save(Activity_3)
     activity_repository.save(Activity_4)
 
-
+    #users
     user_repository = UserRepository(database_path)
 
-    user1 = User('user_1', 'Ander')
-    user2 = User('user_2', 'Alba')
+    user1 = User (id='user_1', name='Ander')
+    user2 = User (id='user_2', name='Alba')
 
     user_repository.save(user1)
     user_repository.save(user2)
 
+    #countletters
+    countletters_repository = CountlettersRepository(database_path)
+   
+    word1 = Countletters (id ='word_1', word='klariona', img='https://ibb.co/6vDRmyb', letters='8', syllables='3')
+    word2 = Countletters (id ='word_2', word='platera', img='https://ibb.co/0jrhGvz', letters='7', syllables='3')
+    word3 = Countletters (id ='word_3', word='globoa', img='https://ibb.co/N931KLs', letters='6', syllables='3')
+    word4 = Countletters (id ='word_4', word='kablea', img='https://ibb.co/ryPhn2q', letters='6', syllables='3')
+    word5 = Countletters (id ='word_5', word='palmera', img='https://ibb.co/y8Dyb8R', letters='7', syllables='3')
+    word6 = Countletters (id ='word_6', word='termometroa', img='https://ibb.co/QkrFnrV', letters='11', syllables='5')
+    word7 = Countletters (id ='word_7', word='kalkulagailua', img='https://ibb.co/QkrFnrV', letters='13', syllables='6')
+    word8 = Countletters (id ='word_8', word='galtzerdiak', img='https://ibb.co/QkrFnrV', letters='11', syllables='4')
+    word9 = Countletters (id ='word_9', word='prakak', img='https://ibb.co/QkrFnrV', letters='6', syllables='2')
+    word10 = Countletters (id ='word_10', word='tigrea', img='https://ibb.co/QkrFnrV', letters='6', syllables='3')
+    
+    countletters_repository.save(word1)
+    countletters_repository.save(word2)
+    countletters_repository.save(word3)
+    countletters_repository.save(word4)
+    countletters_repository.save(word5)
+    countletters_repository.save(word6)
+    countletters_repository.save(word7)
+    countletters_repository.save(word8)
+    countletters_repository.save(word9)
+    countletters_repository.save(word10)
+
+    
+    
     print("Base de datos inicializada en" + database_path)
 
 main()

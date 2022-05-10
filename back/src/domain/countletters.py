@@ -1,7 +1,8 @@
 import sqlite3
 
 class Countletters:
-    def __init__(self, word, img, letters, syllables ):
+    def __init__(self, id, word, img, letters, syllables ):
+        self.id = id
         self.word = word
         self.img = img
         self.letters = letters
@@ -9,6 +10,7 @@ class Countletters:
 
     def to_dict(self):
         return {
+            'id': self.id,
             'word': self.word,
             'img': self.img,
             'letters': self.letters,
@@ -27,6 +29,7 @@ class CountlettersRepository:
     def init_tables(self):
         sql = """
             create table if not exists countLetters (
+                "id" varchar, 
                 "word" varchar,
                 "img" text,
                 "letters" varchar,
@@ -38,3 +41,17 @@ class CountlettersRepository:
         cursor = conn.cursor()
         cursor.execute(sql)
         conn.commit()
+
+    def get_all_texts(self):
+        sql = """select * from countletter"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql)
+
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            countletter = Countletters(**item)
+            result.append(countletter)
+
+        return result

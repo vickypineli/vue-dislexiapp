@@ -7,7 +7,7 @@ export default {
     name:"Count-letters",
     data() {
         return {
-            text:"",
+            words:[],
 
         };
     },
@@ -22,7 +22,7 @@ export default {
         const response = await fetch(
             "http://localhost:5000/api/activities/countletters"
         );
-        this.texts = await response.json();
+        this.words = await response.json();
         },
     },
 };
