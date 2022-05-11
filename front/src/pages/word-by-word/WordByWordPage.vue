@@ -1,38 +1,40 @@
 <template>
   <div>
-    <h1 style="font-family: Dislexia">HITZEZ-HITZ</h1>
+    <h1>HITZEZ-HITZ</h1>
   </div>
-  <section class="text">
-    <div>
+  <section class="container">
+    <div class="text">
       <h1 :style="fontSelected">{{ word }}</h1>
     </div>
+  
+    <div class="button-container">
+      <button @click="PlayText()">PLAY</button>
+      <button @click="PauseText()">STOP</button>
+    </div>
   </section>
-  <div>
-    <button @click="PlayText()">PLAY</button>
-    <button @click="PauseText()">STOP</button>
-  </div>
   <section class="settings">
+    
+    <div class="aukera">
+      <label> Aukeratu testua: </label>
+      <select v-model="textSelected">
+        <option v-for="text in texts" :key="text" :value="text.text">
+          {{ text.language }}
+        </option>
+      </select>
+      <label> letra-tipo: </label>
+      <select v-model="fontSelected">
+        <option :value="escolar" :style="escolar">ESCOLAR</option>
+        <option :value="dislexia" :style="dislexia">DISLEXIA</option>
+        <option :value="sarakanda" :style="sarakanda">SARAKANDA</option>
+      </select>
+      <label> Hitz-min: </label>
+      <input class="slider"  v-model="wordsByMinute" type="range" min="10" max="90"/>
+    </div>
     <textarea
       v-model="textSelected"
       placeholder="Aukeratu testua....."
       :style="fontSelected"
     ></textarea>
-    <article>
-      <select v-model="textSelected">
-        <option disabled>Aukeratu testua</option>
-        <option v-for="text in texts" :key="text" :value="text.text">
-          {{ text.language }}
-        </option>
-      </select>
-      <select v-model="fontSelected">
-        <option disabled>letra-tipo</option>
-        <option :value="escolar" :style="escolar">ESCOLAR</option>
-        <option :value="dislexia" :style="dislexia">DISLEXIA</option>
-        <option :value="sarakanda" :style="sarakanda">SARAKANDA</option>
-      </select>
-      <label> Hitz-min. </label>
-      <input v-model="wordsByMinute" type="number" min="10" max="90" />
-    </article>
   </section>
 </template>
 
@@ -97,24 +99,67 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Slackey&display=swap");
 
-.text {
-  margin: 10px;
-  width: 80vw;
-  height: 20vh;
-  border: 0.4px double #2c3e50;
+body{
+  background-image: url("https://i.ibb.co/PgXQTyG/5086.jpg");
+}
+.container {
+  margin: 5px;
+  display: flex;
+  height: 200px;
+  
+}
+.text{
+  border: 1px solid gray;
   border-radius: 10px;
-  padding: 1em;
+  flex: auto;
   font-size: 2.5em;
+  background: white;
+}
+.button-container{
+  width: 130px;
+}
+button{
+  display: block;
+  font-size: 20px;
+  padding: 8px;
+  margin: 30px;
+  border-radius: 15px;
+}
+.settings {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+}
+.aukera{
+  display: flex;
+  flex-direction: row;
+  width: 230px;
 }
 textarea {
-  font-size: 1em;
-  border: 0.1px solid #42b983;
-  border-radius: 15px;
+  font-size: 1.2em;
+  border-radius: 10px;
   width: 90vw;
-  height: 10vh;
-  font-family: "escolar_N.TTF";
+  height: 20vh;
 }
 select {
-  margin: 10px;
+  font-size: large;
+  margin: 25px;
 }
+.slidecontainer {
+  width: 100%;
+}
+
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+
+
 </style>
