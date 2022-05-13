@@ -2,40 +2,51 @@
   <div>
     <h1>HITZEZ-HITZ</h1>
   </div>
-  <section class="container">
+  <section class="text-container">
     <div class="text">
       <h1 :style="fontSelected">{{ word }}</h1>
     </div>
-  
     <div class="button-container">
       <button @click="PlayText()">PLAY</button>
       <button @click="PauseText()">STOP</button>
     </div>
   </section>
-  <section class="settings">
-    
-    <div class="aukera">
-      <label> Aukeratu testua: </label>
+  <section class="options">
+    <div class="option-item">
+      <label> Aukeratu Testua: </label>
       <select v-model="textSelected">
         <option v-for="text in texts" :key="text" :value="text.text">
           {{ text.language }}
         </option>
       </select>
-      <label> letra-tipo: </label>
+    </div>
+    <div class="option-item">
+      <label> Letra-tipo: </label>
       <select v-model="fontSelected">
         <option :value="escolar" :style="escolar">ESCOLAR</option>
         <option :value="dislexia" :style="dislexia">DISLEXIA</option>
         <option :value="sarakanda" :style="sarakanda">SARAKANDA</option>
       </select>
-      <label> Hitz-min: </label>
-      <input class="slider"  v-model="wordsByMinute" type="range" min="10" max="90"/>
+      </div>
+    <div class="option-item">
+      <div class="range">
+      <label> Hitz-min:</label>{{ wordsByMinute }}
+      </div>
+      <input class="slider" list="tickmarks" v-model="wordsByMinute" type="range" max="120" min="30"  step="10"/>
+      <datalist id="tickmarks">
+      <option value="30"></option>
+      <option value="60"></option>
+      <option value="90"></option>
+      <option value="120"></option>
+      </datalist>
     </div>
+  </section>  
     <textarea
       v-model="textSelected"
-      placeholder="Aukeratu testua....."
+      placeholder="Aldatu testua hemen....."
       :style="fontSelected"
     ></textarea>
-  </section>
+  
 </template>
 
 <script>
@@ -44,11 +55,12 @@ export default {
   data() {
     return {
       word: "",
-      wordsByMinute: 0,
+      wordsByMinute: 10,
       textByWords: [],
       play: 0,
       texts: [],
       textSelected: "",
+      output: 0,
       escolar: {
         fontFamily: "escolar",
         color: "blue",
@@ -96,27 +108,26 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Slackey&display=swap");
 
 body{
-  background-image: url("https://i.ibb.co/PgXQTyG/5086.jpg");
+  background-image: url("https://i.ibb.co/MhBFzhC/paisaje.png");
 }
-.container {
+.text-container {
   margin: 5px;
   display: flex;
   height: 200px;
-  
+  background: white;
+  border: 1.5px solid rgb(3, 97, 3);
+  border-radius: 10px;
 }
 .text{
-  border: 1px solid gray;
-  border-radius: 10px;
   flex: auto;
-  font-size: 2.5em;
-  background: white;
+  font-size: 3em;
 }
 .button-container{
-  width: 130px;
+  width: 20vw;
 }
 button{
   display: block;
@@ -124,42 +135,47 @@ button{
   padding: 8px;
   margin: 30px;
   border-radius: 15px;
+  border-color: rgb(41, 194, 41);
+  background: rgb(34, 185, 34);
+  color:white;
 }
-.settings {
-  margin: 5px;
-  display: flex;
-  flex-direction: column;
-  height: 200px;
-}
-.aukera{
+.options {
+  margin-top: 10px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
-  width: 230px;
+}
+.option-item{
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  margin: 15px;
+}
+.range{
+  margin: 5px;
+
 }
 textarea {
-  font-size: 1.2em;
+  font-size: 1.3em;
   border-radius: 10px;
-  width: 90vw;
+  border-color: darkgreen;
+  width: 95vw;
   height: 20vh;
+  background: rgba(255, 255, 255, 0.73);
+}
+label{
+  margin: 5px;
+  font-size: 1.2em;
 }
 select {
-  font-size: large;
-  margin: 25px;
+  font-size: 1.2em;
 }
-.slidecontainer {
-  width: 100%;
-}
-
-
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
   height: 25px;
-  background: #04AA6D;
+  background: whitesmoke;
   cursor: pointer;
 }
-
-
-
 </style>

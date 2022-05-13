@@ -6,6 +6,7 @@
         <router-link to="/activities/word-by-word/speech-to-text"><button>SPEECH TO TEXT</button></router-link>
         <router-link to="/activities/count-letters"><button>SILABAK-ZENBATU</button></router-link>
   </section>
+
 </template>
 
 <script>
