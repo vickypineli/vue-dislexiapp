@@ -21,6 +21,13 @@ const routes = [
     name: 'CountLetters',
     component: () => import('@/pages/count-letters/CountLettersPage.vue'),
   },
+  
+  {
+    path: '/activities/count-letters/:id',
+    name: 'CountLettersDetail',
+    component: () => import('@/pages/count-letters/CountLettersDetailPage.vue'),
+  },
+  
   {
     path: '/activities/word-by-word/play-word-by-word',
     name: 'PlayWordByWord',
@@ -32,7 +39,6 @@ const routes = [
     component: () => import('@/pages/speech-to-text/SpeechToTextPage.vue'),
   },
 ]
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,

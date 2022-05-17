@@ -78,14 +78,11 @@ methods: {
   pause() {
       speechSynthesis.pause(this.utterance);
       },
-  resume() {
-      speechSynthesis.resume(this.utterance);
-      },
   }
 };
 </script>
 
-<style>
+<style scoped>
 
 textarea {
   margin: 10px;
@@ -104,7 +101,15 @@ textarea {
 #btn-selector {
   margin: 10px;
 }
-
+button{
+ 
+  padding: 8px;
+  margin: 20px;
+  border-radius: 15px;
+  border-color: rgb(41, 194, 41);
+  background: rgb(34, 185, 34);
+  color:white;
+}
 </style>
 
     

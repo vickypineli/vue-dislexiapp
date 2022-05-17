@@ -1,52 +1,55 @@
 <template>
-  <div>
-    <h1>HITZEZ-HITZ</h1>
-  </div>
-  <section class="text-container">
-    <div class="text">
-      <h1 :style="fontSelected">{{ word }}</h1>
+  <div class="container">
+    <div>
+      <h1>HITZEZ-HITZ</h1>
     </div>
-    <div class="button-container">
-      <button @click="PlayText()">PLAY</button>
-      <button @click="PauseText()">STOP</button>
-    </div>
-  </section>
-  <section class="options">
-    <div class="option-item">
-      <label> Aukeratu Testua: </label>
-      <select v-model="textSelected">
-        <option v-for="text in texts" :key="text" :value="text.text">
-          {{ text.language }}
-        </option>
-      </select>
-    </div>
-    <div class="option-item">
-      <label> Letra-tipo: </label>
-      <select v-model="fontSelected">
-        <option :value="escolar" :style="escolar">ESCOLAR</option>
-        <option :value="dislexia" :style="dislexia">DISLEXIA</option>
-        <option :value="sarakanda" :style="sarakanda">SARAKANDA</option>
-      </select>
+    <section class="text-container">
+      <div class="text">
+        <h1 :style="fontSelected">{{ word }}</h1>
       </div>
-    <div class="option-item">
-      <div class="range">
-      <label> Hitz-min:</label>{{ wordsByMinute }}
+      <div class="button-container">
+        <button @click="PlayText()">PLAY</button>
+        <button @click="PauseText()">STOP</button>
       </div>
-      <input class="slider" list="tickmarks" v-model="wordsByMinute" type="range" max="120" min="30"  step="10"/>
-      <datalist id="tickmarks">
-      <option value="30"></option>
-      <option value="60"></option>
-      <option value="90"></option>
-      <option value="120"></option>
-      </datalist>
-    </div>
-  </section>  
-    <textarea
-      v-model="textSelected"
-      placeholder="Aldatu testua hemen....."
-      :style="fontSelected"
-    ></textarea>
-  
+    </section>
+    <section class="options">
+      <div class="option-item">
+        <label> Testua: </label>
+        <select v-model="textSelected">
+          <option v-for="text in texts" :key="text" :value="text.text">
+            {{ text.language }}
+          </option>
+        </select>
+      </div>
+      <div class="option-item">
+        <label> Letra-tipo: </label>
+        <select v-model="fontSelected">
+          <option :value="escolar" :style="escolar">ESCOLAR</option>
+          <option :value="dislexia" :style="dislexia">DISLEXIA</option>
+          <option :value="sarakanda" :style="sarakanda">SARAKANDA</option>
+        </select>
+        </div>
+      <div class="option-item">
+        <div class="range">
+        <label> Hitz-min:</label>{{ wordsByMinute }}
+        </div>
+        <input class="slider" list="tickmarks" v-model="wordsByMinute" type="range" max="120" min="30"  step="10"/>
+        <datalist id="tickmarks">
+        <option value="30"></option>
+        <option value="60"></option>
+        <option value="90"></option>
+        <option value="120"></option>
+        <option value="150"></option>
+        </datalist>
+      </div>
+    
+    </section>  
+      <textarea
+        v-model="textSelected"
+        placeholder="Aldatu testua hemen....."
+        :style="fontSelected"
+      ></textarea>
+  </div>  
 </template>
 
 <script>
@@ -77,11 +80,12 @@ export default {
   },
   computed: {
     timeInterval() {
-      return this.wordsByMinute * 100;
+      return 60000 / this.wordsByMinute;
     },
   },
   mounted() {
     this.loadData();
+    this.PlayText();
   },
   methods: {
     async loadData() {
@@ -97,7 +101,6 @@ export default {
 
     PlayText() {
       this.textByWords = this.textSelected.split(" ");
-
       let item = 0;
       this.play = setInterval(() => {
         this.word = this.textByWords[item];
@@ -111,13 +114,12 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Slackey&display=swap");
 
-body{
-  background-image: url("https://i.ibb.co/MhBFzhC/paisaje.png");
-}
+
 .text-container {
-  margin: 5px;
+  margin: auto;
   display: flex;
-  height: 200px;
+  width: 80vw;
+  height: 25vh;
   background: white;
   border: 1.5px solid rgb(3, 97, 3);
   border-radius: 10px;
@@ -125,42 +127,42 @@ body{
 .text{
   flex: auto;
   font-size: 3em;
+  margin: auto;
 }
-.button-container{
-  width: 20vw;
-}
+
 button{
   display: block;
   font-size: 20px;
   padding: 8px;
-  margin: 30px;
+  margin: 20px;
   border-radius: 15px;
   border-color: rgb(41, 194, 41);
   background: rgb(34, 185, 34);
   color:white;
 }
 .options {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  /* margin-top: 10px; */
+  /* margin-bottom: 20px; */
+  width: 80vw;
   display: flex;
+  margin: auto;
   flex-direction: row;
 }
 .option-item{
   display: flex;
   flex-direction: column;
-  width: 35vw;
+  width: 25vw;
   margin: 15px;
 }
 .range{
   margin: 5px;
-
 }
 textarea {
   font-size: 1.3em;
   border-radius: 10px;
   border-color: darkgreen;
-  width: 95vw;
-  height: 20vh;
+  width: 80vw;
+  height: 15vh;
   background: rgba(255, 255, 255, 0.73);
 }
 label{
@@ -170,12 +172,34 @@ label{
 select {
   font-size: 1.2em;
 }
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 25px;
-  height: 25px;
-  background: whitesmoke;
-  cursor: pointer;
+  width: 100%; /* Full-width */
+  height: 10px; /* Specified height */
+  background:rgb(146, 148, 146); /* Grey background */
+  outline: none; /*Remove outline  */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: darkgreen; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: darkgreen; /* Green background */
+  cursor: pointer; /* Cursor on hover */
 }
 </style>
