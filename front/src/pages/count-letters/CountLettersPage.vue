@@ -42,10 +42,9 @@ body{
   background-image: url("https://i.ibb.co/MhBFzhC/paisaje.png");
 }
 .photo {
-    width: 200px; 
-    margin-inline: 130px;
+    width: 20vw; 
+    margin:auto;
     padding: 10px;
-   
 }
 p {
     font-size: 50px;
@@ -62,7 +61,6 @@ p {
     border: 1px solid red;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 70vw;
 }
 .question {
