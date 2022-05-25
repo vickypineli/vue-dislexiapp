@@ -7,9 +7,9 @@
         </div>
         <div class="question">
             <label for="">Zenbat letrak? </label>
-            <input type="text">
+            <input type="number" min="1" max="20">
             <label for="">Zenbat silabak? </label>
-            <input type="text">
+            <input type="number" min="1" max="10">
         </div>
     </article>
 
@@ -59,7 +59,6 @@ p {
     margin:15px;
 }
 .draw {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,3 +1,4 @@
+from random import random
 import sqlite3
 
 class Countletters:
@@ -70,6 +71,16 @@ class CountlettersRepository:
     
     def get_word_by_id(self, id):
         sql = """ SELECT * FROM countletters WHERE id = :id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql,{"id":id})
+
+        data = cursor.fetchone()
+        word = Countletters(**data)
+        return word
+
+    def get_word_by_random(self):
+        sql = """ SELECT * FROM countletters ORDER BY random LIMIT"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql,{"id":id})

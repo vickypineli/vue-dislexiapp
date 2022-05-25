@@ -85,7 +85,7 @@ export default {
   },
   mounted() {
     this.loadData();
-    this.PlayText();
+    
   },
   methods: {
     async loadData() {
@@ -96,6 +96,7 @@ export default {
     },
 
     PauseText() {
+      console.log ("clearInterval", this.play)
       this.pause = clearInterval(this.play);
     },
 
@@ -106,6 +107,9 @@ export default {
         this.word = this.textByWords[item];
         item += 1;
       }, this.timeInterval);
+      console.log ("setInterval", this.play) 
+        
+      
     },
   },
 };
