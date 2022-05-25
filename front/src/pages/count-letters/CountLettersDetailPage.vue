@@ -32,7 +32,7 @@ export default {
         async loadData() {
         // let wordId = this.$route.params.id;
         const response = await fetch(
-            "http://localhost:5000/api/activities/?countletters=2"
+            "http://localhost:5000/api/activities/countletters"
             );
         this.words = await response.json();
         },
