@@ -1,20 +1,28 @@
 <template>
   <h1>SILABAK ZENBATU</h1>
-  <h3>word:{{word.id}}</h3>
-    <p>{{word.word}}</p>
-    <img class="photo" :src="word.img" />
-
+    <article class="word-item" v-for="word in words" :key="word.id">
+        <div class="draw">
+            <img class="photo" :src="word.img" />
+            <h2>{{ word.word }}</h2>
+        </div>
+    <div class="question">
+        <label for="">Zenbat letrak? </label>
+        <input type="text">
+        <label for="">Zenbat silabak? </label>
+        <input type="text">
+    </div>
+    </article>
 </template>
 
 <script>
-import config from "@/config.js";
+// import config from "@/config.js";
 
 export default {
-    name:"Count-letters",
+    name: "CountlettersDetail",
     data() {
         return {
-            word:{},
-            
+            words:[], 
+            word:[], 
         };
     },
     mounted() {
@@ -22,20 +30,14 @@ export default {
     },
     methods: {
         async loadData() {
-            // this.word ={
-            //     id: "word_1",
-            //     img: "https://i.ibb.co/KrTZs1M/klariona.png",
-            //     letters: "8",
-            //     syllables: "3",
-            //     word: "klariona",
-            //     }
-        let wordId = this.$route.params.id;
-        const response = await fetch(`${config.API_PATH}/activities/countletters/ ${wordId}`
-        );
-        this.word = await response.json();
+        // let wordId = this.$route.params.id;
+        const response = await fetch(
+            "http://localhost:5000/api/activities/?countletters=2"
+            );
+        this.words = await response.json();
         },
     },
-}
+};
 
 </script>
 
@@ -60,7 +62,7 @@ p {
     margin:15px;
 }
 .draw {
-    border: 1px solid red;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
