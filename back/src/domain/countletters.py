@@ -78,23 +78,6 @@ class CountlettersRepository:
         word = Countletters(**data)
         return word
 
-<<<<<<< HEAD
-    def get_words_by_random(self):
-        sql = """ SELECT * FROM countletters ORDER BY random LIMIT"""
-        conn = self.create_conn()
-        cursor = conn.cursor()
-        cursor.execute(sql)
-        data = cursor.fetchall()
-        result = []
-        for item in data:
-            countletter = Countletters(**item)
-            result.append(countletter)
-
-        return result
-    
-
-        
-=======
     def get_word_by_random(self):
         sql = """ SELECT * FROM countletters ORDER BY random() LIMIT 4"""
         conn = self.create_conn()
@@ -108,4 +91,3 @@ class CountlettersRepository:
             result.append(countletter)
 
         return result
->>>>>>> e490c40c912754ed4837bb214f05de51935ebd32

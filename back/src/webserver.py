@@ -45,9 +45,9 @@ def create_app(repositories):
         all_words = repositories["countletters"].get_all_words()
         return object_to_json(all_words)
 
-    @app.route("/api/activities/countletters", methods=["GET"])
-    def get_word_by_random():
-        words = repositories["countletters"].get_word_by_random()
+    @app.route("/api/activities/countletters/.kk<id>", methods=["GET"])
+    def get_word_by_id(id):
+        words = repositories["countletters"].get_word_by_id(id)
         return object_to_json(words)
 
     @app.route("/api/activities/countletters", methods=["GET"])

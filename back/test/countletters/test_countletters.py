@@ -61,14 +61,14 @@ def test_should_return_word_by_id():
     client = app.test_client()
 
     word1 = Countletters(
-        id = "word_1",
+        id = "1",
         word = "klariona",
         img = 'https://i.ibb.co/KrTZs1M/klariona.png',
         letters = '8',
         syllables = '3'
     )
     word2 = Countletters(
-        id = "word_2",
+        id = "2",
         word = "platera",
         img ='https://i.ibb.co/6PrS7f6/platera.png',
         letters = '7',
@@ -79,12 +79,11 @@ def test_should_return_word_by_id():
     countletters_repository.save(word2)
 
     # ACT(then)
-    response_word1 = client.get("/api/activities/countletters/word_1")
-    
+    response_word1 = client.get("/api/activities/countletters/1")
 
-    ASSERT(then)
+    # ASSERT(then)
     assert response_word1.json == {
-        "id" :"word_1",
+        "id" :"1",
         "word" :"klariona",
         "img" :'https://i.ibb.co/KrTZs1M/klariona.png',
         "letters" :'8',
@@ -202,7 +201,7 @@ def test_should_return_list_of_words_by_random():
             "id": "2",
             "word": "platera",
             "img":'https://i.ibb.co/6PrS7f6/platera.png',
-            "letters": '8',
+            "letters": '7',
             "syllables": '3'
         },
         {
