@@ -32,7 +32,11 @@ export default {
         async loadData() {
         const response = await fetch(
             "http://localhost:5000/api/activities/countletters"
+<<<<<<< HEAD
         );
+=======
+            );
+>>>>>>> e490c40c912754ed4837bb214f05de51935ebd32
         this.words = await response.json();
         },
     },
