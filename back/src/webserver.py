@@ -4,6 +4,7 @@ from flask_cors import CORS
 from src.lib.utils import object_to_json
 from src.domain.activities import Activity
 from src.domain.wordbyword import Wordbyword
+from src.domain.countletters import Countletters
 
 
 def create_app(repositories):
@@ -49,5 +50,9 @@ def create_app(repositories):
         word = repositories["countletters"].get_word_by_id(id)
         return object_to_json(word)
 
+    @app.route("/api/activities/countletters", methods=["GET"])
+    def get_words_by_random():
+        words_by_random = repositories["countletters"].get_word_by_random()
+        return object_to_json(words_by_random)
 
     return app

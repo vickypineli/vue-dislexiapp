@@ -1,4 +1,3 @@
-from random import random
 import sqlite3
 
 class Countletters:
@@ -79,12 +78,18 @@ class CountlettersRepository:
         word = Countletters(**data)
         return word
 
-    def get_word_by_random(self):
+    def get_words_by_random(self):
         sql = """ SELECT * FROM countletters ORDER BY random LIMIT"""
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql,{"id":id})
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            countletter = Countletters(**item)
+            result.append(countletter)
 
-        data = cursor.fetchone()
-        word = Countletters(**data)
-        return word
+        return result
+    
+
+        
