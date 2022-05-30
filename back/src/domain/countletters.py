@@ -79,12 +79,12 @@ class CountlettersRepository:
         return word
 
     def get_word_by_random(self):
-        sql = """ SELECT * FROM countletters ORDER BY random() LIMIT 4"""
+        sql = """ SELECT * FROM countletters ORDER BY RANDOM() LIMIT 4"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql)
 
-        data = cursor.fetchall()
+        data = cursor.fetchmany(4)
         result = []
         for item in data:
             countletter = Countletters(**item)

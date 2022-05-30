@@ -55,7 +55,7 @@ def test_should_return_list_of_words():
     ]
 def test_should_return_word_by_id():
 
-# ARRANGE (given)
+    # ARRANGE (given)
     countletters_repository = CountlettersRepository(temp_file())
     app = create_app(repositories={"countletters": countletters_repository})
     client = app.test_client()
@@ -166,8 +166,7 @@ def test_should_return_list_of_words_by_random():
         letters = '6',
         syllables = '3'
     )
-
-
+    
     countletters_repository.save(word1)
     countletters_repository.save(word2)
     countletters_repository.save(word3)
@@ -179,7 +178,7 @@ def test_should_return_list_of_words_by_random():
     countletters_repository.save(word9)
     countletters_repository.save(word10)
 
-    response = client.get("/api/activities/countletters")
+    response = client.get("/api/activities/countlettersrandom")
 
     # ASSERT (then)
     assert response.json == [

@@ -16,16 +16,11 @@ const routes = [
     name: 'WordByWord',
     component: () => import('@/pages/word-by-word/WordByWordPage.vue'),
   },
-  {
-    path: '/activities/count-letters',
-    name: 'CountLetters',
-    component: () => import('@/pages/count-letters/CountLettersPage.vue'),
-  },
   
   {
-    path: '/activities/count-letters/:id',
-    name: 'CountLettersDetail',
-    component: () => import('@/pages/count-letters/CountLettersDetailPage.vue'),
+    path: '/activities/count-letters',
+    name: 'CountLettersRandom',
+    component: () => import('@/pages/count-letters/CountLettersRandomPage.vue'),
   },
   
   {
