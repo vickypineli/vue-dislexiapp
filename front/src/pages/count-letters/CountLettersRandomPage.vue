@@ -8,7 +8,7 @@
         <article class="question-container">
             <h2>{{ word.word }}</h2>
             <div class="question">
-                <label for="">Zenbat letrak? </label>
+                <label for="letters">Zenbat letrak? </label>
                 <input type="text">
             </div>            
             <div class="question">
@@ -18,9 +18,13 @@
 
         </article>
     </section>
-    <div>
-        <button @click="results">BUKATUTA</button>
-        <button>JOLASTU BERRIRO</button>
+    <div class="finish-game-container" >
+        <div class="text">{{text}}</div>
+        <button @click="finish = !finish" :class="styles">
+            <div v-if="!finish">HASI</div>
+            <div v-else>EMAITZAK</div>
+       </button>
+
     </div> 
 
 </template>
@@ -33,12 +37,27 @@ export default {
     data() {
         return {
             words:[], 
-            word:[], 
+            finish: true,
+            text: "Amaitu duzu ariketa?",
+            
         };
     },
+    watch:{
+        finish(value){
+            if(value){
+                this.text ="Amaitu duzu ariketa?";
+                    return this.loadData();           
+            } else {
+                this.text= "Nahi baduzu jolastu berriro?"
+                    return this.results();
+            }
+        }
+    },
+
     mounted() {
         this.loadData();
     },
+
     methods: {
         async loadData() {
         const response = await fetch(
@@ -46,7 +65,16 @@ export default {
         );
         this.words = await response.json();
         },
+
+        results(){
+            console.log("click")
+        }
         
+    },
+    computed: {
+        styles(){
+            return this.finish ? ['buttonstart'] : ['buttonfinish'];
+        }
     },
 };
 
@@ -59,8 +87,8 @@ body{
 .photo {
     width: 200px; 
     margin-inline: 20px;
-  
 }
+
 h2 {
     font-size: 1.5em;
     text-transform: uppercase;
@@ -87,5 +115,35 @@ h2 {
 }
 .question {
     padding: 5px;
+}
+.finish-game-container{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+
+    justify-content: space-evenly;
+}
+.buttonfinish {
+    margin: 10px;
+    padding: 5px 10px;
+    border-color:gray;
+    border-radius: 25px;
+    font-size: 1.2em;
+    background: #42b983;
+    color:white;
+}
+.buttonstart {
+    margin: 10px;
+    padding: 5px 10px;
+    border-color:#42b983;
+    border-radius: 25px;
+    font-size: 1.2em;
+    background: white;
+    color:#42b983;
+}
+.text{
+    font-size: 1.5em;
+    padding: 15px;
+    
 }
 </style>
