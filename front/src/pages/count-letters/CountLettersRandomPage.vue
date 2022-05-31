@@ -3,20 +3,21 @@
     <section class="word-item" v-for="word in words" :key="word.id">
         <article class="draw">
             <img class="photo" :src="word.img" />
-            
         </article>
+
         <article class="question-container">
             <h2>{{ word.word }}</h2>
             <div class="question">
                 <label for="letters">Zenbat letrak? </label>
-                <input type="text">
+                <input type="number">{{word.letters}}
             </div>            
             <div class="question">
                 <label for="">Zenbat silabak? </label>
-                <input type="text">
+                <input type="text">{{word.syllables}}
             </div>
-
+            
         </article>
+
     </section>
     <div class="finish-game-container" >
         <div class="text">{{text}}</div>
@@ -28,9 +29,7 @@
     </div> 
 
 </template>
-
 <script>
-
 
 export default {
     name: "CountlettersRandom",
@@ -67,6 +66,8 @@ export default {
         },
 
         results(){
+            
+
             console.log("click")
         }
         
@@ -114,20 +115,22 @@ h2 {
     width: 30vw;
 }
 .question {
-    padding: 5px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 .finish-game-container{
     margin: 10px;
     display: flex;
     align-items: center;
-
     justify-content: space-evenly;
 }
 .buttonfinish {
     margin: 10px;
     padding: 5px 10px;
     border-color:gray;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 1.2em;
     background: #42b983;
     color:white;
@@ -136,7 +139,7 @@ h2 {
     margin: 10px;
     padding: 5px 10px;
     border-color:#42b983;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 1.2em;
     background: white;
     color:#42b983;
@@ -144,6 +147,13 @@ h2 {
 .text{
     font-size: 1.5em;
     padding: 15px;
-    
+}
+input{
+    text-align: center;
+    font-size: 2.1em;
+    height: 5vh;
+    border: 2px solid red;
+    border-radius: 50px;
+    width: 5vw;
 }
 </style>
