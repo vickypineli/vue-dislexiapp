@@ -9,11 +9,15 @@
             <h2>{{ word.word }}</h2>
             <div class="question">
                 <label for="letters">Zenbat letrak? </label>
-                <input type="number">{{word.letters}}
+                <input type="text" :value="lettersnumber" > 
+                <div v-if="correctanswer == true">🎉🏆</div>
+                <div v-else>❌</div>{{word.letters}}
             </div>            
             <div class="question">
                 <label for="">Zenbat silabak? </label>
-                <input type="text">{{word.syllables}}
+                <input type="text" :value="syllablesnumber"> 
+                <div v-if="correctanswer == true">🎉🏆</div>
+                <div v-else>❌</div>{{word.syllables}}
             </div>
             
         </article>
@@ -38,8 +42,9 @@ export default {
             words:[], 
             finish: true,
             text: "Amaitu duzu ariketa?",
-            
-        };
+            lettersnumber:0,
+            syllablesnumber:0,
+        }
     },
     watch:{
         finish(value){
@@ -65,12 +70,13 @@ export default {
         this.words = await response.json();
         },
 
-        results(){
-            
-
-            console.log("click")
+        results() {
+            if (this.lettersnumber == this.word.letters || this.syllablesnumber == this.word.syllables) {
+                this.correctanswer = true;
+            }else{
+                this.correctanswer = false;
+            }
         }
-        
     },
     computed: {
         styles(){
