@@ -8,16 +8,16 @@
         <article class="question-container">
             <h2>{{ word.word }}</h2>
             <div class="question">
-                <label for="letters">Zenbat letrak? </label>
+                <label for="letters" >Zenbat letrak? </label>
                 <input type="text" :value="lettersnumber" > 
-                <div v-if="correctanswer == true">🎉🏆</div>
-                <div v-else>❌</div>{{word.letters}}
+                <div v-if="answercorrectletters == true">🎉🏆</div>
+                <div v-else>❌{{word.letters}}</div>
             </div>            
             <div class="question">
-                <label for="">Zenbat silabak? </label>
-                <input type="text" :value="syllablesnumber"> 
-                <div v-if="correctanswer == true">🎉🏆</div>
-                <div v-else>❌</div>{{word.syllables}}
+                <label for="syllables">Zenbat silabak? </label>
+                <input type="text" v-model="syllablesnumber"> 
+                <div v-if="answercorrectsyllables == true">🎉🏆</div>
+                <div v-else>❌{{word.syllables}}</div>
             </div>
             
         </article>
@@ -44,6 +44,8 @@ export default {
             text: "Amaitu duzu ariketa?",
             lettersnumber:0,
             syllablesnumber:0,
+            answercorrectletters: true,
+            answercorrectsyllables: true,
         }
     },
     watch:{
@@ -69,13 +71,13 @@ export default {
         );
         this.words = await response.json();
         },
-
-        results() {
-            if (this.lettersnumber == this.word.letters || this.syllablesnumber == this.word.syllables) {
-                this.correctanswer = true;
-            }else{
-                this.correctanswer = false;
-            }
+        results(){
+            console.log("click")
+            // if (this.lettersnumber == this.word.letters || this.syllablesnumber == this.word.syllables) {
+            //     this.correctanswer = true;
+            // }else{
+            //     this.correctanswer = false;
+            // }
         }
     },
     computed: {
