@@ -9,14 +9,16 @@
             <h2>{{ word.word }}</h2>
             <div class="question">
                 <label for="letters" >Zenbat letrak? </label>
-                <input type="text" :value="lettersnumber" > 
-                <div v-if="answercorrectletters == true">🎉🏆</div>
+                <input type="text" v-model="word.inputnumberletters"> 
+                --{{word.inputnumberletters}}
+                <div v-if="word.inputnumberletters == word.letters">🎉</div>
                 <div v-else>❌{{word.letters}}</div>
             </div>            
             <div class="question">
                 <label for="syllables">Zenbat silabak? </label>
-                <input type="text" v-model="syllablesnumber"> 
-                <div v-if="answercorrectsyllables == true">🎉🏆</div>
+                <input type="text" v-model="word.inputnumbersyllables">
+                --{{word.inputnumbersyllables}} 
+                <div v-if="word.inputnumbersyllables == word.syllables">🎉</div>
                 <div v-else>❌{{word.syllables}}</div>
             </div>
             
@@ -42,10 +44,9 @@ export default {
             words:[], 
             finish: true,
             text: "Amaitu duzu ariketa?",
-            lettersnumber:0,
-            syllablesnumber:0,
-            answercorrectletters: true,
-            answercorrectsyllables: true,
+            resultOfExercise:true,
+            resultcorrectletters: true,
+            resultcorrectsyllables: true,
         }
     },
     watch:{
@@ -73,11 +74,11 @@ export default {
         },
         results(){
             console.log("click")
-            // if (this.lettersnumber == this.word.letters || this.syllablesnumber == this.word.syllables) {
-            //     this.correctanswer = true;
-            // }else{
-            //     this.correctanswer = false;
-            // }
+        //     if (this.word.inputnumberletters != this.word.letters || this.word.inputnumbersyllables != this.word.syllables) {
+        //         return this.resultOfExercise == false;
+        //     } else if {
+        //         this.resultcorrectletters && this.resultcorrectsyllable == false;
+        //     } else {return this.resultOfExercise == true;}
         }
     },
     computed: {
