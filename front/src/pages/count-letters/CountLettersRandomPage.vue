@@ -10,18 +10,21 @@
             <div class="question">
                 <label for="letters" >Zenbat letrak? </label>
                 <input type="text" v-model="word.inputnumberletters"> 
-                --{{word.inputnumberletters}}
+                
                 <div v-if="word.inputnumberletters == word.letters">🎉</div>
                 <div v-else>❌{{word.letters}}</div>
             </div>            
             <div class="question">
                 <label for="syllables">Zenbat silabak? </label>
-                <input type="text" v-model="word.inputnumbersyllables">
-                --{{word.inputnumbersyllables}} 
+                <input type="text" v-model = "word.inputnumbersyllables">
+
                 <div v-if="word.inputnumbersyllables == word.syllables">🎉</div>
                 <div v-else>❌{{word.syllables}}</div>
             </div>
-            
+            <div>
+                <div v-show ="resultOfExercise == true">SUPER ONDO🎉</div>
+                <div v-show ="resultOfExercise == false">TXARTO❌</div>
+            </div>
         </article>
 
     </section>
@@ -35,18 +38,17 @@
     </div> 
 
 </template>
-<script>
 
+<script>
 export default {
-    name: "CountlettersRandom",
+    name: "Count-letters-Random",
     data() {
         return {
             words:[], 
             finish: true,
-            text: "Amaitu duzu ariketa?",
-            resultOfExercise:true,
-            resultcorrectletters: true,
-            resultcorrectsyllables: true,
+            text: 'Amaitu duzu ariketa?',
+            resultOfExercise: ' ',
+
         }
     },
     watch:{
@@ -72,13 +74,31 @@ export default {
         );
         this.words = await response.json();
         },
+
+        resultquestionofsyllables () {
+            if (this.word.inputnumbersyllables == this.word.syllables) {
+                this.resultnumbersyllables == true
+            } else {
+                this.resultnumbersyllables == false
+            }
+        },
+        resultquestionofletters () {
+            if (this.word.inputnumberletters == this.word.letters) {
+                this.resultnumberletters == true
+            } else {
+                this.resultnumberletters == false
+            }
+        },
         results(){
-            console.log("click")
-        //     if (this.word.inputnumberletters != this.word.letters || this.word.inputnumbersyllables != this.word.syllables) {
-        //         return this.resultOfExercise == false;
-        //     } else if {
-        //         this.resultcorrectletters && this.resultcorrectsyllable == false;
-        //     } else {return this.resultOfExercise == true;}
+            if (this.resultnumbersyllables == true && this.resultnumberletters == false){
+                this.resultOfExercise = false;
+            } else if (this.resultnumbersyllables == false && this.resultnumberletters == true) { 
+                this.resultOfExercise = false; 
+            } else if (this.resultnumbersyllables == false && this.resultnumberletters == false) { 
+                this.resultOfExercise = false;     
+            }else{
+                this.resultOfExercise = true;  
+            }
         }
     },
     computed: {
