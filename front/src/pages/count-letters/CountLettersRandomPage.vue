@@ -40,8 +40,10 @@
 </template>
 
 <script>
+import Wordcomponent from "./WordComponentPage.vue"
 export default {
     name: "Count-letters-Random",
+    components: {Wordcomponent},
     data() {
         return {
             words:[], 
