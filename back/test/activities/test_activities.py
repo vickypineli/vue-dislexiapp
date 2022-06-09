@@ -18,8 +18,8 @@ def test_should_return_list_of_activities():
     app = create_app(repositories={"activities": activity_repository})
     client = app.test_client()
    
-    Activity_1 = Activity (id="act-1", name = "IRAKUR-LAGUN")
-    Activity_2 = Activity (id="act-2", name = "HITZEZ HITZ")
+    Activity_1 = Activity (id="act-1", user_id = "user-Alba", name = "IRAKUR-LAGUN")
+    Activity_2 = Activity (id="act-2", user_id = "user-Ander", name = "HITZEZ HITZ")
     
     activity_repository.save(Activity_1)
     activity_repository.save(Activity_2)
@@ -28,32 +28,34 @@ def test_should_return_list_of_activities():
 
     # ASSERT (then)
     assert response.json == [
-        {   "id":"act-1", 
-            "name": "IRAKUR-LAGUN"
+        {   
+            "id":"act-1", 
+            "user_id": "user-Alba",
+            "name": "IRAKUR-LAGUN",
         },
         {
-            "id":"act-2", 
-            "name": "HITZEZ HITZ"
+            "id":"act-2",
+            "user_id": "user-Ander", 
+            "name": "HITZEZ HITZ",
         },
 
         ]
 
 def test_should_return_list_of_activities_by_user():
-
         # ARRANGE (given)
         activity_repository = ActivityRepository(temp_file())
         app = create_app(repositories={"activities": activity_repository})
         client = app.test_client()
 
         Activity_1 = Activity(
-            id = "act-1",
+            id= "act-1",
             user_id = "user-Alba",
-            name = "IRAKUR-LAGUN"
+            name = "IRAKUR-LAGUN",
         )
         Activity_2 = Activity(
-            id = "act-2",
-            user_id = "user-Ander",
-            name = "HITZEZ HITZ"
+            id= "act-2",
+            user_id= "user-Ander",
+            name= "HITZEZ HITZ",
         )
 
         activity_repository.save(Activity_1)

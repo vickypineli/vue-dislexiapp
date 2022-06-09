@@ -1,16 +1,16 @@
 import sqlite3
 
 class User:
-    def __init__(self, user_id, name, password="NO-PASSWORD"):
-        self.user_id = user_id
+    def __init__(self, id, name, password="NO-PASSWORD"):
+        self.id = id
         self.name = name
         self.password = password       
 
-    def to_dict(self,):
+    def to_dict(self):
         return {
-            "id": self.user_id,
-            "name": self.name
-            
+            "id": self.id,
+            "name": self.name,
+            "password": self.password,
         }
 
 class UserRepository:
@@ -36,7 +36,7 @@ class UserRepository:
             cursor.execute(sql)
             conn.commit()
 
-        def get_users(self):
+        def get_all_users(self):
             sql = """select * from users"""
             conn = self.create_conn()
             cursor = conn.cursor()
@@ -47,22 +47,11 @@ class UserRepository:
             users = [User(**item) for item in data]
             return users
 
-        def save(self, user):
-            sql = """insert into users (user_id, name, password) values (:user_id, :name :password
-            ) """
-            conn = self.create_conn()
-            cursor = conn.cursor()
-            cursor.execute(
-                sql, 
-                 {"user_id" :user.id, "name" :user.name, "password" :user.password}
-                )
-            conn.commit()
-
         def get_user_by_id(self, id):
-            sql = """SELECT * FROM users WHERE user_id = :user_id"""
+            sql = """SELECT * FROM users WHERE id=:id"""
             conn = self.create_conn()
             cursor = conn.cursor()
-            cursor.execute(sql, {"user_id" :user.id})
+            cursor.execute(sql, {"id":id})
 
             data = cursor.fetchone()
             if data is None:
@@ -71,4 +60,11 @@ class UserRepository:
                 user = User(**data)
                 
             return user
-            
+
+        def save(self, user):
+            sql = """insert into users (id, name, password) values (:id, :name, :password
+            ) """
+            conn = self.create_conn()
+            cursor = conn.cursor()
+            cursor.execute ( sql, {"id":user.id, "name":user.name, "password":user.password})
+            conn.commit()           

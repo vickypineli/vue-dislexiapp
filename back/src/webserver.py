@@ -1,17 +1,38 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import requests
+
 
 from src.lib.utils import object_to_json
 from src.domain.activities import Activity
 from src.domain.wordbyword import Wordbyword
 from src.domain.countletters import Countletters
 from src.domain.users import UserRepository
+# from flask_jwt_extended import (
+#     JWTManager,
+#     create_access_token,
+#     get_jwt_identity,
+#     jwt_required,
+# )
+
 
 
 def create_app(repositories):
     app = Flask(__name__)
     CORS(app)
+       
+    # app.config["JWT_SECRET_KEY"] = "5465436758585"  
+    # jwt = JWTManager(app)
+
+    @app.route("/auth/login", methods=["POST"])
+    def login():
+        body = request.json
+        user = repositories["users"].get_by_id(body["user"])
+
+        if user is None or (body["password"]) != user.password:
+            return "", 401
+
+        return user.to_dict(), 200
+
 
     @app.route("/", methods=["GET"])
     def hello_world():
@@ -29,11 +50,11 @@ def create_app(repositories):
 
     @app.route("/api/users", methods=["GET"])
     def get_users():
-        all_users = repositories["users"].get_users()
+        all_users = repositories["users"].get_all_users()
         return object_to_json(all_users)
 
     @app.route("/api/activities", methods=["GET"])
-    def contacts_get_all_by_user():
+    def get_all_activities_by_user():
         user_id = request.headers.get("Authorization")
         all_activities = repositories["activities"].search_by_user_id(user_id)
         return object_to_json(all_activities)

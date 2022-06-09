@@ -26,7 +26,7 @@ class ActivityRepository:
     def init_tables(self):
         sql = """
             create table if not exists activities  (
-                "id" PRIMARY KEY,
+                "id" varchar PRIMARY KEY,
                 "user_id" varchar,
                 "name" varchar
             )  
@@ -51,19 +51,19 @@ class ActivityRepository:
 
         return result
 
-    # def save(self, activity):
-    #     sql = """insert into activities (id, name) values (:id, :name
-    #     ) """
-    #     conn = self.create_conn()
-    #     cursor = conn.cursor()
-    #     cursor.execute(
-    #         sql,
-    #         activity.to_dict()
-    #     )
-    #     conn.commit()
+    def save(self, activity):
+        sql = """insert into activities (id, name) values (:id, :name
+        ) """
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(
+            sql,
+            activity.to_dict()
+        )
+        conn.commit()
 
     def search_by_user_id(self, user_id):
-        sql = """select * from activities where id = :id"""
+        sql = """select * from activities where user_id=:user_id"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql, {"user_id": user_id})
@@ -73,11 +73,25 @@ class ActivityRepository:
         activities = []
         for item in data:
             activity = Activity(**item)
-            activities.append(activity)
+            activity.append(activity)
 
         return activities
 
-    
+    def get_by_id(self, id):
+        sql = """SELECT * FROM activities WHERE id=:id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"id": id})
+
+        data = cursor.fetchone()
+        # contact = Contact(**data) if data is not None else None
+        if data is not None:
+            activity = Activity(**data)
+        else:
+            activity = None
+
+        return activity
+
     
 
      
