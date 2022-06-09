@@ -11,59 +11,61 @@
                 <label for="letters" >Zenbat letrak? </label>
                 <input type="text" v-model="word.inputnumberletters"> 
                 
-                <div v-if="word.inputnumberletters == word.letters">🎉</div>
-                <div v-else>❌{{word.letters}}</div>
+                <div v-if="word.inputnumberletters == null"></div>
+                <div v-else-if="word.inputnumberletters == word.letters">🎉</div>
+                <div v-else>❌{{word.letters}} letrak dira.</div>
             </div>            
             <div class="question">
                 <label for="syllables">Zenbat silabak? </label>
                 <input type="text" v-model = "word.inputnumbersyllables">
 
-                <div v-if="word.inputnumbersyllables == word.syllables">🎉</div>
-                <div v-else>❌{{word.syllables}}</div>
+                <div v-if="word.inputnumbersyllables == null"></div>
+                <div v-else-if="word.inputnumbersyllables == word.syllables">🎉</div>
+                <div v-else>❌{{word.syllables}} silabak dira.</div>
             </div>
             <div>
-                <div v-show ="resultOfExercise == true">SUPER ONDO🎉</div>
+                <!-- <div v-show ="resultOfExercise == true">SUPER ONDO🎉</div>
                 <div v-show ="resultOfExercise == false">TXARTO❌</div>
+                <button @click="results">EMAITZAK</button> -->
             </div>
+
         </article>
-
     </section>
-    <div class="finish-game-container" >
-        <div class="text">{{text}}</div>
-        <button @click="finish = !finish" :class="styles">
-            <div v-if="!finish">HASI</div>
-            <div v-else>EMAITZAK</div>
-       </button>
-
-    </div> 
-
+            <div class="finish-game-container" >
+                <div class="text">{{text}}</div>
+                <button @click="this.loadData"> JOLASTU BERRIRO
+                <!-- <button @click="finish = !finish" :class="styles">
+                    <div v-if="!finish">HASI</div>
+                    <div v-else>BAI</div> -->
+                </button>
+            </div> 
 </template>
 
 <script>
-import Wordcomponent from "./WordComponentPage.vue"
+
 export default {
-    name: "Count-letters-Random",
-    components: {Wordcomponent},
+    name: "CountlettersRandom",
+    
     data() {
         return {
             words:[], 
             finish: true,
             text: 'Amaitu duzu ariketa?',
-            resultOfExercise: ' ',
+            resultOfExercise: '',
 
         }
     },
-    watch:{
-        finish(value){
-            if(value){
-                this.text ="Amaitu duzu ariketa?";
-                    return this.loadData();           
-            } else {
-                this.text= "Nahi baduzu jolastu berriro?"
-                    return this.results();
-            }
-        }
-    },
+    // watch:{
+    //     finish(value){
+    //         if(value){
+    //             this.text ="Amaitu duzu ariketa?";
+    //                 return this.loadData();           
+    //         } else {
+    //             this.text= "Nahi baduzu jolastu berriro?"
+    //                 return this.results();
+    //         }
+    //     }
+    // },
 
     mounted() {
         this.loadData();
@@ -77,37 +79,37 @@ export default {
         this.words = await response.json();
         },
 
-        resultquestionofsyllables () {
-            if (this.word.inputnumbersyllables == this.word.syllables) {
-                this.resultnumbersyllables == true
-            } else {
-                this.resultnumbersyllables == false
-            }
-        },
-        resultquestionofletters () {
-            if (this.word.inputnumberletters == this.word.letters) {
-                this.resultnumberletters == true
-            } else {
-                this.resultnumberletters == false
-            }
-        },
-        results(){
-            if (this.resultnumbersyllables == true && this.resultnumberletters == false){
-                this.resultOfExercise = false;
-            } else if (this.resultnumbersyllables == false && this.resultnumberletters == true) { 
-                this.resultOfExercise = false; 
-            } else if (this.resultnumbersyllables == false && this.resultnumberletters == false) { 
-                this.resultOfExercise = false;     
-            }else{
-                this.resultOfExercise = true;  
-            }
-        }
+        // resultquestionofsyllables () {
+        //     if (this.word.inputnumbersyllables == this.word.syllables) {
+        //         this.resultnumbersyllables == true
+        //     } else {
+        //         this.resultnumbersyllables == false
+        //     }
+        // },
+        // resultquestionofletters () {
+        //     if (this.word.inputnumberletters == this.word.letters) {
+        //         this.resultnumberletters == true
+        //     } else {
+        //         this.resultnumberletters == false
+        //     }
+        // },
+        // results(){
+        //     if (this.resultnumbersyllables == true && this.resultnumberletters == false){
+        //         this.resultOfExercise = false;
+        //     } else if (this.resultnumbersyllables == false && this.resultnumberletters == true) { 
+        //         this.resultOfExercise = false; 
+        //     } else if (this.resultnumbersyllables == false && this.resultnumberletters == false) { 
+        //         this.resultOfExercise = false;     
+        //     } else {
+        //         this.resultOfExercise = true;  
+        //     }
+        // }
     },
-    computed: {
-        styles(){
-            return this.finish ? ['buttonstart'] : ['buttonfinish'];
-        }
-    },
+    // computed: {
+    //     styles(){
+    //         return this.finish ? ['buttonstart'] : ['buttonfinish'];
+    //     }
+    // },
 };
 
 </script>
@@ -132,7 +134,7 @@ h2 {
     border-radius: 15px;
     padding: 0px, 10px;
     width: 90vw;
-    margin:0px;
+    margin:10px;
 }
 .draw {
     display: flex;
@@ -182,9 +184,10 @@ h2 {
 input{
     text-align: center;
     font-size: 2.1em;
-    height: 5vh;
-    border: 2px solid red;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgb(0, 34, 255);
     border-radius: 50px;
-    width: 5vw;
+    
 }
 </style>

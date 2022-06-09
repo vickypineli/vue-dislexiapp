@@ -60,10 +60,10 @@ export default {
       word: "",
       wordsByMinute: 10,
       textByWords: [],
-      play: 0,
+     
       texts: [],
       textSelected: "",
-      output: 0,
+     
       escolar: {
         fontFamily: "escolar",
         color: "blue",
