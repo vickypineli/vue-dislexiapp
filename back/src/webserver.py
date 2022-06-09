@@ -1,10 +1,12 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+import requests
 
 from src.lib.utils import object_to_json
 from src.domain.activities import Activity
 from src.domain.wordbyword import Wordbyword
 from src.domain.countletters import Countletters
+from src.domain.users import UserRepository
 
 
 def create_app(repositories):
@@ -20,9 +22,20 @@ def create_app(repositories):
         info = repositories["info"].get_info()
         return object_to_json(info)
 
+    # @app.route("/api/activities", methods=["GET"])
+    # def get_all_activities():
+    #     all_activities = repositories["activities"].get_all()
+    #     return object_to_json(all_activities)
+
+    @app.route("/api/users", methods=["GET"])
+    def get_users():
+        all_users = repositories["users"].get_users()
+        return object_to_json(all_users)
+
     @app.route("/api/activities", methods=["GET"])
-    def get_all_activities():
-        all_activities = repositories["activities"].get_all()
+    def contacts_get_all_by_user():
+        user_id = request.headers.get("Authorization")
+        all_activities = repositories["activities"].search_by_user_id(user_id)
         return object_to_json(all_activities)
 
     @app.route("/api/activities/wordbyword", methods=["GET"])
@@ -34,11 +47,6 @@ def create_app(repositories):
     def get_text_of_wordbyword_by_language(language):
         text = repositories["wordbyword"].get_text_by_language(language)
         return object_to_json(text)
-
-    @app.route("/api/users", methods=["GET"])
-    def get_users():
-        all_users = repositories["users"].get_users()
-        return object_to_json(all_users)
 
     @app.route("/api/activities/countletters", methods=["GET"])
     def get_all_words():

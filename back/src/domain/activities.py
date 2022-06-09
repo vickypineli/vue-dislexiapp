@@ -1,13 +1,15 @@
 import sqlite3
 
 class Activity:
-    def __init__ (self, id, name):
+    def __init__ (self, id, user_id, name):
         self.id = id
+        self.user_id = user_id
         self.name = name
 
     def to_dict(self):
         return {
             'id': self.id,
+            'user_id': self.user_id,
             'name': self.name
         }
 
@@ -24,7 +26,8 @@ class ActivityRepository:
     def init_tables(self):
         sql = """
             create table if not exists activities  (
-                "id" varchar,
+                "id" PRIMARY KEY,
+                "user_id" varchar,
                 "name" varchar
             )  
         """
@@ -48,15 +51,34 @@ class ActivityRepository:
 
         return result
 
-    def save(self, activity):
-        sql = """insert into activities (id, name) values (:id, :name
-        ) """
+    # def save(self, activity):
+    #     sql = """insert into activities (id, name) values (:id, :name
+    #     ) """
+    #     conn = self.create_conn()
+    #     cursor = conn.cursor()
+    #     cursor.execute(
+    #         sql,
+    #         activity.to_dict()
+    #     )
+    #     conn.commit()
+
+    def search_by_user_id(self, user_id):
+        sql = """select * from activities where id = :id"""
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(
-            sql,
-            activity.to_dict()
-        )
-        conn.commit()
+        cursor.execute(sql, {"user_id": user_id})
+
+        data = cursor.fetchall()
+
+        activities = []
+        for item in data:
+            activity = Activity(**item)
+            activities.append(activity)
+
+        return activities
+
+    
+    
+
      
  
