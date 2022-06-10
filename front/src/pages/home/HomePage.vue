@@ -4,58 +4,83 @@
         <h1>IRLA-KURRI</h1>
         <img src="@/assets/img/irlakurri.png" alt="logo">
       </div>
-      <div class="users">
+      <div>
+          <label>Usuario:</label>
+          <input type="text" v-model="user" />
+          <label>Clave:</label>
+          <input type="password" v-model="password" />
+      </div>
+      <button @click="onButtonClicked">SARTU</button>
+  </section>
+      <!-- <div class="users">
         <select v-model ="selectedUser">
           <option :value="null">Erabiltzaile izena</option>
           <option v-for="user in users" :value="user" :key="user.id">
             {{ user.name }}
           </option>
         </select>
-        <button @click="onButtonClicked">SARTU</button>
-      </div>
-  </section>
+       </div> --> 
 </template>
 
 <script>
+import { useStorage } from "@vueuse/core";
+import { login } from "@/services/auth.js";
 
 export default {
   name: 'Home',
   data() {
     return {
-      info: {},
-      users:[],
-      selectedUser:null,
+      // info: {},
+      // users:[],
+      // selectedUser:null,
+      user: "",
+      password: "",
+      localUser: useStorage("user", {}),
+
     }
   },
-  mounted() {
-    this.loadData(),
-    this.loadUsers()
-  },
+  // mounted() {
+  //   this.loadData(),
+  //   this.loadUsers()
+  // },
   methods: {
-    async loadData() {
-      const response = await fetch('http://localhost:5000/api/activities')
-      this.info = await response.json()
-  },
-    async loadUsers() {
-      const response = await fetch('http://localhost:5000/api/users')
-        this.users = await response.json()
+  //   async loadData() {
+  //     const response = await fetch('http://localhost:5000/api/activities')
+  //     this.info = await response.json()
+  // },
+  //   async loadUsers() {
+  //     const response = await fetch('http://localhost:5000/api/users')
+  //       this.users = await response.json()
 
-      // this.users = [
-      //   {
-      //     id: "user-1",
-      //     name: "pepa",
-      //   },
-      //   {
-      //     id: "user-2",
-      //     name: "pepe",
-      //   },
-      // ];
-    },
+  //     // this.users = [
+  //     //   {
+  //     //     id: "user-1",
+  //     //     name: "pepa",
+  //     //   },
+  //     //   {
+  //     //     id: "user-2",
+  //     //     name: "pepe",
+  //     //   },
+  //     // ];
+  //   },
 
-   onButtonClicked() {
-      localStorage.userId = this.selectedUser.id;
-      localStorage.userName = this.selectedUser.name;
-      this.$router.push("/activities");
+   async onButtonClicked() {
+      // localStorage.userId = this.selectedUser.id;
+      // localStorage.userName = this.selectedUser.name;
+      // this.$router.push("/activities");
+      const response = await login(this.user, this.password);
+      const loginStatus = response.status;
+      const loginUser = await response.json();
+      console.log("response", response);
+      console.log("loginUser", loginUser);
+
+      if (loginStatus === 401) {
+        alert("unauthorized");
+      } else {
+        this.localUser = loginUser;
+        this.$router.push("/activities");
+      }
+
     },
 
   }

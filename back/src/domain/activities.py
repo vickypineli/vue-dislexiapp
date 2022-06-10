@@ -79,14 +79,14 @@ class ActivityRepository:
         sql = """select * from activities where user_id=:user_id"""
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql, {"user_id": user_id})
+        cursor.execute(sql, {"user_id":user_id})
 
         data = cursor.fetchall()
 
         result = []
         for item in data:
             activity = Activity(**item)
-            activity.append(activity)
+            result.append(activity)
 
         return result
 

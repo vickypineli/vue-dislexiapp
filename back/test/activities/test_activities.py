@@ -12,34 +12,33 @@ def test_should_return_empty_list_of_activities():
 
     assert response.json == []
 
-def test_should_return_list_of_activities():
-    # ARRANGE (given)
-    activity_repository = ActivityRepository(temp_file())
-    app = create_app(repositories={"activities": activity_repository})
-    client = app.test_client()
+# def test_should_return_list_of_activities():
+#     # ARRANGE (given)
+#     activity_repository = ActivityRepository(temp_file())
+#     app = create_app(repositories={"activities": activity_repository})
+#     client = app.test_client()
    
-    Activity_1 = Activity (id="act-1", user_id = "user-Alba", name = "IRAKUR-LAGUN")
-    Activity_2 = Activity (id="act-2", user_id = "user-Ander", name = "HITZEZ HITZ")
+#     Activity_1 = Activity (id="act-1", user_id="user-Alba", name = "IRAKUR-LAGUN")
+#     Activity_2 = Activity (id="act-2", user_id="user-Ander", name = "HITZEZ HITZ")
     
-    activity_repository.save(Activity_1)
-    activity_repository.save(Activity_2)
-    # ACT (when)
-    response = client.get("/api/activities")
+#     activity_repository.save(Activity_1)
+#     activity_repository.save(Activity_2)
+#     # ACT (when)
+#     response = client.get("/api/activities")
 
-    # ASSERT (then)
-    assert response.json == [
-        {   
-            "id":"act-1", 
-            "user_id": "user-Alba",
-            "name": "IRAKUR-LAGUN",
-        },
-        {
-            "id":"act-2",
-            "user_id": "user-Ander", 
-            "name": "HITZEZ HITZ",
-        },
-
-        ]
+#     # ASSERT (then)
+#     assert response.json == [
+#         {   
+#             "id":"act-1", 
+#             "user_id": "user-Alba",
+#             "name": "IRAKUR-LAGUN",
+#         },
+#         {
+#             "id":"act-2",
+#             "user_id": "user-Ander", 
+#             "name": "HITZEZ HITZ",
+#         },
+#         ]
 
 def test_should_return_list_of_activities_by_user():
         # ARRANGE (given)
@@ -65,8 +64,15 @@ def test_should_return_list_of_activities_by_user():
         response = client.get("/api/activities", headers={"Authorization": "user-Alba"})
 
         # ASSERT (then)
+        # assert response.json == [
+        #     {
+        #         "id":"act-1",
+        #         "user_id": "user-Alba",
+        #         "name": "IRAKUR-LAGUN",
+        #     }]
         activity_list = response.json
         assert len(activity_list) == 1
         assert activity_list[0]["id"] == "act-1"
+        assert activity_list[0]["user_id"] == "user-Alba"
         assert activity_list[0]["name"] == "IRAKUR-LAGUN"
        

@@ -5,8 +5,8 @@ def main():
     sys.path.insert(0, "")
 
     from src.domain.info import Info, InfoRepository
-    from src.domain.activities import Activity, ActivityRepository
     from src.domain.wordbyword import Wordbyword, WordbywordRepository
+    from src.domain.activities import Activity, ActivityRepository
     from src.domain.users import UserRepository, User
     from src.domain.countletters import CountlettersRepository, Countletters
 
@@ -16,6 +16,7 @@ def main():
     info_repository.save(Info(app_name="irla-kurri"))
 
     #Wordbyword
+
     textoriginal_1 = Wordbyword (language ="Gaztelania", text = "En un lugar de la Mancha de cuyo nombre no quiero acordarme, no hace mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. ")
     textoriginal_2 = Wordbyword (language ="Ingelesa", text = "I can't believe the news today Oh, I can't close my eyes and make it go away. How long must we sing this song?")
     textoriginal_3 = Wordbyword (language ="Euskera", text = "Hala bazan ala ez bazan, sar dadila kalabazan eta atera dadila Foruko plazan ")
@@ -27,6 +28,7 @@ def main():
     wordbyword_repository.save(textoriginal_3)
 
     # Activities
+
     Activity_1 = Activity (id="act-1", user_id="user-1", name = "HITZEZ HITZ")
     Activity_2 = Activity (id="act-2", user_id="user-2", name = "IRAKUR-LAGUN")
     Activity_3 = Activity (id="act-3", user_id="user-1", name = "SILABAK ZENBATU")
@@ -42,6 +44,7 @@ def main():
     activity_repository.save(Activity_4)
     activity_repository.save(Activity_5)
     activity_repository.save(Activity_6)
+
     #users
     user_repository = UserRepository(database_path)
 
@@ -77,4 +80,5 @@ def main():
     countletters_repository.save(word10)
 
     print("Base de datos inicializada en" + database_path)
+
 main()
