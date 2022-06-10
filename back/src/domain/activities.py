@@ -56,10 +56,10 @@ class ActivityRepository:
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(
-            sql,
-            activity.to_dict(),
-        )
+        cursor.execute ( 
+                        sql, 
+                        activity.to_dict()
+                        )
         conn.commit()
 
     def search_by_user_id(self, user_id):
@@ -84,7 +84,7 @@ class ActivityRepository:
         cursor.execute(sql, {"id": id})
 
         data = cursor.fetchone()
-        # contact = Contact(**data) if data is not None else None
+        
         if data is not None:
             activity = Activity(**data)
         else:

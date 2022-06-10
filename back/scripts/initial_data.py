@@ -42,7 +42,6 @@ def main():
     activity_repository.save(Activity_4)
     activity_repository.save(Activity_5)
     activity_repository.save(Activity_6)
-
     #users
     user_repository = UserRepository(database_path)
 
@@ -77,8 +76,5 @@ def main():
     countletters_repository.save(word9)
     countletters_repository.save(word10)
 
-    
-    
     print("Base de datos inicializada en" + database_path)
-
 main()
