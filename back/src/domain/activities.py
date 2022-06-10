@@ -10,7 +10,7 @@ class Activity:
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'name': self.name
+            'name': self.name,
         }
 
 class ActivityRepository:
@@ -52,13 +52,13 @@ class ActivityRepository:
         return result
 
     def save(self, activity):
-        sql = """insert into activities (id, name) values (:id, :name
+        sql = """insert into activities (id, user_id, name) values (:id, :user_id, :name
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(
             sql,
-            activity.to_dict()
+            activity.to_dict(),
         )
         conn.commit()
 
