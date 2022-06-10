@@ -8,9 +8,9 @@ class Activity:
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'user_id': self.user_id,
-            'name': self.name,
+            "id": self.id,
+            "user_id": self.user_id,
+            "name": self.name,
         }
 
 class ActivityRepository:
@@ -48,7 +48,6 @@ class ActivityRepository:
         for item in data:
             activity = Activity(**item)
             result.append(activity)
-
         return result
 
     def save(self, activity):
@@ -58,11 +57,25 @@ class ActivityRepository:
         cursor = conn.cursor()
         cursor.execute ( 
                         sql, 
-                        activity.to_dict()
+                        {"id":activity.id, "user_id":activity.user_id, "name":activity.name}
                         )
         conn.commit()
+        
+    def get_activity_by_id(self, id):
+        sql = """SELECT * FROM activities WHERE id=:id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"id": id})
 
-    def search_by_user_id(self, user_id):
+        data = cursor.fetchone()
+        if data is not None:
+            activity = None
+        else:
+            activity = Activity(**data)
+            
+        return activity
+
+    def search_activities_by_user_id(self, user_id):
         sql = """select * from activities where user_id=:user_id"""
         conn = self.create_conn()
         cursor = conn.cursor()
@@ -70,27 +83,14 @@ class ActivityRepository:
 
         data = cursor.fetchall()
 
-        activities = []
+        result = []
         for item in data:
             activity = Activity(**item)
             activity.append(activity)
 
-        return activities
+        return result
 
-    def get_by_id(self, id):
-        sql = """SELECT * FROM activities WHERE id=:id"""
-        conn = self.create_conn()
-        cursor = conn.cursor()
-        cursor.execute(sql, {"id": id})
 
-        data = cursor.fetchone()
-        
-        if data is not None:
-            activity = Activity(**data)
-        else:
-            activity = None
-
-        return activity
 
     
 

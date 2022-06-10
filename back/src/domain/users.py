@@ -1,4 +1,5 @@
 import sqlite3
+from unittest import result
 
 class User:
     def __init__(self, id, name, password="NO-PASSWORD"):
@@ -44,8 +45,16 @@ class UserRepository:
 
             data = cursor.fetchall()
 
-            users = [User(**item) for item in data]
-            return users
+            result = [User(**item) for item in data]
+            return result
+            
+        def save(self, user):
+            sql = """insert into users (id, name, password) values (:id, :name, :password
+            ) """
+            conn = self.create_conn()
+            cursor = conn.cursor()
+            cursor.execute ( sql, {"id":user.id, "name":user.name, "password":user.password})
+            conn.commit()           
 
         def get_user_by_id(self, id):
             sql = """SELECT * FROM users WHERE id=:id"""
@@ -61,10 +70,4 @@ class UserRepository:
                 
             return user
 
-        def save(self, user):
-            sql = """insert into users (id, name, password) values (:id, :name, :password
-            ) """
-            conn = self.create_conn()
-            cursor = conn.cursor()
-            cursor.execute ( sql, {"id":user.id, "name":user.name, "password":user.password})
-            conn.commit()           
+        
