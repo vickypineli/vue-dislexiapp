@@ -52,7 +52,6 @@ export default {
             finish: true,
             text: 'Amaitu duzu ariketa?',
             resultOfExercise: '',
-
         }
     },
     // watch:{

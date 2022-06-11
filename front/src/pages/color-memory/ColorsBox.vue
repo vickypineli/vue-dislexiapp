@@ -18,7 +18,7 @@ export default {
   methods: {
     setColor (color) {
       this.$emit('setColor', color);
-    }
+    },
   }
 }
 </script>
@@ -28,7 +28,6 @@ export default {
   display:flex;
   width: 90vw;
   margin: auto;
-
 }
 .color {
   border: 1px solid #AAA;
