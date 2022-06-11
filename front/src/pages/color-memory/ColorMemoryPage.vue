@@ -50,18 +50,18 @@ export default {
     mounted() {
         this.initGame();
     },
-  //   methods:{
-  //     // initGame() {
-  //     //   var colorsetcontainer= 0;
-  //     //     for(var i=0; i< this.CARDS_NUM;i++) {
-  //     //       colorsetcontainer.appendChild(this.color);
-  //     //     }
-  //     // },
-  //     setColor(color){
-  //       this.color = color;
-  //       console.log(color)
-  //     },
-  // }
+    methods:{
+      setColor(color){
+        this.color = color;
+        console.log(color)
+      },
+      initGame() {
+        var colorsetcontainer= 0;
+          for(var i=0; i< this.CARDS_NUM;i++) {
+            colorsetcontainer.appendChild(this.color);
+          }
+      },
+  }
   
 }
 </script>

@@ -24,7 +24,8 @@ export default {
 </script>
 
 <style scoped>
-.color-picker {
+.colorbox {
+  display:flex;
   width: 90vw;
   margin: auto;
 
