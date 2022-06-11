@@ -2,22 +2,26 @@
 <section class="container">
     <h1>MARGOTU ZURE MEMORIA</h1>
     <button @click="initGame">HAZI JOLASTEN</button>
+
     <p> aukeratu zure kolorea</p>
-      <div id="app">
+  <div id="app">
     <ColorSelected :color="color" />
-    <ColorPicker :colors="colors" @setColor="setColor" />
+    <ColorBox :colors="colors" @setColor="setColor" />
   </div>
   </section>
 </template>
 
 <script>
 import ColorSelected from './ColorSelected.vue';
-import ColorPicker from './ColorsBox.vue';
+import ColorBox from './ColorsBox.vue';
+// import TweenLite from "gsap";
+
+
 export default {
   name:"ColorMemory",
   components: {
     ColorSelected,
-    ColorPicker,
+    ColorBox,
   },
   data() {
         return {
@@ -30,34 +34,35 @@ export default {
                     '#07f219',
                     '#ff6c00',
                     '#ff0000',
-                    // '#ffff07',
-                    // '#ff00e2',
-                    // '#00e2ff',
-                    // '#000000'
+                    '#ffff07',
+                    '#ff00e2',
+                    '#00e2ff',
+                    '#000000'
                      ],
+              CARDS_NUM:0,
+              gameCardsContainer:[],
+              selectCard:"",
+              contarAdivinadas:0,
+              createCards:"",
 
         }
     },
-    // mounted() {
-    //     this.initGame();
-    // },
-    methods:{
-      setColor(color){
-        this.color = color;
-        console.log(color)
-      }
-        // async initGame() {
-        //   if(this.firstTime == true) {
-        //       createCards();
-        //       this.firstTime = false;
-        //   } else {
-        //       animateColorPicker();
-        //       colorCards();
-        //   }
-      // }
-    }
+    mounted() {
+        this.initGame();
+    },
+  //   methods:{
+  //     // initGame() {
+  //     //   var colorsetcontainer= 0;
+  //     //     for(var i=0; i< this.CARDS_NUM;i++) {
+  //     //       colorsetcontainer.appendChild(this.color);
+  //     //     }
+  //     // },
+  //     setColor(color){
+  //       this.color = color;
+  //       console.log(color)
+  //     },
+  // }
   
-
 }
 </script>
 

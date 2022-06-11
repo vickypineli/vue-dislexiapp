@@ -4,15 +4,17 @@
 ```
 npm install
 ```
-
 ### Ejecutar servidor de desarrollo
 ```
 npm run serve
 ```
-
 ### Generar archivos de distribución
 ```
 npm run build
+```
+### libreria para generar animacines
+```
+npm install gsap
 ```
 
 ### Customize configuration

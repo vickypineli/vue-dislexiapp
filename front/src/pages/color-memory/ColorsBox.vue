@@ -1,5 +1,5 @@
 <template>
-  <div class="color-picker">
+  <div class="colorbox">
     <div 
       class="color"
       v-for="(color, i) in colors"
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'color-picker',
+  name: 'color-box',
   props: {
       colors:{type:String}
       },
