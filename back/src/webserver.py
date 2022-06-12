@@ -8,10 +8,10 @@ from src.domain.wordbyword import Wordbyword
 from src.domain.countletters import Countletters
 from src.domain.users import UserRepository
 from flask_jwt_extended import ( 
-    JWTManager
-    # create_access_token,
-    # get_jwt_identity,
-    # jwt_required,
+    JWTManager,
+    create_access_token,
+    get_jwt_identity,
+    jwt_required,
 )
 
 
@@ -26,12 +26,15 @@ def create_app(repositories):
     @app.route("/auth/login", methods=["POST"])
     def login():
         body = request.json
-        user = repositories["users"].get_by_id(body["user"])
+        user = repositories["users"].get_user_by_id(body["user"])
 
         if user is None or (body["password"]) != user.password:
             return "", 401
 
-        return user.to_dict(), 200
+        # return user.to_dict(), 200
+        jwt_token = create_access_token(identity=user.id)
+        return jsonify(access_token=jwt_token), 200
+
 
 
     @app.route("/", methods=["GET"])
@@ -54,8 +57,11 @@ def create_app(repositories):
     #     return object_to_json(all_activities)
 
     @app.route("/api/activities", methods=["GET"])
+    @jwt_required()
     def get_all_activities_by_user():
-        user_id = request.headers.get("Authorization")
+        user_id = get_jwt_identity()
+        print("****", user_id)
+
         all_activities = repositories["activities"].search_activities_by_user_id(user_id)
         return object_to_json(all_activities)
 
