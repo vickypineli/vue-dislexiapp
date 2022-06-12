@@ -40,18 +40,28 @@ export default {
         }
     },
     mounted() {
-    this.masks = [...this.images, ...this.images].map(
-      (mask, index) => ({
-        ...mask,
-        matched: false,
-        id: index,
-      })
-    );
+        this.masks = [...this.images, ...this.images].map(
+        (mask, index) => ({
+                        ...mask,
+                        matched: false,
+                        id: index,
+                        })
+        );
   },
     methods:{
         shuffle() {
             this.masks.sort(() => Math.random() - 0.5);
         },
+        resetGame(){
+            this.firstPick = null;
+            this.secondPick = null;
+            this.turns = 0;
+            this.done = false;
+            this.masks.forEach(v => v.matched = false);
+            setTimeout(() => {
+                        this.shuffle();
+                        }, 500);
+        },   
         handleClick(card) {
             this.firstPick ? (this.secondPick = card) : (this.firstPick = card);
             if (this.firstPick && this.secondPick) {
@@ -68,6 +78,10 @@ export default {
             }
             this.checkIfCompleted();
         },
+        checkIfCompleted(){
+            if(this.masks.every(mask => mask.matched)) this.done = true;
+        }
+
     }
 }
 </script>

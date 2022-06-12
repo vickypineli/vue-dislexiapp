@@ -1,8 +1,8 @@
 <template>
-  <p>CARTAS</p>
+  <p>CARTA</p>
   <div
     :class="{'flipped' : active}"
-    @click="clickCard">
+    @click="handleClick">
   </div>
   <div class="front">
       <img src="require(`./assets/img/${card.img}`)" alt="faceUp">
@@ -15,7 +15,7 @@ export default {
   name:"Cards",
   props: ['card','active'],
   methods : {
-    clickCard(){
+    handleClick(){
       if(!this.active){
         this.$emit('click', this.card);
       }
