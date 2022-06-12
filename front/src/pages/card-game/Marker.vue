@@ -1,5 +1,6 @@
 <template>
-    <p>Completado en  {{ turns }} turnos!</p>
+    <p>JOKO MARKAGAILU</p>
+    <p> -{{ turns }}-TXANDATAN BAT!</p>
     <button class="enviar" @click="$emit('click')">
     Play Again
     </button>
