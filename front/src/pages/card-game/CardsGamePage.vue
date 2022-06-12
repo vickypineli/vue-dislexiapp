@@ -38,9 +38,37 @@ export default {
                 { img: "masc6.png" },
             ]
         }
+    },
+    mounted() {
+    this.masks = [...this.images, ...this.images].map(
+      (mask, index) => ({
+        ...mask,
+        matched: false,
+        id: index,
+      })
+    );
+  },
+    methods:{
+        shuffle() {
+            this.masks.sort(() => Math.random() - 0.5);
+        },
+        handleClick(card) {
+            this.firstPick ? (this.secondPick = card) : (this.firstPick = card);
+            if (this.firstPick && this.secondPick) {
+                if (this.firstPick.img === this.secondPick.img) {
+                const ind1 = this.masks.indexOf(card);
+                const ind2 = this.masks.indexOf(this.firstPick);
+                this.masks[ind1].matched = true;
+                this.masks[ind2].matched = true;
+                this.resetActive();
+                } else {
+                this.resetActive();
+                }
+                this.turns++;
+            }
+            this.checkIfCompleted();
+        },
     }
-
-
 }
 </script>
 
