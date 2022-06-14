@@ -1,15 +1,18 @@
 import sqlite3
+from sys import path
 
 class Activity:
-    def __init__ (self, id, user_id, name):
+    def __init__ (self, id, user_id, route, name):
         self.id = id
         self.user_id = user_id
+        self.route = route
         self.name = name
 
     def to_dict(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "path": self.route,
             "name": self.name,
         }
 
@@ -28,6 +31,7 @@ class ActivityRepository:
             create table if not exists activities  (
                 "id" varchar PRIMARY KEY,
                 "user_id" varchar,
+                "route" varchar,
                 "name" varchar
             )  
         """
@@ -51,13 +55,13 @@ class ActivityRepository:
         return result
 
     def save(self, activity):
-        sql = """insert into activities (id, user_id, name) values (:id, :user_id, :name
+        sql = """insert into activities (id, user_id, route, name) values (:id, :user_id, :route, :name
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute ( 
                         sql, 
-                        {"id":activity.id, "user_id":activity.user_id, "name":activity.name}
+                        {"id":activity.id, "user_id":activity.user_id, "route":activity.route, "name":activity.name}
                         )
         conn.commit()
         

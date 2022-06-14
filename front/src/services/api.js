@@ -1,5 +1,5 @@
 import config from "@/config.js";
-import { v4 as uuidv4 } from "uuid";
+
 
 function getUserId() {
   const userJson = localStorage.getItem("auth");
@@ -13,50 +13,26 @@ function getAccessToken() {
   return jwt.access_token;
 }
 
-export async function getContacts() {
+export async function getActivities() {
   const settings = {
     method: "GET",
     headers: {
       Authorization: "Bearer " + getAccessToken(),
     },
   };
-  const response = await fetch(`${config.API_PATH}/contacts`, settings);
-  const contacts = await response.json();
-  return contacts;
+  const response = await fetch(`${config.API_PATH}/activities`, settings);
+  const activities = await response.json();
+  return activities;
 }
 
-export async function getContact(id) {
+export async function getActivity(id) {
   const settings = {
     method: "GET",
     headers: {
       Authorization: getUserId(),
     },
   };
-  const response = await fetch(`${config.API_PATH}/contacts/${id}`, settings);
+  const response = await fetch(`${config.API_PATH}/activities/${id}`, settings);
   return await response.json();
 }
 
-export async function updateContact(contact) {
-  const settings = {
-    method: "PUT",
-    body: JSON.stringify(contact),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: getUserId(),
-    },
-  };
-  await fetch(`${config.API_PATH}/contacts/${contact.id}`, settings);
-}
-
-export async function addContact(contact) {
-  contact.id = uuidv4();
-  const settings = {
-    method: "POST",
-    body: JSON.stringify(contact),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: getUserId(),
-    },
-  };
-  await fetch(`${config.API_PATH}/contacts`, settings);
-}

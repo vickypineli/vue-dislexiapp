@@ -27,12 +27,12 @@ def main():
     wordbyword_repository.save(textoriginal_3)
 
     # Activities
-    Activity_1 = Activity (id="act-1", user_id="user-1", name = "HITZEZ HITZ")
-    Activity_2 = Activity (id="act-2", user_id="user-2", name = "IRAKUR-LAGUN")
-    Activity_3 = Activity (id="act-3", user_id="user-1", name = "SILABAK ZENBATU")
-    Activity_4 = Activity (id="act-4", user_id="user-2", name = "MARGOTU ZURE MEMORIA")
-    Activity_5 = Activity (id="act-5", user_id="user-1", name = "BIKOTE JOLASA")
-    Activity_6 = Activity (id="act-6", user_id="user-2", name = "HITZ KATEATUAK")
+    Activity_1 = Activity (id="act-1", user_id="user-1", route ="word-by-word", name = "HITZEZ HITZ")
+    Activity_2 = Activity (id="act-2", user_id="user-2", route ="play-word-by-word", name = "IRAKUR-LAGUN")
+    Activity_3 = Activity (id="act-3", user_id="user-1", route ="count-letters", name = "SILABAK ZENBATU")
+    Activity_4 = Activity (id="act-4", user_id="user-2", route ="color-memory", name = "MARGOTU ZURE MEMORIA")
+    Activity_5 = Activity (id="act-5", user_id="user-1", route ="cards-game", name = "BIKOTE JOLASA")
+    Activity_6 = Activity (id="act-6", user_id="user-2", route ="chained-words", name = "HITZ KATEATUAK")
 
     activity_repository = ActivityRepository(database_path)
    

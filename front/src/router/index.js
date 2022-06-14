@@ -22,7 +22,7 @@ const routes = [
     component: () => import('@/pages/count-letters/CountLettersRandomPage.vue'),
   },
   {
-    path: '/activities/word-by-word/play-word-by-word',
+    path: '/activities/play-word-by-word',
     name: 'PlayWordByWord',
     component: () => import('@/pages/play-word-by-word/PlayWordByWordPage.vue'),
   },

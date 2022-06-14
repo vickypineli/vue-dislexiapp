@@ -31,7 +31,6 @@ def create_app(repositories):
         if user is None or (body["password"]) != user.password:
             return "", 401
 
-        # return user.to_dict(), 200
         jwt_token = create_access_token(identity=user.id)
         return jsonify(access_token=jwt_token), 200
 
