@@ -32,7 +32,7 @@ def main():
     Activity_3 = Activity (id="act-3", user_id="user-1", name = "SILABAK ZENBATU")
     Activity_4 = Activity (id="act-4", user_id="user-2", name = "MARGOTU ZURE MEMORIA")
     Activity_5 = Activity (id="act-5", user_id="user-1", name = "BIKOTE JOLASA")
-    Activity_6 = Activity (id="act-5", user_id="user-2", name = "HITZ KATEATUAK")
+    Activity_6 = Activity (id="act-6", user_id="user-2", name = "HITZ KATEATUAK")
 
     activity_repository = ActivityRepository(database_path)
    

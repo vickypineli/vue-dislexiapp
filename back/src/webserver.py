@@ -35,8 +35,6 @@ def create_app(repositories):
         jwt_token = create_access_token(identity=user.id)
         return jsonify(access_token=jwt_token), 200
 
-
-
     @app.route("/", methods=["GET"])
     def hello_world():
         return "...magic!"

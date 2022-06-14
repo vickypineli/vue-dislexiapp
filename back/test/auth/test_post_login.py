@@ -24,33 +24,29 @@ def test_should_validate_login():
     )
 
     assert response.status_code == 200
-    assert response.json == {
-        'id': 'user-Alba',
-        'name': 'Alba'
+
+def test_should_fail_if_invalid_password():
+    client = setup()
+
+    body = {
+        "user": 'user-tomas',
+        'password': 'el peor'
     }
+    response = client.post(
+        "/auth/login", json=body
+    )
 
-# def test_should_fail_if_invalid_password():
-#     client = setup()
+    assert response.status_code == 401
 
-#     body = {
-#         "user": 'user-tomas',
-#         'password': 'el peor'
-#     }
-#     response = client.post(
-#         "/auth/login", json=body
-#     )
+def test_should_fail_if_user_not_exists():
+    client = setup()
 
-#     assert response.status_code == 401
+    body = {
+        "user": 'user-not-exists',
+        'password': 'el mediano'
+    }
+    response = client.post(
+        "/auth/login", json=body
+    )
 
-# def test_should_fail_if_user_not_exists():
-#     client = setup()
-
-#     body = {
-#         "user": 'user-not-exists',
-#         'password': 'el mediano'
-#     }
-#     response = client.post(
-#         "/auth/login", json=body
-#     )
-
-#     assert response.status_code == 401
+    assert response.status_code == 401
