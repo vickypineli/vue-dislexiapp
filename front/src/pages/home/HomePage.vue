@@ -1,16 +1,21 @@
 <template>
-  <section class="home">
-      <div>
-        <h1>IRLA-KURRI</h1>
+  <h1>IRLA-KURRI</h1>
+  <section id="home-container">
+      <article class="logo-box">
         <img src="@/assets/img/irlakurri.png" alt="logo">
-      </div>
-      <div>
+      </article>
+      <article class="login-box">
+        <div>
           <label>Usuario:</label>
           <input type="text" v-model="user" />
+        </div>
+        <div>
           <label>Clave:</label>
           <input type="password" v-model="password" />
-      </div>
-      <button @click="onButtonClicked">SARTU</button>
+        </div>
+          <button @click="onButtonClicked">SARTU</button>
+      </article>
+      
   </section>
       <!-- <div class="users">
         <select v-model ="selectedUser">
@@ -35,7 +40,7 @@ export default {
       // selectedUser:null,
       user: "",
       password: "",
-      localUser: useStorage("user", {}),
+      localUser: useStorage("auth", {}),
 
     }
   },
@@ -90,14 +95,48 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+
+#home-container{
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 15px;
+ 
+}
+.logo-box {
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+}
+
+.login-box {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* border: 1px dashed grey;
+  border-radius: 10px; */
+}
+
 h1 {
+  width: 90vw;
+  margin: auto;
   font-style: italic;
   font-family: 'Slackey';
   font-size: 2.5em;
   text-transform: uppercase;
   color: rgb(242, 117, 8);
-
 }
+
+img {
+  width: 30vw;
+}
+label{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: left;
+}
+
 button {
   margin: 10px;
   padding: 5px 10px;

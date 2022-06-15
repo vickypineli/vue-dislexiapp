@@ -25,14 +25,14 @@ export async function getActivities() {
   return activities;
 }
 
-export async function getActivity(id) {
+export async function getActivity(route) {
   const settings = {
     method: "GET",
     headers: {
       Authorization: getUserId(),
     },
   };
-  const response = await fetch(`${config.API_PATH}/activities/${id}`, settings);
+  const response = await fetch(`${config.API_PATH}/activities/${route}`, settings);
   return await response.json();
 }
 
