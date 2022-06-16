@@ -5,15 +5,17 @@
         <img src="@/assets/img/irlakurri.png" alt="logo">
       </article>
       <article class="login-box">
-        <div>
+        <div class="login-date">
           <label>Usuario:</label>
-          <input type="text" v-model="user" />
+          <input  type="text" v-model="user" />
         </div>
-        <div>
+        <div class="login-date">
           <label>Clave:</label>
-          <input type="password" v-model="password" />
+          <input class="input-internal" type="password" v-model="password" />
         </div>
+        <div class="login-date">
           <button @click="onButtonClicked">SARTU</button>
+        </div>
       </article>
       
   </section>
@@ -97,26 +99,35 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
 
 #home-container{
-  width: 80vw;
+  width: 90vw;
   display: flex;
-  justify-content: space-between;
-  margin: auto;
-  padding: 15px;
- 
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-around;
+  margin-top: 2em;
 }
+
 .logo-box {
   width: 40vw;
   display: flex;
   justify-content: center;
+  margin: 25px;
 }
 
 .login-box {
   width: 40vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  /* border: 1px dashed grey;
-  border-radius: 10px; */
+  justify-content: center;
+
+  margin: 25px;
+ 
+}
+.login-date{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+
 }
 
 h1 {
@@ -130,15 +141,25 @@ h1 {
 }
 
 img {
-  width: 30vw;
+  width: 40vw;
+  height: 30vw;
 }
 label{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: left;
+  color: #217a52;
+  font-size: 1.5em;
+}
+input {
+  height: 4.5vh;
+  font-size: 1.5em;
 }
 
+
 button {
-  margin: 10px;
+  width: 30vw;
+  height: 5vh;
+  margin: auto;
   padding: 5px 10px;
   border-color:gray;
   border-radius: 25px;

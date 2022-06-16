@@ -29,8 +29,8 @@ def test_should_fail_if_invalid_password():
     client = setup()
 
     body = {
-        "user": 'user-tomas',
-        'password': 'el peor'
+        "user": 'user-pepe',
+        'password': '45879'
     }
     response = client.post(
         "/auth/login", json=body
@@ -43,7 +43,7 @@ def test_should_fail_if_user_not_exists():
 
     body = {
         "user": 'user-not-exists',
-        'password': 'el mediano'
+        'password': '9999999'
     }
     response = client.post(
         "/auth/login", json=body
