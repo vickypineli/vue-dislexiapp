@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 .activity-item {
-  border: 1px solid black;
+  border: 1px solid rgb(119, 115, 115);
   border-radius: 1em;
   margin: 1em;
 }
