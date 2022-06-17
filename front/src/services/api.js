@@ -1,11 +1,11 @@
 import config from "@/config.js";
 
 
-function getUserId() {
-  const userJson = localStorage.getItem("auth");
-  const user = JSON.parse(userJson);
-  return user.id;
-}
+// function getUserId() {
+//   const userJson = localStorage.getItem("auth");
+//   const user = JSON.parse(userJson);
+//   return user.id;
+// }
 
 function getAccessToken() {
   const jwtJson = localStorage.getItem("auth");
@@ -29,7 +29,7 @@ export async function getActivity(route) {
   const settings = {
     method: "GET",
     headers: {
-      Authorization: getUserId(),
+      Authorization: getAccessToken(),
     },
   };
   const response = await fetch(`${config.API_PATH}/activities/${route}`, settings);

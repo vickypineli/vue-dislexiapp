@@ -2,8 +2,8 @@
   <div id="nav">
     <router-link to="/">Hasiera</router-link>|
     <router-link to="/activities">Jarduerak</router-link>|
-    
-    <p>{{ loggedUser }}</p>
+    <p>{{ localUser }} localUser</p>
+    <p>{{ loggedUser }} loggedUser</p>
   </div>
   <router-view />
 </template>

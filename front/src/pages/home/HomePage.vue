@@ -40,7 +40,7 @@ export default {
       // info: {},
       // users:[],
       // selectedUser:null,
-      user: "",
+      user: [],
       password: "",
       localUser: useStorage("auth", {}),
 
