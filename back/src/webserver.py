@@ -20,8 +20,8 @@ def create_app(repositories):
     app = Flask(__name__)
     CORS(app)
        
-    app.config["JWT_SECRET_KEY"] = "5465436758585"  
-    jwt = JWTManager(app)
+    # app.config["JWT_SECRET_KEY"] = "5465436758585"  
+    # jwt = JWTManager(app)
 
     @app.route("/auth/login", methods=["POST"])
     def login():
@@ -30,9 +30,10 @@ def create_app(repositories):
 
         if user is None or (body["password"]) != user.password:
             return "", 401
+        return user.to_dict(), 200
 
-        jwt_token = create_access_token(identity=user.id)
-        return jsonify(access_token=jwt_token), 200
+        # jwt_token = create_access_token(identity=user.id)
+        # return jsonify(access_token=jwt_token), 200
 
     @app.route("/", methods=["GET"])
     def hello_world():
@@ -54,9 +55,10 @@ def create_app(repositories):
     #     return object_to_json(all_activities)
 
     @app.route("/api/activities", methods=["GET"])
-    @jwt_required()
+    # @jwt_required()
     def get_all_activities_by_user():
-        user_id = get_jwt_identity()
+        user_id = request.headers.get("Authorization")
+        # user_id = get_jwt_identity()
         print("****", user_id)
 
         all_activities = repositories["activities"].search_activities_by_user_id(user_id)

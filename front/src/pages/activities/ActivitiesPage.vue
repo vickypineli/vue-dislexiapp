@@ -1,4 +1,5 @@
 <template>
+    <p>{{userLogged}}</p>
     <h1>JARDUERAK </h1>
     <section class="activity-list">
       <ActivityListItem
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import { useStorage } from "@vueuse/core";
 import ActivityListItem from "./ActivityListItem.vue";
 import { getActivities } from "@/services/api.js";
 
@@ -30,10 +32,12 @@ export default {
     return {
       activity: "",
       activities: [],
-    };
+      userLogged: "",
+    }
   },
   mounted() {
     this.loadData();
+    this.userLogged= useStorage.auth
   },
   methods: {
     async loadData() {

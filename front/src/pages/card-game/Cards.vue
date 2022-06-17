@@ -5,7 +5,7 @@
     @click="handleClick">
   </div>
   <div class="front">
-      <img src="require(`./assets/img/${card.img}`)" alt="faceUp">
+      <img :src='/assets/img/masc1.png' alt="faceUp">
       <img class="back" src="/assets/img/irlakurri.png" alt="faceDown">
   </div>
 </template>

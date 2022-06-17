@@ -40,7 +40,7 @@ export default {
       // info: {},
       // users:[],
       // selectedUser:null,
-      user: [],
+      user: "",
       password: "",
       localUser: useStorage("auth", {}),
 
@@ -84,7 +84,7 @@ export default {
       if (loginStatus === 401) {
         alert("unauthorized");
       } else {
-        this.localUser = loginUser;
+        this.localUser = loginUser.name;
         this.$router.push("/activities");
       }
 

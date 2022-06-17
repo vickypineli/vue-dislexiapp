@@ -8,9 +8,9 @@ def test_should_return_empty_list_of_activities():
     activity_repository = ActivityRepository(temp_file())
     app = create_app(repositories={"activities": activity_repository})
     client = app.test_client()
-    response = client.get("/api/activities",headers={
-                                            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyLUFsYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.vfg2H8LlQgB9gKZM4iqggw-ZNZRT8HoxXHgDQCmfwMY"
-                                            },)
+    # "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyLUFsYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.vfg2H8LlQgB9gKZM4iqggw-ZNZRT8HoxXHgDQCmfwMY"
+
+    response = client.get("/api/activities",headers={"Authorization": "user-Alba"})
 
     assert response.json == []
 
@@ -65,9 +65,7 @@ def test_should_return_list_of_activities_by_user():
         activity_repository.save(Activity_2)
 
         # ACT (when)
-        response = client.get("/api/activities", headers={
-                                                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyLUFsYmEiLCJpYXQiOjE1MTYyMzkwMjJ9.vfg2H8LlQgB9gKZM4iqggw-ZNZRT8HoxXHgDQCmfwMY"
-                            },)
+        response = client.get("/api/activities", headers={"Authorization": "user-Alba"},)
 
 
         # ASSERT (then)

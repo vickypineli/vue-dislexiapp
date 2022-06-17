@@ -5,7 +5,7 @@
     </div>
     <section class="text-container">
       <div class="text">
-        <h1 :style="fontSelected">{{ word }}</h1>
+        <h2 :style="fontSelected">{{ word }}</h2>
       </div>
       <div class="button-container">
         <button @click="PlayText()">PLAY</button>
@@ -124,13 +124,12 @@ export default {
   display: flex;
   width: 80vw;
   height: 25vh;
-  background: white;
   border: 1.5px solid rgb(3, 97, 3);
   border-radius: 10px;
 }
 .text{
-  flex: auto;
-  font-size: 3em;
+  width: 65vw;
+  height: 25vh;
   margin: auto;
 }
 
@@ -145,8 +144,6 @@ button{
   color:white;
 }
 .options {
-  /* margin-top: 10px; */
-  /* margin-bottom: 20px; */
   width: 80vw;
   display: flex;
   margin: auto;
@@ -175,6 +172,9 @@ label{
 }
 select {
   font-size: 1.2em;
+}
+h2{
+  font-size: 3em;
 }
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */

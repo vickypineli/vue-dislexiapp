@@ -121,8 +121,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
 .exercises-container {
-    width: 90vw;
-    height: 60vh;
+    width: 100vw;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -130,7 +129,7 @@ export default {
     align-content: space-around;
 }
 .question-box{
-    width: 40vw;
+    width: 45vw;
     height: 25vh;
     margin: 0.5em;
     display: flex;
@@ -141,7 +140,7 @@ export default {
 }
 .draw-area {
     width: 20vw;
-    height: 20vh;
+    height: 25vh;
     margin:5px;
     display: flex;
     flex-direction: column;
@@ -149,30 +148,28 @@ export default {
     border: 2px dashed red;  
 }
 .photo {
-    width: 15vw;
-    height: 15vh;
-    text-align: center;
+    width: 100px;
+    height: 100px;
+    margin: auto;
 }
 .questions-area{
-    width: 30vw;
-    height: 20vh;
+    width: 20vw;
+    height: 25vh;
     margin:5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     border: 2px solid red;
 }
 .title {
     width: 20vw;
     height: 4vh;
-    background: #5dfdb5;
-    font-size: 0.5em;
+    font-size: 0.7em;
     text-transform: uppercase;
     color: green;
 }
 .answers {
-    width: 20vw;
-    height: 10vh;
+    width: 30vw;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -180,10 +177,9 @@ export default {
     border: 2px dashed red;
 }
 .solutions {
-    width: 20vw;
-    height: 6vh;
+    width: 30vw;
+    height: 10vh;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     background: #fd5dfd;
     border: 2px solid blue;
@@ -226,6 +222,10 @@ h1 {
 .text{
     font-size: 1.5em;
     padding: 15px;
+}
+label{
+    width: 20vw;
+    font-size: 1.2em;
 }
 input{
     text-align: center;
