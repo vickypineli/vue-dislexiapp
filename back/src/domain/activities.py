@@ -12,7 +12,7 @@ class Activity:
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "path": self.route,
+            "route": self.route,
             "name": self.name,
         }
 
