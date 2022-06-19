@@ -38,9 +38,9 @@ const routes = [
     component: () => import('@/pages/card-game/CardsGamePage.vue'),
   },
   {
-    path: '/activities/word-by-word/speech-to-text',
+    path: '/activities/chained-words',
     name: 'SpeechToText',
-    component: () => import('@/pages/speech-to-text/SpeechToTextPage.vue'),
+    component: () => import('@/pages/chained-words/chainedWordsPage.vue'),
   },
  
 
