@@ -90,3 +90,7 @@ def create_app(repositories):
         return object_to_json(words_by_random)
 
     return app
+    @app.route("/api/activities/chainedword", methods=["GET"])
+    def get_all_phrases():
+        all_phrases = repositories["chainedword"].get_all_phrases()
+        return object_to_json(all_phrases)
