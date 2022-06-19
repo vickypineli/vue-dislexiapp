@@ -1,32 +1,34 @@
 <template>
-  <h1>SILABAK ZENBATU</h1>
-    <section class="exercises-container">
-        <article class="question-box" v-for="word in words" :key="word.id">
-            <div class="draw-area">
-                <div class="title">
-                    <h2>{{ word.word }}</h2>
-                </div>
-                <img class="photo" :src="word.img" />
+
+    <section class="container">
+        <h1>SILABAK ZENBATU</h1>
+        <article class="exerxice-box" v-for="word in words" :key="word.id">
+            <div class="title-area">          
+                <p>{{ word.word }}</p>
             </div>
-            <div class="questions-area">
-
-                <div class="answers" >
-                    <label for="letters" >Zenbat letrak? </label>
-                    <input type="text" v-model="word.inputnumberletters"> 
-
-                    <label for="syllables">Zenbat silabak? </label>
-                    <input type="text" v-model = "word.inputnumbersyllables">
-                </div>            
+            <div class="question-area">
+                <div class="draw">
+                    <img class="photo" :src="word.img" />
+                </div>
+                <div class="answers">
+                    <div class="inputs-box">
+                        <label for="letters" >- Zenbat letrak? </label>
+                        <input type="text" v-model="word.inputnumberletters">
+                    </div>
+                    <div class="inputs-box">
+                        <label for="syllables">- Zenbat silabak? </label>
+                        <input type="text" v-model = "word.inputnumbersyllables">   
+                    </div>
+                </div>
                 <div class="solutions">
-                    <div v-if="word.inputnumbersyllables == null"></div>
-                    <div v-else-if="word.inputnumbersyllables == word.syllables">🎉</div>
-                    <div v-else>❌{{word.syllables}} silabak .</div>
-                    
-                    <div v-if="word.inputnumberletters == null"></div>
-                    <div v-else-if="word.inputnumberletters == word.letters">🎉</div>
-                    <div v-else>❌{{word.letters}} letrak.</div>
+                        <div v-if="word.inputnumberletters == null"></div>
+                        <div v-else-if="word.inputnumberletters == word.letters">🎉 Ondo.</div>
+                        <div v-else>❌{{word.letters}} letrak.</div>
+                        <div v-if="word.inputnumbersyllables == null"></div>
+                        <div v-else-if="word.inputnumbersyllables == word.syllables">🎉 Ondo.</div>
+                        <div v-else>❌{{word.syllables}} silabak .</div>
                 </div>
-            </div>
+            </div>            
         </article>
             <div>
                 <!-- <div v-show ="resultOfExercise == true">SUPER ONDO🎉</div>
@@ -38,7 +40,7 @@
     </section>
             <div class="finish-game-container" >
                 <div class="text">{{text}}</div>
-                <button @click="this.loadData"> JOLASTU BERRIRO
+                <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO
                 <!-- <button @click="finish = !finish" :class="styles">
                     <div v-if="!finish">HASI</div>
                     <div v-else>BAI</div> -->
@@ -120,119 +122,132 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
-.exercises-container {
-    width: 100vw;
+.container {
+    width: 90vw;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    align-content: space-around;
+    
 }
-.question-box{
-    width: 45vw;
-    height: 25vh;
-    margin: 0.5em;
+.exerxice-box{
+    width: 550px;
+    height: 200px;
+    margin: 0.8vw;
     display: flex;
-    flex-direction: row;
-    border: 2px dashed green;
+    flex-direction: column;
+    border: 4px dashed #42b983;
     border-radius: 15px;
     align-items: center;
 }
-.draw-area {
-    width: 20vw;
-    height: 25vh;
-    margin:5px;
+.question-area{
     display: flex;
-    flex-direction: column;
-    justify-items: center;
-    border: 2px dashed red;  
+    flex-direction: row;
+  
+}
+.title-area{
+    widows: 500px;
+    height: 70px;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(255, 0, 85);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.draw {
+    width: 180px;
+    height: 120px;
 }
 .photo {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     margin: auto;
 }
-.questions-area{
-    width: 20vw;
-    height: 25vh;
-    margin:5px;
+.answers {
+    width: 210px;
+    height: 120px;
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
+    align-content: center;
+
 }
-.title {
-    width: 20vw;
-    height: 4vh;
-    font-size: 0.7em;
-    text-transform: uppercase;
-    color: green;
-}
-.answers {
-    width: 30vw;
-    height: 15vh;
+.inputs-box{
+    text-align: center;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    background: #5df2fd;
-    border: 2px dashed red;
+    align-items: baseline;
 }
 .solutions {
-    width: 30vw;
-    height: 10vh;
+    width: 110px;
+    height: 120px;
     display: flex;
-    justify-content: center;
-    background: #fd5dfd;
-    border: 2px solid blue;
-}
-
-h1 {
-  width: 90vw;
-  margin: auto;
-  font-style: italic;
-  font-family: 'Slackey';
-  font-size: 2.5em;
-  text-transform: uppercase;
-  color: rgb(242, 117, 8);
-}
-
-.finish-game-container{
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-.buttonfinish {
-    margin: 10px;
-    padding: 5px 10px;
-    border-color:gray;
-    border-radius: 15px;
-    font-size: 1.2em;
-    background: #42b983;
-    color:white;
-}
-.buttonstart {
-    margin: 10px;
-    padding: 5px 10px;
-    border-color:#42b983;
-    border-radius: 15px;
-    font-size: 1.2em;
-    background: white;
-    color:#42b983;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 5px;
+    justify-content: space-between;
+    font-size: 20px;
+    
 }
 .text{
     font-size: 1.5em;
     padding: 15px;
 }
 label{
-    width: 20vw;
-    font-size: 1.2em;
+    width: 190px;
+    height: 60px;
+    font-size: 1.3em;
 }
 input{
+    align-content: center;
+    font-size: 1.7em;
     text-align: center;
-    font-size: 1.2em;
-    width: 4vw;
-    height: 4vh;
-    border: 1px solid rgb(0, 34, 255);
-    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgb(255, 0, 85);
+    border-radius: 5px;
+   
 }
+h1 {
+  width: 90vw;
+  height: 40px;
+  margin: auto;
+  font-size:2.0em ;
+  font-family: 'Slackey';
+  text-transform: uppercase;
+  color: rgb(242, 117, 8);
+}
+
+.finish-game-container{
+    width: 85vw;
+    height: 10vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #42b983;
+    color: white;
+    border-radius: 15px;
+}
+.buttonfinish {
+    margin: 10px;
+    padding: 5px 10px;
+    border-color:rgb(145, 144, 144);
+    border-radius: 15px;
+    font-size: 1.2em;
+    background: #42b983;
+   
+}
+.buttonstart {
+    margin: 10px;
+    padding: 5px 10px;
+    border-color:rgb(255, 0, 85);
+    border-radius: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: white;
+    color:#42b983;
+    color:rgb(247, 9, 88);
+}
+
 </style>
