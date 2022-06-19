@@ -152,8 +152,7 @@ export default {
     text-transform: uppercase;
     font-weight: bold;
     color: rgb(255, 0, 85);
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .draw {
     width: 180px;
@@ -197,6 +196,7 @@ label{
     width: 190px;
     height: 60px;
     font-size: 1.3em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 input{
     align-content: center;

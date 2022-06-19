@@ -4,27 +4,25 @@
   </div>    
   <section id="text">
         <label for="text">
-          <textarea v-model="textSelected" placeholder="Testua....."></textarea>
+          <textarea v-model="textSelected" placeholder="Jarri hemen zure estua....."></textarea>
         </label>
   </section>
   <section id="options-selec">
-        <select v-model="textSelected">
-          <option disabled >Aukeratu</option>
-          <option v-for="text in texts" :key="text" :value="text.text" >{{ text.language }}</option>
-        </select>
         <label>
           <select v-model="selectedVoice" >
+          <option disabled >Aukeratu</option>
             <option v-for="(voice, index) in voices" :value="index" :key="index">
               {{ voice.name }}({{ voice.lang }})
             </option>
           </select>
         </label>
   </section>
-  <section id="btn-selector" > 
+  <section id="button-container" > 
         <button @click="play()"> PLAY </button>
         <button @click="stop()"> STOP </button>
         <button @click="pause()"> PAUSE </button>
-  </section>      
+  </section> 
+   
      
         
 </template>
@@ -83,32 +81,62 @@ methods: {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+h1 {
+  width: 90vw;
+  height: 40px;
+  margin: auto;
+  padding-top: 5%;
+  font-size:2.0em ;
+  font-family: 'Slackey';
+  text-transform: uppercase;
+  color: rgb(242, 117, 8);
+}
 
 textarea {
   margin: 10px;
   width: 90vw;
-  height: 10vh;
-  border: 0.3em double  #384d62;
+  height: 20vh;
+  border: 4px dashed #42b983;
   border-radius: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.1em;
 }
 
 #options-selec {
-  margin: 5px;
-  padding: 15px;
-  font-size: 1.1em;
- 
+  width: 70vw;
+  margin: auto;
+  padding: 20px;
+  justify-content:space-around;
+  display: flex;
 }
-#btn-selector {
-  margin: 10px;
+#button-container {
+    width: 95vw;
+    height: 10vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 15px;
 }
 button{
- 
-  padding: 8px;
-  margin: 20px;
-  border-radius: 15px;
-  border-color: rgb(41, 194, 41);
-  background: rgb(34, 185, 34);
-  color:white;
+    width: 25vw;
+    margin: 10px;
+    padding: 5px 10px;
+    border-color:rgb(170, 165, 167);
+    border-radius: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: #42b983;
+    color:white; 
+}
+select {
+  width: 80vw;
+  height: 5vh;
+  border: 2px solid rgb(255, 0, 85);
+  border-radius: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   
 }
 </style>
 

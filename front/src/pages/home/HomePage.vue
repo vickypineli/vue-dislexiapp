@@ -87,9 +87,7 @@ export default {
         this.localUser = loginUser.name;
         this.$router.push("/activities");
       }
-
     },
-
   }
 
 }
@@ -101,17 +99,16 @@ export default {
 #home-container{
   width: 90vw;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  align-content: space-around;
-  margin-top: 2em;
+  justify-content: center;
+  margin: auto;
 }
 
 .logo-box {
   width: 40vw;
   display: flex;
   justify-content: center;
-  margin: 25px;
+  margin: auto;
 }
 
 .login-box {
@@ -119,8 +116,9 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   margin: 25px;
+  border: 2px dashed rgb(255, 0, 85);
+  border-radius: 5px;
  
 }
 .login-date{
@@ -132,21 +130,22 @@ export default {
 
 h1 {
   width: 90vw;
+  height: 10vh;
   margin: auto;
-  font-style: italic;
   font-family: 'Slackey';
-  font-size: 2.5em;
+  font-size: 4vw;
   text-transform: uppercase;
   color: rgb(242, 117, 8);
 }
 
 img {
-  width: 40vw;
+  width: 35vw;
   height: 30vw;
 }
 label{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: left;
+  font-weight: bold;
   color: #217a52;
   font-size: 1.5em;
 }
@@ -161,9 +160,9 @@ button {
   height: 5vh;
   margin: auto;
   padding: 5px 10px;
-  border-color:gray;
-  border-radius: 25px;
   font-size: 1em;
+  border-color:gray;
+  border-radius: 15px;
   background: #42b983;
   color:white;
 }

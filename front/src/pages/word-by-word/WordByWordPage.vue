@@ -124,8 +124,13 @@ export default {
   display: flex;
   width: 80vw;
   height: 25vh;
-  border: 1.5px solid rgb(3, 97, 3);
+  border: 3px dashed #42b983;;
   border-radius: 10px;
+}
+.button-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .text{
   width: 65vw;
@@ -138,9 +143,9 @@ button{
   font-size: 20px;
   padding: 8px;
   margin: 20px;
+  border-color:gray;
   border-radius: 15px;
-  border-color: rgb(41, 194, 41);
-  background: rgb(34, 185, 34);
+  background: #42b983;
   color:white;
 }
 .options {
@@ -161,10 +166,10 @@ button{
 textarea {
   font-size: 1.3em;
   border-radius: 10px;
-  border-color: darkgreen;
+  border-color: rgb(247, 9, 88);
   width: 80vw;
   height: 15vh;
-  background: rgba(255, 255, 255, 0.73);
+ 
 }
 label{
   margin: 5px;
@@ -172,6 +177,17 @@ label{
 }
 select {
   font-size: 1.2em;
+  border-color:rgb(255, 0, 85);
+  border-radius: 15px;
+}
+h1 {
+  width: 90vw;
+  height: 40px;
+  margin: auto;
+  font-size:2.0em ;
+  font-family: 'Slackey';
+  text-transform: uppercase;
+  color: rgb(242, 117, 8);
 }
 h2{
   font-size: 3em;
@@ -196,14 +212,14 @@ h2{
   appearance: none;
   width: 15px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: darkgreen; /* Green background */
+  background: rgb(247, 9, 88); /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: darkgreen; /* Green background */
+  background: #42b983; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 </style>
