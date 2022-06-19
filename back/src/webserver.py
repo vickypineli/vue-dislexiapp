@@ -89,8 +89,13 @@ def create_app(repositories):
         words_by_random = repositories["countletters"].get_word_by_random()
         return object_to_json(words_by_random)
 
-    return app
     @app.route("/api/activities/chainedword", methods=["GET"])
     def get_all_phrases():
         all_phrases = repositories["chainedword"].get_all_phrases()
         return object_to_json(all_phrases)
+
+    @app.route("/api/activities/countletters/<level>", methods=["GET"])
+    def get_phrases_by_level(level):
+        phrases = repositories["countletters"].get_phrases_by_level(level)
+        return object_to_json(phrases)
+    return app

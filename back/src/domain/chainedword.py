@@ -53,38 +53,45 @@ class ChainedwordRepository:
 
         return result
     
-    def save(self, countletters):
-            sql = """insert into countletters (id, word, img, letters, syllables) 
-                        values (:id, :word, :img, :letters, :syllables 
+    def save(self, chainedword):
+            sql = """insert into chainedword (id, level, question, answer) 
+                        values (:id, :level, :question, :answer 
                         ) """
             conn = self.create_conn()
             cursor = conn.cursor()
             cursor.execute(
                 sql, 
-                countletters.to_dict()
+                chainedword.to_dict()
                 )
             conn.commit()
     
-    def get_phrase_by_id(self, id):
-        sql = """ SELECT * FROM countletters WHERE id = :id"""
+    def get_phrases_list_by_level(self, level):
+        sql = """ SELECT * FROM chainedword WHERE level = :level"""
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql,{"id":id})
+        cursor.execute(sql,{"level":level})
 
-        data = cursor.fetchone()
-        word = Chainedword(**data)
-        return word
-
-    def get_phrase_by_random(self):
-        sql = """ SELECT * FROM chainedword ORDER BY RANDOM() LIMIT 1"""
-        conn = self.create_conn()
-        cursor = conn.cursor()
-        cursor.execute(sql)
-
-        data = cursor.fetchmany(1)
+        data = cursor.fetchall()
         result = []
         for item in data:
             chainedword = Chainedword(**item)
             result.append(chainedword)
+
+        return result
+
+        # phrases = Chainedword(**data)
+        # return phrases
+
+    def get_phrase_by_random(self,level):
+        sql = """ SELECT * FROM chainedword WHERE level = :level ORDER BY RANDOM() LIMIT 2"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql,{"level":level})
+
+        data = cursor.fetchmany(2)
+        result = []
+        for item in data:
+            phrase = Chainedword(**item)
+            result.append(phrase)
 
         return result
