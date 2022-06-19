@@ -19,6 +19,7 @@ export default {
     setColor (color) {
       this.$emit('setColor', color);
     },
+
   }
 }
 </script>

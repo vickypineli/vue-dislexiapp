@@ -5,10 +5,14 @@
           <div v-if="!initGame">HASI JOLASTEN</div>
           <div v-else>JOLASTEN BERRIRO</div>
       </button>
-        <ColorBox :colors="colors" @setColor="setColorRandom" />
+          <section> 
+      <div class="colors-random">
+        <ColorBox :colors="colors" @setColorRandom="setColorRandom" />
+      </div>
+  </section>
   </section>
   <section> 
-      <div id="app">
+      <div class="colors-list">
         <ColorSelected :color="color" />
         <ColorBox :colors="colors" @setColor="setColor" />
       </div>
@@ -63,7 +67,9 @@ export default {
         this.color = color;
         console.log(color)
       },
-   
+      // setColorRandom(){
+
+      // }
       // CrearCartasContainer() {
       //   // clear data and color cards
       //   var newcolorlist = this.colors;
