@@ -80,7 +80,7 @@ def main():
     countletters_repository.save(word9)
     countletters_repository.save(word10)
 
-    #CHAINEDWORDSGaurMartarenurtebetetzeada
+
     phrase1 = Chainedword  (id ='1', Level ='easy', question='GaurMartarenurtebetetzeada', answer='Gaur Martaren urtebetetzea da')
     phrase2 = Chainedword  (id ='2', Level ='easy', question='Poliziaklapurraatxilotuzuen', answer='Poliziak lapurra atxilotu zuen')
     phrase3 = Chainedword  (id ='3', Level ='easy', question='Lucíahaserredago', answer='Lucía haserre dago')
