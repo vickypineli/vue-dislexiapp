@@ -1,11 +1,35 @@
 <template>
-  <h1>HITZ KATEATUAK</h1>
-</template>
+    <h1>HITZ KATEATUAK</h1>
+    <section class="exerxice-container" v-for="phrase in phrases" :key="phrase.id">
+          <div class="e">          
+              <p>{{phrase.level}}</p>
+          </div>
 
+    </section>
+</template>
 <script>
 export default {
+  name:"ChainedWord",
+  data() {
+        return {
+            phrase:"",
+            phrases:[], 
+        }
 
-}
+  },
+  mounted() {
+        this.loadData();
+  },
+
+  methods: {
+        async loadData() {
+        const response = await fetch(
+            "http://localhost:5000/api/activities/chainedword"
+        );
+        this.phrases = await response.json();
+        },
+  }
+} 
 </script>
 
 <style>

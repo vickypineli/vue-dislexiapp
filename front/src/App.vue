@@ -2,6 +2,7 @@
   <div id="nav">
     <router-link to="/">Hasiera</router-link>
     <router-link to="/activities">Jarduerak</router-link>
+    <p> KAIXO:  {{localUser }} </p>
     <p> KAIXO:  {{loggedUser }} </p>
   </div>
   <router-view />

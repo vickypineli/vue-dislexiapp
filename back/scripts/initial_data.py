@@ -18,7 +18,7 @@ def main():
     info_repository = InfoRepository(database_path)
     info_repository.save(Info(app_name="irla-kurri"))
 
-    #Wordbyword
+
     textoriginal_1 = Wordbyword (language ="Gaztelania", text = "En un lugar de la Mancha de cuyo nombre no quiero acordarme, no hace mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. ")
     textoriginal_2 = Wordbyword (language ="Ingelesa", text = "I can't believe the news today Oh, I can't close my eyes and make it go away. How long must we sing this song?")
     textoriginal_3 = Wordbyword (language ="Euskera", text = "Hala bazan ala ez bazan, sar dadila kalabazan eta atera dadila Foruko plazan ")
@@ -29,7 +29,7 @@ def main():
     wordbyword_repository.save(textoriginal_2)
     wordbyword_repository.save(textoriginal_3)
 
-    # Activities
+   
     Activity_1 = Activity (id="act-1", user_id="user-1", route ="word-by-word", name = "HITZEZ HITZ")
     Activity_2 = Activity (id="act-2", user_id="user-2", route ="play-word-by-word", name = "IRAKUR-LAGUN")
     Activity_3 = Activity (id="act-3", user_id="user-1", route ="count-letters", name = "SILABAK ZENBATU")
@@ -46,7 +46,7 @@ def main():
     activity_repository.save(Activity_5)
     activity_repository.save(Activity_6)
 
-    #users
+
     user_repository = UserRepository(database_path)
 
     user1 = User (id='user-1', name='Ander', password='0000')
@@ -81,16 +81,16 @@ def main():
     countletters_repository.save(word10)
 
 
-    phrase1 = Chainedword  (id ='1', Level ='easy', question='GaurMartarenurtebetetzeada', answer='Gaur Martaren urtebetetzea da')
-    phrase2 = Chainedword  (id ='2', Level ='easy', question='Poliziaklapurraatxilotuzuen', answer='Poliziak lapurra atxilotu zuen')
-    phrase3 = Chainedword  (id ='3', Level ='easy', question='Lucíahaserredago', answer='Lucía haserre dago')
-    phrase4 = Chainedword  (id ='4', Level ='easy', question='Albertoklasterketairabazidu', answer='Albertok lasterketa irabazi du')
-    phrase5 = Chainedword  (id ='5', Level ='mediun', question='Printzesaprintzearekingazteluanbizida', answer='Printzesa printzearekin gazteluan bizi da')
-    phrase6 = Chainedword  (id ='6', Level ='mediun', question='Markoriezzaizkiobarazkiakgustatzen', answer='Markori ez zaizkio barazkiak gustatzen')
-    phrase7 = Chainedword  (id ='7', Level ='mediun', question='Miguelnegarrezaridaeroridelako', answer='Miguel negarrez ari da erori delako')
-    phrase8 = Chainedword  (id ='8', Level ='hard', question='Lucasek partidako azken gola sartu zuen', answer='Lucasek partidako azken gola sartu zuen')
-    phrase9 = Chainedword  (id ='9', Level ='hard', question='Turistekezzekitenherrikoelizanonzegoen', answer='Turistek ez zekiten herriko eliza non zegoen')
-    phrase10 = Chainedword (id ='10',Level ='hard', question='AmaketaaitakSararilotarakoipuinbatirakurrizioten', answer='Amak eta aitak Sarari lotarako ipuin bat irakurri zioten.')
+    phrase1 = Chainedword  (id ='1', level ='easy', question='GaurMartarenurtebetetzeada', answer='Gaur Martaren urtebetetzea da')
+    phrase2 = Chainedword  (id ='2', level ='easy', question='Poliziaklapurraatxilotuzuen', answer='Poliziak lapurra atxilotu zuen')
+    phrase3 = Chainedword  (id ='3', level ='easy', question='Lucíahaserredago', answer='Lucía haserre dago')
+    phrase4 = Chainedword  (id ='4', level ='easy', question='Albertoklasterketairabazidu', answer='Albertok lasterketa irabazi du')
+    phrase5 = Chainedword  (id ='5', level ='mediun', question='Printzesaprintzearekingazteluanbizida', answer='Printzesa printzearekin gazteluan bizi da')
+    phrase6 = Chainedword  (id ='6', level ='mediun', question='Markoriezzaizkiobarazkiakgustatzen', answer='Markori ez zaizkio barazkiak gustatzen')
+    phrase7 = Chainedword  (id ='7', level ='mediun', question='Miguelnegarrezaridaeroridelako', answer='Miguel negarrez ari da erori delako')
+    phrase8 = Chainedword  (id ='8', level ='hard', question='Lucasek partidako azken gola sartu zuen', answer='Lucasek partidako azken gola sartu zuen')
+    phrase9 = Chainedword  (id ='9', level ='hard', question='Turistekezzekitenherrikoelizanonzegoen', answer='Turistek ez zekiten herriko eliza non zegoen')
+    phrase10 = Chainedword (id ='10',level ='hard', question='AmaketaaitakSararilotarakoipuinbatirakurrizioten', answer='Amak eta aitak Sarari lotarako ipuin bat irakurri zioten.')
     
     chainedword_repository = ChainedwordRepository(database_path)
 
@@ -106,4 +106,5 @@ def main():
     chainedword_repository.save(phrase10)
 
     print("Base de datos inicializada en" + database_path)
+
 main()

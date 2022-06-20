@@ -19,14 +19,7 @@
       </article>
       
   </section>
-      <!-- <div class="users">
-        <select v-model ="selectedUser">
-          <option :value="null">Erabiltzaile izena</option>
-          <option v-for="user in users" :value="user" :key="user.id">
-            {{ user.name }}
-          </option>
-        </select>
-       </div> --> 
+
 </template>
 
 <script>
@@ -37,9 +30,6 @@ export default {
   name: 'Home',
   data() {
     return {
-      // info: {},
-      // users:[],
-      // selectedUser:null,
       user: "",
       password: "",
       localUser: useStorage("auth", {}),
@@ -51,30 +41,9 @@ export default {
   //   this.loadUsers()
   // },
   methods: {
-  //   async loadData() {
-  //     const response = await fetch('http://localhost:5000/api/activities')
-  //     this.info = await response.json()
-  // },
-  //   async loadUsers() {
-  //     const response = await fetch('http://localhost:5000/api/users')
-  //       this.users = await response.json()
-
-  //     // this.users = [
-  //     //   {
-  //     //     id: "user-1",
-  //     //     name: "pepa",
-  //     //   },
-  //     //   {
-  //     //     id: "user-2",
-  //     //     name: "pepe",
-  //     //   },
-  //     // ];
-  //   },
 
    async onButtonClicked() {
-      // localStorage.userId = this.selectedUser.id;
-      // localStorage.userName = this.selectedUser.name;
-      // this.$router.push("/activities");
+
       const response = await login(this.user, this.password);
       const loginStatus = response.status;
       const loginUser = await response.json();
