@@ -103,4 +103,4 @@ def create_app(repositories):
     # def get_list_of_phrases_by_level_one_by_one(level):
     #     phrases = repositories["chainedword"].get_phrase_one_by_one(level)
     #     return object_to_json(phrases)
-    # return app
+    return app

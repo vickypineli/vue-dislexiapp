@@ -1,8 +1,13 @@
 <template>
     <h1>HITZ KATEATUAK</h1>
+    <p>seleccione el nivel</p>
+     <router-link to="/activities/chainedword/easy"><button>facil</button></router-link>
+    <button>medio</button>
+    <button>dificil</button>
+   
     <section class="exerxice-container" v-for="phrase in phrases" :key="phrase.id">
           <div class="e">          
-              <p>{{phrase.level}}</p>
+              <p>{{phrase.question}}</p>
           </div>
 
     </section>
