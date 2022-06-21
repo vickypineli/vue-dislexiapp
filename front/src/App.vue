@@ -2,7 +2,6 @@
   <div id="nav">
     <router-link to="/">Hasiera</router-link>
     <router-link to="/activities">Jarduerak</router-link>
-    <p> KAIXO:  {{localUser }} </p>
     <p> KAIXO:  {{loggedUser }} </p>
   </div>
   <router-view />
@@ -24,7 +23,7 @@ export default {
 </script>
 <style scoped>
 #nav{
-  height: 30px;
+  height: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

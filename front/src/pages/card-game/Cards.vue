@@ -5,14 +5,14 @@
     @click="handleClick">
   </div>
   <div class="front">
-      <img :src='/assets/img/masc1.png' alt="faceUp">
+      <img class="up" src="require(`/assets/img/${card.img}`)" alt="faceUp">
       <img class="back" src="/assets/img/irlakurri.png" alt="faceDown">
   </div>
 </template>
 
 <script>
 export default {
-  name:"Cards",
+  name:"Card",
   props: ['card','active'],
   methods : {
     handleClick(){

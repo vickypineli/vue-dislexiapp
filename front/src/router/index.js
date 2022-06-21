@@ -39,8 +39,23 @@ const routes = [
   },
   {
     path: '/activities/chained-words',
-    name: 'SpeechToText',
-    component: () => import('@/pages/chained-words/chainedWordsPage.vue'),
+    name: 'ChainedWord',
+    component: () => import('@/pages/chained-words/ChainedWordsPage.vue'),
+  },
+  {
+    path: '/activities/chained-words/easy',
+    name: 'ChainedWordLevelEasy',
+    component: () => import('@/pages/chained-words/ChainedWordsEasyPage.vue'),
+  },
+  {
+    path: '/activities/chained-words/mediun',
+    name: 'ChainedWordLevelMediun',
+    component: () => import('@/pages/chained-words/ChainedWordsMediunPage.vue'),
+  },
+  {
+    path: '/activities/chained-words/hard',
+    name: 'ChainedWordLevelHard',
+    component: () => import('@/pages/chained-words/ChainedWordsHardPage.vue'),
   },
  
 

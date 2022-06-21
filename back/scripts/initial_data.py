@@ -90,7 +90,7 @@ def main():
     phrase7 = Chainedword  (id ='7', level ='mediun', question='Miguelnegarrezaridaeroridelako', answer='Miguel negarrez ari da erori delako')
     phrase8 = Chainedword  (id ='8', level ='hard', question='Lucasek partidako azken gola sartu zuen', answer='Lucasek partidako azken gola sartu zuen')
     phrase9 = Chainedword  (id ='9', level ='hard', question='Turistekezzekitenherrikoelizanonzegoen', answer='Turistek ez zekiten herriko eliza non zegoen')
-    phrase10 = Chainedword (id ='10',level ='hard', question='AmaketaaitakSararilotarakoipuinbatirakurrizioten', answer='Amak eta aitak Sarari lotarako ipuin bat irakurri zioten.')
+    phrase10 = Chainedword (id ='10', level ='hard', question='AmaketaaitakSararilotarakoipuinbatirakurrizioten', answer='Amak eta aitak Sarari lotarako ipuin bat irakurri zioten')
     
     chainedword_repository = ChainedwordRepository(database_path)
 

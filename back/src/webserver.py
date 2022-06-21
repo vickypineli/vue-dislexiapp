@@ -99,8 +99,8 @@ def create_app(repositories):
     #     phrases = repositories["chainedword"].get_list_of_phrases_by_level(level)
     #     return object_to_json(phrases)
  
-    # @app.route("/api/activities/chainedword/<level>", methods=["GET"])
-    # def get_list_of_phrases_by_level_one_by_one(level):
-    #     phrases = repositories["chainedword"].get_phrase_one_by_one(level)
-    #     return object_to_json(phrases)
+    @app.route("/api/activities/chainedword/<level>", methods=["GET"])
+    def get_list_of_phrases_by_level_one_by_one(level):
+        phrases = repositories["chainedword"].get_phrase_one_by_one(level)
+        return object_to_json(phrases)
     return app

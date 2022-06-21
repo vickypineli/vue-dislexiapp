@@ -49,22 +49,16 @@ def test_should_return_list_of_phrases():
             "answer": 'Gaur Martaren urtebetetzea da'
         }
     ]
+
 def test_should_return_list_of_phrases_by_level():
     chainedword_repository = ChainedwordRepository(temp_file())
     app = create_app(repositories={"chainedword": chainedword_repository})
     client = app.test_client() 
-
-    phrase6 = Chainedword (
-        id ="6",
-        level ='mediun',
-        question = 'Markoriezzaizkiobarazkiakgustatzen',
-        answer = 'Markori ez zaizkio barazkiak gustatzen'
-    )
-    phrase5 = Chainedword (
-        id = "5",
-        level = 'mediun',
-        question = 'Printzesaprintzearekingazteluanbizida',
-        answer = 'Printzesa printzearekin gazteluan bizi da'
+    phrase1 = Chainedword (
+        id = "1",
+        level = 'easy',
+        question = 'GaurMartarenurtebetetzeada',
+        answer = 'Gaur Martaren urtebetetzea da'
     )
     phrase2 = Chainedword (
         id ="2",
@@ -72,32 +66,39 @@ def test_should_return_list_of_phrases_by_level():
         question = 'Poliziaklapurraatxilotuzuen',
         answer = 'Poliziak lapurra atxilotu zuen'
     )
-    phrase1 = Chainedword (
-        id = "1",
-        level = 'easy',
-        question = 'GaurMartarenurtebetetzeada',
-        answer = 'Gaur Martaren urtebetetzea da'
+    phrase5 = Chainedword (
+        id = "5",
+        level = 'mediun',
+        question = 'Printzesaprintzearekingazteluanbizida',
+        answer = 'Printzesa printzearekin gazteluan bizi da'
     )
-    chainedword_repository.save(phrase6)
-    chainedword_repository.save(phrase5)
-    chainedword_repository.save(phrase2)
+    phrase6 = Chainedword (
+        id ="6",
+        level ='mediun',
+        question = 'Markoriezzaizkiobarazkiakgustatzen',
+        answer = 'Markori ez zaizkio barazkiak gustatzen'
+    )
     chainedword_repository.save(phrase1)
+    chainedword_repository.save(phrase2)
+    chainedword_repository.save(phrase5)
+    chainedword_repository.save(phrase6)
 
     response = client.get("/api/activities/chainedword/easy")
         
     assert response.json == [
         {
-            "id": "2",
-            "level": "easy",
-            "question": 'Poliziaklapurraatxilotuzuen',
-            "answer": 'Poliziak lapurra atxilotu zuen'
-        },
-        {
             "id": "1",
             "level": "easy",
             "question": 'GaurMartarenurtebetetzeada',
             "answer": 'Gaur Martaren urtebetetzea da'
-        }]
+        },
+        {
+            "id": "2",
+            "level": "easy",
+            "question": 'Poliziaklapurraatxilotuzuen',
+            "answer": 'Poliziak lapurra atxilotu zuen'
+        }
+      ]
 
 # def test_should_return_list_of_phrases_by_level_one_by_one():
 #     chainedword_repository = ChainedwordRepository(temp_file())

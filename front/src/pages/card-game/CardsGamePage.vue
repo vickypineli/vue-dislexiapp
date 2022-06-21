@@ -1,6 +1,6 @@
 <template>
   <h1>BIKOTE AURKITZEN</h1>
-  <Cards
+  <Card
         v-for="mask in masks"
         :key="mask.id"
         :card="mask"
@@ -9,17 +9,18 @@
         firstPick === mask || secondPick === mask || mask.matched
         "
   />
+  <div>{{images}}</div>
   <div>Turns: {{ turns }}</div>
   <Marker v-show="done" :turns="turns" @click="resetGame"/>
 </template>
 
 <script>
-import Cards from "./Cards.vue";
+import Card from "./Cards.vue";
 import Marker from "./Marker.vue";
 export default {
     name:"Game",
     components:{
-        Cards,
+        Card,
         Marker,
     },
     data(){

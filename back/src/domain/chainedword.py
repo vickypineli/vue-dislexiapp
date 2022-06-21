@@ -72,6 +72,7 @@ class ChainedwordRepository:
     #     cursor.execute(sql,{"level":level})
 
     #     data = cursor.fetchall()
+
     #     result = []
     #     for item in data:
     #         chainedword = Chainedword(**item)
@@ -80,7 +81,7 @@ class ChainedwordRepository:
     #     return result
 
     def get_phrase_one_by_one(self, level):
-        sql = """ SELECT * FROM chainedword WHERE level = :level ORDER BY RANDOM() LIMIT 1"""
+        sql = """ SELECT * FROM chainedword WHERE level=:level ORDER BY RANDOM() LIMIT 1"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql,{"level":level})
