@@ -83,12 +83,12 @@ def main():
 
     phrase1 = Chainedword  (id ='1', level ='easy', question='GaurMartarenurtebetetzeada', answer='Gaur Martaren urtebetetzea da')
     phrase2 = Chainedword  (id ='2', level ='easy', question='Poliziaklapurraatxilotuzuen', answer='Poliziak lapurra atxilotu zuen')
-    phrase3 = Chainedword  (id ='3', level ='easy', question='Lucíahaserredago', answer='Lucía haserre dago')
+    phrase3 = Chainedword  (id ='3', level ='easy', question='Luciahaserredago', answer='Lucia haserre dago')
     phrase4 = Chainedword  (id ='4', level ='easy', question='Albertoklasterketairabazidu', answer='Albertok lasterketa irabazi du')
     phrase5 = Chainedword  (id ='5', level ='mediun', question='Printzesaprintzearekingazteluanbizida', answer='Printzesa printzearekin gazteluan bizi da')
     phrase6 = Chainedword  (id ='6', level ='mediun', question='Markoriezzaizkiobarazkiakgustatzen', answer='Markori ez zaizkio barazkiak gustatzen')
     phrase7 = Chainedword  (id ='7', level ='mediun', question='Miguelnegarrezaridaeroridelako', answer='Miguel negarrez ari da erori delako')
-    phrase8 = Chainedword  (id ='8', level ='hard', question='Lucasek partidako azken gola sartu zuen', answer='Lucasek partidako azken gola sartu zuen')
+    phrase8 = Chainedword  (id ='8', level ='hard', question='Lucasekpartidakoazkengolasartuzuen', answer='Lucasek partidako azken gola sartu zuen')
     phrase9 = Chainedword  (id ='9', level ='hard', question='Turistekezzekitenherrikoelizanonzegoen', answer='Turistek ez zekiten herriko eliza non zegoen')
     phrase10 = Chainedword (id ='10', level ='hard', question='AmaketaaitakSararilotarakoipuinbatirakurrizioten', answer='Amak eta aitak Sarari lotarako ipuin bat irakurri zioten')
     

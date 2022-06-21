@@ -11,23 +11,23 @@
           <p>( Errasa Maila)</p>
         </div>
     </section>
-    <section class="exerxice-area" v-for="phrase in phrases" :key="phrase.id">
+    <section class="exercise-area" v-for="phrase in phrases" :key="phrase.id">
         <p class="question">{{phrase.question}}</p>
         <input class="answer" type="text" v-model="phrase.inputanswer"/>
         <div class="solution">
             <div v-if="phrase.inputanswer == null"></div>
-            <div v-else-if="phrase.inputanswer == word.answer">🎉 Ondo.</div>
-            <div v-else >❌</div>
+            <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
+            <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div>
         </div>
     </section>
     <section>    
         <div class="finish-game-container" >
           <div class="text">{{text}}</div>
             <button @click="finish = !finish" :class="styles">
-                    <div v-if="!finish">HASI</div>
+                    <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
             </button>
-      </div>
+        </div>
     <!-- <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button>  -->
     </section>
 </div>
@@ -37,7 +37,7 @@ export default {
   name:"ChainedWord",
   data() {
         return {
-            finish:true,
+            finish: false,
             text:"Amaitu duzu ariketa?",
             phrases:[], 
         }
@@ -45,11 +45,11 @@ export default {
   watch:{
     finish(value){
         if(value){
-            this.text ="Amaitu duzu ariketa?";
-                return this.loadData();           
+                this.text ="Amaitu duzu ariketa?";
+                this.loadData();    
             } else {
                 this.text= "Nahi baduzu jolastu berriro?"
-                return this.result();
+                this.result();    
             }
     }
   },
@@ -65,9 +65,9 @@ export default {
 
   },
   computed: {
-        styles(){
-            return this.finish ? ['buttonstart'] : ['buttonfinish'];
-        }
+        styles(){ 
+                return this.finish ? ['buttonstart'] : ['buttonfinish'];
+                }
   },
 }
 </script>
@@ -93,9 +93,9 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-.exerxice-area{
+.exercise-area{
     width: 80vw;
-    height: 20vh;
+    height: 30vh;
     border: 4px dashed #42b983;
     border-radius: 15px;
 }
@@ -103,7 +103,7 @@ export default {
     width: 70vw;
     margin: auto;
     margin-top: 10px;
-    font-size: 2vw;
+    font-size: 2.2vw;
     text-transform: uppercase;
     text-align: center;
     font-weight: bold;
@@ -121,14 +121,37 @@ export default {
     color: rgb(71, 69, 69);
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
+.text{
+    font-size: 1.3em;
+}
 .finish-game-container{
-    width: 60vw;
-    height: 10vh;
+    width: 80vw;
+    height: 8vh;
     display:flex;
     justify-content: space-evenly;
     align-items: baseline;
+    background: rgba(98, 233, 188, 0.164);
 }
-button{
+.buttonfinish {
+    margin: 10px;
+    padding: 0px 10px;
+    border-color:rgb(145, 144, 144);
+    border-radius: 15px;
+    font-size: 1.2em;
+    background: rgb(255, 0, 85);
+    color: white;
+}
+.buttonstart {
+    margin: 20px;
+    padding: 0px 10px;
+    border-color:rgb(255, 0, 85);
+    border-radius: 15px;
+    font-size: 1.2em;
+    background: white;
+    color:rgb(255, 0, 85);
+    
+}
+button {
     width:20vw;
     height: 4vh;
     padding: 0px 10px 0px 10px;
