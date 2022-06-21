@@ -1,9 +1,10 @@
 import sqlite3
 
 class Chainedword:
-    def __init__(self, id, level, question, answer):
+    def __init__(self, id, level, img, question, answer):
         self.id = id
         self.level = level
+        self.img = img
         self.question = question
         self.answer = answer
 
@@ -11,6 +12,7 @@ class Chainedword:
         return {
             'id': self.id,
             'level': self.level,
+            'img':self.img,
             'question': self.question,
             'answer': self.answer
         }
@@ -30,6 +32,7 @@ class ChainedwordRepository:
             create table if not exists chainedword(
                 "id" varchar PRIMARY KEY, 
                 "level" varchar,
+                "img" varchar,
                 "question" varchar,
                 "answer" varchar
             )
@@ -54,8 +57,8 @@ class ChainedwordRepository:
         return result
     
     def save(self, chainedword):
-            sql = """insert into chainedword (id, level, question, answer) 
-                        values (:id, :level, :question, :answer 
+            sql = """insert into chainedword (id, level, img, question, answer) 
+                        values (:id, :level, :img, :question, :answer 
                         ) """
             conn = self.create_conn()
             cursor = conn.cursor()
