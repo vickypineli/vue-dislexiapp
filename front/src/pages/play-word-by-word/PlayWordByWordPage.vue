@@ -125,6 +125,7 @@ button{
     padding: 5px 10px;
     border-color:rgb(170, 165, 167);
     border-radius: 15px;
+    font-family: dislexia;
     font-size: 1.2em;
     font-weight: bold;
     background: #42b983;

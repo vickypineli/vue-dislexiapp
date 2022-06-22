@@ -66,6 +66,7 @@ button {
     padding: 5px 10px;
     border-color:rgb(145, 144, 144);
     border-radius: 10px;
+    font-family: dislexia;
     font-size: 1.5em;
     background: #42b983;
     color: white;

@@ -28,10 +28,11 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   align-items: baseline;
+  font-family: dislexia;
 }
 p{
   margin-left: 100px;
-  padding: 8px;
+  padding: 4px;
   color: rgb(255, 0, 85);
   font-weight: bold;
   border: 1px solid rgb(177, 175, 175);

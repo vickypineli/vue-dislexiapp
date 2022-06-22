@@ -11,9 +11,14 @@
           <p>( Errasa Maila)</p>
         </div>
     </section>
-    <section class="exercise-area" v-for="phrase in phrases" :key="phrase.id">
-        <p class="question">{{phrase.question}}</p>
-        <input class="answer" type="text" v-model="phrase.inputanswer"/>
+    <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
+        <div class="draw-area">
+            <img class="photo" :src="phrase.img" />
+        </div>
+        <div class="question-area">
+            <p class="question">{{phrase.question}}</p>
+            <input class="answer" type="text" v-model="phrase.inputanswer"/>
+        </div>
         <div class="solution">
             <div v-if="phrase.inputanswer == null"></div>
             <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
@@ -93,14 +98,16 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-.exercise-area{
-    width: 80vw;
+.exercise-box{
+    width: 90vw;
     height: 30vh;
+    display: flex;
+    justify-content: center;
     border: 4px dashed #42b983;
     border-radius: 15px;
 }
 .question{
-    width: 70vw;
+    width: 60vw;
     margin: auto;
     margin-top: 10px;
     font-size: 2.2vw;
@@ -111,7 +118,7 @@ export default {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 .answer{
-    width:70vw;
+    width:60vw;
     margin: auto;
     margin-top: 20px;
     font-size: 1.2em;
@@ -123,6 +130,9 @@ export default {
 }
 .text{
     font-size: 1.3em;
+}
+.photo{
+    width: 150px;
 }
 .finish-game-container{
     width: 80vw;

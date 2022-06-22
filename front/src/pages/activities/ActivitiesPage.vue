@@ -75,6 +75,7 @@ button{
   border-radius: 15px;
   font-size: 1.5em;
   font-weight: bold;
+ 
   background: #42b983;
   color:white;
   

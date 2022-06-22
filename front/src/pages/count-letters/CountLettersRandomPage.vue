@@ -169,6 +169,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-content: center;
+    font-family: dislexia;
 
 }
 .inputs-box{
@@ -193,10 +194,10 @@ export default {
     padding: 15px;
 }
 label{
-    width: 190px;
+    width: 200px;
     height: 60px;
-    font-size: 1.3em;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1em;
+    font-family: dislexia;
 }
 input{
     align-content: center;
