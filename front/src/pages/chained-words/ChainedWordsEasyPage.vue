@@ -19,18 +19,22 @@
             <p class="question">{{phrase.question}}</p>
             <input class="answer" type="text" v-model="phrase.inputanswer"/>
         </div>
-        <div class="solution">
+        <!-- <div class="solution">
             <div v-if="phrase.inputanswer == null"></div>
             <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
             <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div>
+        </div> -->
+        <div>
+            <p v-show="resultOfExercise == true">Oso ondo egin duzu....!!</p>
+            <p v-show="resultOfExercise == false"></p>
         </div>
     </section>
     <section>    
         <div class="finish-game-container" >
           <div class="text">{{text}}</div>
             <button @click="finish = !finish" :class="styles">
-                    <div v-if="!finish">GOAZEN</div>
-                    <div v-else>EMAITZA</div>
+                    <div v-if="!finish">EMAITZA</div>
+                    <div v-else>GOAZEN</div>
             </button>
         </div>
     <!-- <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button>  -->
@@ -39,41 +43,48 @@
 </template>
 <script>
 export default {
-  name:"ChainedWord",
-  data() {
-        return {
-            finish: false,
-            text:"Amaitu duzu ariketa?",
-            phrases:[], 
-        }
-  },
-  watch:{
-    finish(value){
-        if(value){
-                this.text ="Amaitu duzu ariketa?";
-                this.loadData();    
-            } else {
-                this.text= "Nahi baduzu jolastu berriro?"
-                this.result();    
+    name:"ChainedWord",
+    data() {
+            return {
+                finish: false,
+                text:"Amaitu duzu ariketa?",
+                phrases:[], 
+                resultOfExercise: false,
             }
-    }
-  },
-  mounted(){
-    this.loadData();
-  },
+    },
+    watch:{
+        finish(value){
+            if(value){
+                this.result(); 
+            } else {
+                this.text ="Nahi baduzu jolastu berriro?";
+                this.loadData();
+                   
+            }
+        }
+    },
+    mounted(){
+        this.loadData();
+    },
 
-  methods: {
-    async loadData() {
-        const response = await fetch("http://localhost:5000/api/activities/chainedword/easy");
-        this.phrases = await response.json();
-    }
-
-  },
-  computed: {
+    methods: {
+        async loadData() {
+            const response = await fetch("http://localhost:5000/api/activities/chainedword/easy");
+            this.phrases = await response.json();
+        },
+        result() {
+                if (this.phrase.inputanswer == this.phrase.answer) {
+                    this.resultOfExercise = true;   
+                } else {
+                    this.resultOfExercise = false;  
+                }
+        }
+    },
+    computed: {
         styles(){ 
                 return this.finish ? ['buttonstart'] : ['buttonfinish'];
                 }
-  },
+    }
 }
 </script>
 
@@ -166,8 +177,8 @@ question-area{
     font-size: 1.2em;
     background: white;
     color:rgb(255, 0, 85);
-    
 }
+
 button {
     width:20vw;
     height: 4vh;

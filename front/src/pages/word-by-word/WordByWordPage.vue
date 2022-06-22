@@ -139,6 +139,7 @@ export default {
 }
 
 button{
+  width: 15vw;
   display: block;
   font-size: 20px;
   padding: 8px;
