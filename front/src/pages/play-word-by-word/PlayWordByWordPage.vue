@@ -4,7 +4,7 @@
   </div>    
   <section id="text">
         <label for="text">
-          <textarea v-model="textSelected" placeholder="Jarri hemen zure estua....."></textarea>
+          <textarea v-model="textSelected" placeholder="Jarri hemen zure testua....."></textarea>
         </label>
   </section>
   <section id="options-selec">
@@ -122,7 +122,7 @@ textarea {
 button{
     width: 25vw;
     margin: 10px;
-    padding: 5px 10px;
+    padding: 0px 10px;
     border-color:rgb(170, 165, 167);
     border-radius: 15px;
     font-family: dislexia;

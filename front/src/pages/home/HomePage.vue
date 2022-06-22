@@ -6,11 +6,11 @@
       </article>
       <article class="login-box">
         <div class="login-date">
-          <label>Usuario:</label>
+          <label>Izena:</label>
           <input  type="text" v-model="user" />
         </div>
         <div class="login-date">
-          <label>Clave:</label>
+          <label>Pasahitza:</label>
           <input class="input-internal" type="password" v-model="password" />
         </div>
         <div class="login-date">
@@ -36,10 +36,7 @@ export default {
 
     }
   },
-  // mounted() {
-  //   this.loadData(),
-  //   this.loadUsers()
-  // },
+
   methods: {
 
    async onButtonClicked() {

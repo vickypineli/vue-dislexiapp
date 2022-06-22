@@ -106,23 +106,26 @@ export default {
     border: 4px dashed #42b983;
     border-radius: 15px;
 }
+
+question-area{
+    display:flex;
+    flex-direction: column;
+}
 .question{
     width: 60vw;
     margin: auto;
     margin-top: 10px;
     font-size: 2.2vw;
-    text-transform: uppercase;
     text-align: center;
     font-weight: bold;
     color: rgb(255, 0, 85);
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 .answer{
-    width:60vw;
+    width:40vw;
     margin: auto;
     margin-top: 20px;
     font-size: 1.2em;
-    text-transform: uppercase;
     text-align: center;
     font-weight: bold;
     color: rgb(71, 69, 69);
@@ -133,6 +136,10 @@ export default {
 }
 .photo{
     width: 150px;
+}
+
+.solution{
+    width: 60vw;
 }
 .finish-game-container{
     width: 80vw;

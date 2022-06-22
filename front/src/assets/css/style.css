@@ -17,7 +17,7 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: rgb(242, 117, 8);
 }
 @font-face{
   font-family:'Dislexia';

@@ -9,11 +9,14 @@
           <router-link to="/activities/color-memory"><button>MARGOTU ZURE MEMORIA</button></router-link>
           <router-link to="/activities/cards-game"><button>BIKOTE JOLASA</button></router-link>
     </section>
+    <section>
+      <button v-for="activity in activities" :key="activity.name" @click="onButtonClicked(activity)">{{activity.name}}</button>
+    </section>
   </div>
 </template>
 
 <script>
-import { getActivities } from "@/services/api.js";
+import { getActivities, } from "@/services/api.js";
 
 export default {
   name:"ActivityPage",

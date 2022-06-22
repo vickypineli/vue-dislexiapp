@@ -60,9 +60,7 @@ def create_app(repositories):
         # user_id = get_jwt_identity()
         print("****", user_id)
 
-        all_activities = repositories["activities"].search_activities_by_user_id(
-            user_id
-        )
+        all_activities = repositories["activities"].search_activities_by_user_id(user_id)
         return object_to_json(all_activities)
 
     @app.route("/api/activities/wordbyword", methods=["GET"])
@@ -95,10 +93,10 @@ def create_app(repositories):
         all_phrases = repositories["chainedword"].get_all_phrases()
         return object_to_json(all_phrases)
 
-    @app.route("/api/activities/chainedword/<level>", methods=["GET"])
-    def get_list_of_phrases_by_level(level):
-        phrases = repositories["chainedword"].get_list_of_phrases_by_level(level)
-        return object_to_json(phrases)
+    # @app.route("/api/activities/chainedword/<level>", methods=["GET"])
+    # def get_list_of_phrases_by_level(level):
+    #     phrases = repositories["chainedword"].get_list_of_phrases_by_level(level)
+    #     return object_to_json(phrases)
 
     @app.route("/api/activities/chainedword/<level>", methods=["GET"])
     def get_list_of_phrases_by_level_one_by_one(level):

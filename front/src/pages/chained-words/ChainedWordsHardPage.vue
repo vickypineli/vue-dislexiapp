@@ -18,6 +18,7 @@
         <article class="question-area">
             <p class="question">{{phrase.question}}</p>
             <input class="answer" type="text" v-model="phrase.inputanswer"/>
+            
             <div class="solution">
                 <div v-if="phrase.inputanswer == null"></div>
                 <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
@@ -121,7 +122,7 @@ export default {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 .answer{
-    width:60vw;
+    width:40vw;
     margin: auto;
     margin-top: 20px;
     font-size: 1em;
@@ -134,10 +135,10 @@ export default {
     font-size: 1.3em;
 }
 .photo{
-    width: 15vw;
+    width: 150px;
 }
 .solution{
-    width: 60vw;
+    width: 40vw;
 }
 .finish-game-container{
     width: 80vw;

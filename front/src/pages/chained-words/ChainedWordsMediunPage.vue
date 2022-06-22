@@ -42,7 +42,7 @@ export default {
   name:"ChainedWord",
   data() {
         return {
-            finish:true,
+            finish: false,
             text:"Amaitu duzu ariketa?",
             phrases:[], 
         }
@@ -118,7 +118,7 @@ export default {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 .answer{
-    width:60vw;
+    width:40vw;
     margin: auto;
     margin-top: 20px;
     font-size: 1.2em;
