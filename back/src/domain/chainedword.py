@@ -68,20 +68,20 @@ class ChainedwordRepository:
                 )
             conn.commit()
     
-    # def get_list_of_phrases_by_level(self, level):
-    #     sql = """ SELECT * FROM chainedword WHERE level = :level"""
-    #     conn = self.create_conn()
-    #     cursor = conn.cursor()
-    #     cursor.execute(sql,{"level":level})
+    def get_list_of_phrases_by_level(self, level):
+        sql = """ SELECT * FROM chainedword WHERE level = :level"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql,{"level":level})
 
-    #     data = cursor.fetchall()
+        data = cursor.fetchall()
 
-    #     result = []
-    #     for item in data:
-    #         chainedword = Chainedword(**item)
-    #         result.append(chainedword)
+        result = []
+        for item in data:
+            chainedword = Chainedword(**item)
+            result.append(chainedword)
 
-    #     return result
+        return result
 
     def get_phrase_one_by_one(self, level):
         sql = """ SELECT * FROM chainedword WHERE level=:level ORDER BY RANDOM() LIMIT 1"""

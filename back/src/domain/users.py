@@ -70,4 +70,16 @@ class UserRepository:
                 
             return user
 
-        
+        def get_user_by_name(self, name):
+            sql = """SELECT * FROM users WHERE name=:name"""
+            conn = self.create_conn()
+            cursor = conn.cursor()
+            cursor.execute(sql, {"name":name})
+
+            data = cursor.fetchone()
+            if data is None:
+                return None
+            else:
+                user = User(**data)
+                
+            return user

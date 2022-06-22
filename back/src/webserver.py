@@ -7,7 +7,7 @@ from src.domain.activities import Activity
 from src.domain.wordbyword import Wordbyword
 from src.domain.countletters import Countletters
 from src.domain.users import UserRepository
-from flask_jwt_extended import ( 
+from flask_jwt_extended import (
     JWTManager,
     create_access_token,
     get_jwt_identity,
@@ -15,18 +15,17 @@ from flask_jwt_extended import (
 )
 
 
-
 def create_app(repositories):
     app = Flask(__name__)
     CORS(app)
-       
-    # app.config["JWT_SECRET_KEY"] = "5465436758585"  
+
+    # app.config["JWT_SECRET_KEY"] = "5465436758585"
     # jwt = JWTManager(app)
 
     @app.route("/auth/login", methods=["POST"])
     def login():
         body = request.json
-        user = repositories["users"].get_user_by_id(body["user"])
+        user = repositories["users"].get_user_by_name(body["user"])
 
         if user is None or (body["password"]) != user.password:
             return "", 401
@@ -61,7 +60,9 @@ def create_app(repositories):
         # user_id = get_jwt_identity()
         print("****", user_id)
 
-        all_activities = repositories["activities"].search_activities_by_user_id(user_id)
+        all_activities = repositories["activities"].search_activities_by_user_id(
+            user_id
+        )
         return object_to_json(all_activities)
 
     @app.route("/api/activities/wordbyword", methods=["GET"])
@@ -94,11 +95,11 @@ def create_app(repositories):
         all_phrases = repositories["chainedword"].get_all_phrases()
         return object_to_json(all_phrases)
 
-    # @app.route("/api/activities/chainedword/<level>", methods=["GET"])
-    # def get_phrases_by_level(level):
-    #     phrases = repositories["chainedword"].get_list_of_phrases_by_level(level)
-    #     return object_to_json(phrases)
- 
+    @app.route("/api/activities/chainedword/<level>", methods=["GET"])
+    def get_list_of_phrases_by_level(level):
+        phrases = repositories["chainedword"].get_list_of_phrases_by_level(level)
+        return object_to_json(phrases)
+
     @app.route("/api/activities/chainedword/<level>", methods=["GET"])
     def get_list_of_phrases_by_level_one_by_one(level):
         phrases = repositories["chainedword"].get_phrase_one_by_one(level)

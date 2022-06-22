@@ -16,7 +16,7 @@ def test_should_validate_login():
     client = setup()
 
     body = {
-        "user": 'user-Alba',
+        "user": 'Alba',
         'password': '0000'
     }
     response = client.post(
@@ -29,7 +29,7 @@ def test_should_fail_if_invalid_password():
     client = setup()
 
     body = {
-        "user": 'user-pepe',
+        "user": 'pepe',
         'password': '45879'
     }
     response = client.post(
