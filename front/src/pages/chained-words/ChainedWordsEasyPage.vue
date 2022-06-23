@@ -25,16 +25,16 @@
             <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div>
         </div> -->
         <div>
-            <p v-show="resultOfExercise == true">Oso ondo egin duzu....!!</p>
-            <p v-show="resultOfExercise == false"></p>
+            <p v-show= "resultisgood == true">Oso ondo egin duzu....!!</p>
+            <p v-show= "resultisbad == true">Saiatu berriro.</p>
         </div>
     </section>
     <section>    
         <div class="finish-game-container" >
           <div class="text">{{text}}</div>
             <button @click="finish = !finish" :class="styles">
-                    <div v-if="!finish">EMAITZA</div>
-                    <div v-else>GOAZEN</div>
+                    <div v-if="!finish">GOAZEN</div>
+                    <div v-else>EMAITZA</div>
             </button>
         </div>
     <!-- <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button>  -->
@@ -49,7 +49,8 @@ export default {
                 finish: false,
                 text:"Amaitu duzu ariketa?",
                 phrases:[], 
-                resultOfExercise: false,
+                resultIsGood: false,
+                resultIsBad: false,
             }
     },
     watch:{
@@ -74,9 +75,9 @@ export default {
         },
         result() {
                 if (this.phrase.inputanswer == this.phrase.answer) {
-                    this.resultOfExercise = true;   
+                    this.resultIsGood = true;   
                 } else {
-                    this.resultOfExercise = false;  
+                    this.resultIsBad = true;  
                 }
         }
     },
