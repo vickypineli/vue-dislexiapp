@@ -8,12 +8,12 @@
             <router-link to="/activities/chained-words/hard"><button>ZAILENA</button></router-link>
         </div>
         <div class="despcription">
-          <p>( Normala Maila)</p>
+          <p>( Zailena Maila)</p>
         </div>
     </section>
     <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
         <article class="draw-area">
-            <img class="photo" :src="phrase.img" />
+            <img class="photo" :src="phrase.img"/>
         </article>
         <article class="question-area">
             <p class="question">{{phrase.question}}</p>
@@ -75,7 +75,7 @@ export default {
 
     methods: {
         async loadData() {
-            const response = await fetch("http://localhost:5000/api/activities/chainedword/mediun");
+            const response = await fetch("http://localhost:5000/api/activities/chainedword/hard");
             this.phrases = await response.json();
         },
         playAgain(){
