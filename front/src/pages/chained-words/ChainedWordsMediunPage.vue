@@ -8,7 +8,7 @@
             <router-link to="/activities/chained-words/hard"><button>ZAILENA</button></router-link>
         </div>
         <div class="despcription">
-          <p>( Normala Maila)</p>
+          <p>( Zaila Maila)</p>
         </div>
     </section>
     <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
@@ -20,9 +20,6 @@
             <input class="answer" type="text" v-model="phrase.inputanswer"/>
             
             <div class="solution">
-                <!-- <div v-if="phrase.inputanswer == null"></div>
-                <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
-                <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div> -->
             <div>
                 <p v-show = "solutionGood === true">🎉Oso ondo egin duzu....!!</p>
                 <p v-show = "solutionBad ===true">❌Saiatu berriro.</p>
@@ -71,14 +68,14 @@ export default {
     //             this.loadData();
     //         }
     //     }
-    // },
+    //
     mounted(){
         this.loadData();
     },
 
     methods: {
         async loadData() {
-            const response = await fetch("http://localhost:5000/api/activities/chainedword/mediun");
+            const response = await fetch("http://localhost:5000/api/activities/chainedword/hard");
             this.phrases = await response.json();
         },
         result() {

@@ -8,7 +8,7 @@
             <router-link to="/activities/chained-words/hard"><button>ZAILENA</button></router-link>
         </div>
         <div class="despcription">
-          <p>( Zaila Maila)</p>
+          <p>( Normala Maila)</p>
         </div>
     </section>
     <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
@@ -20,14 +20,11 @@
             <input class="answer" type="text" v-model="phrase.inputanswer"/>
             
             <div class="solution">
-                <!-- <div v-if="phrase.inputanswer == null"></div>
-                <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
-                <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div> -->
             <div>
-                <p v-show= "resultIsGood == true">🎉Oso ondo egin duzu....!!</p>
-                <p v-show= "resultIsBad == true">❌Saiatu berriro.</p>
+                <p v-show = "solutionGood === true">🎉Oso ondo egin duzu....!!</p>
+                <p v-show = "solutionBad ===true">❌Saiatu berriro.</p>
             </div>
-            <button  class="buttonfinish" @click="result()"> EMAITZA</button>
+            <button  class="buttonfinish" @click="result"> EMAITZA</button>
 
         </div>
         </article>
@@ -40,7 +37,7 @@
                     <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
             </button> -->
-            <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button> 
+            <button  class="buttonstart" @click="loadData()"> JOLASTU BERRIRO</button> 
         
         </div>
         
@@ -56,8 +53,10 @@ export default {
                 finish: false,
                 text:"Amaitu duzu ariketa?",
                 phrases:[], 
-                resultIsGood: false,
-                resultIsBad: false,
+                phrase:"",
+                solutionGood: false,
+                solutionBad: false,
+               
             }
     },
     // watch:{
@@ -67,7 +66,6 @@ export default {
     //         } else {
     //             this.text ="Nahi baduzu jolastu berriro?";
     //             this.loadData();
-                   
     //         }
     //     }
     // },
@@ -77,14 +75,18 @@ export default {
 
     methods: {
         async loadData() {
-            const response = await fetch("http://localhost:5000/api/activities/chainedword/hard");
+            const response = await fetch("http://localhost:5000/api/activities/chainedword/mediun");
             this.phrases = await response.json();
         },
         result() {
-                if (this.phrase.inputanswer == this.phrase.answer) {
-                    return this.resultIsGood = true;   
+    
+                if (this.phrases[0].inputanswer === this.phrases[0].answer) {
+                 
+                    this.solutionGood = true; 
+                    this.solutionBad = false;  
                 } else {
-                    return this.resultIsBad = true;  
+                    this.solutionGood = false;  
+                    this.solutionBad = true;
                 }
         }
     },
