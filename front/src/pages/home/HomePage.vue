@@ -16,6 +16,7 @@
         <div class="login-date">
           <button @click="onButtonClicked">SARTU</button>
         </div>
+        
       </article>
       
   </section>
@@ -42,10 +43,10 @@ export default {
    async onButtonClicked() {
 
       const response = await login(this.user, this.password);
+      
       const loginStatus = response.status;
       const loginUser = await response.json();
-      console.log("response", response);
-      console.log("loginUser", loginUser);
+ 
 
       if (loginStatus === 401) {
         alert("unauthorized");

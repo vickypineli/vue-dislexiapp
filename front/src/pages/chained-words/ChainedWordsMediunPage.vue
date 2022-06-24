@@ -12,28 +12,36 @@
         </div>
     </section>
     <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
-        <div class="draw-area">
+        <article class="draw-area">
             <img class="photo" :src="phrase.img" />
-        </div>
-        <div class="question-area">
+        </article>
+        <article class="question-area">
             <p class="question">{{phrase.question}}</p>
             <input class="answer" type="text" v-model="phrase.inputanswer"/>
+            
+            <div class="solution">
+                <!-- <div v-if="phrase.inputanswer == null"></div>
+                <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
+                <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div> -->
+            </div>
+        
+        <div>
+            <p v-show= "resultisgood == true">Oso ondo egin duzu....!!</p>
+            <p v-show= "resultisbad == true">Saiatu berriro.</p>
         </div>
-        <div class="solution">
-            <div v-if="phrase.inputanswer == null"></div>
-            <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
-            <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div>
-        </div>
+        <button  class="buttonfinish" @click="result()"> EMAITZA</button>
+     </article>
     </section>
     <section>    
         <div class="finish-game-container" >
-          <div class="text">{{text}}</div>
-            <button @click="finish = !finish" :class="styles">
+            <div class="text">{{text}}</div>
+            <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button> 
+            <!-- <button @click="finish = !finish" :class="styles">
                     <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
-            </button>
+            </button> -->
         </div>
-    <!-- <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button>  -->
+
     </section>
 </div>
 </template>
@@ -47,17 +55,17 @@ export default {
             phrases:[], 
         }
   },
-  watch:{
-    finish(value){
-        if(value){
-            this.text ="Amaitu duzu ariketa?";
-                return this.loadData();           
-            } else {
-                this.text= "Nahi baduzu jolastu berriro?"
-                return this.result();
-            }
-    }
-  },
+//   watch:{
+//     finish(value){
+//         if(value){
+//             this.text ="Amaitu duzu ariketa?";
+//                 return this.loadData();           
+//             } else {
+//                 this.text= "Nahi baduzu jolastu berriro?"
+//                 return this.result();
+//             }
+//     }
+//   },
   mounted(){
     this.loadData();
   },
@@ -69,11 +77,11 @@ export default {
     }
 
   },
-  computed: {
-        styles(){
-            return this.finish ? ['buttonstart'] : ['buttonfinish'];
-        }
-  },
+//   computed: {
+//         styles(){
+//             return this.finish ? ['buttonstart'] : ['buttonfinish'];
+//         }
+//   },
 }
 </script>
 
@@ -143,6 +151,7 @@ export default {
     background: rgba(98, 233, 188, 0.164);
 }
 .buttonfinish {
+    width: 40vw;
     margin: 10px;
     padding: 0px 10px;
     border-color:rgb(145, 144, 144);

@@ -1,18 +1,20 @@
 <template>
   <div class="activites-container">
     <h1>JARDUERAK </h1>
-    <!-- <section class="box-activities">
+    <section class="box-activities">
           <router-link to="/activities/word-by-word"><button>HITZEZ HITZ</button></router-link>
           <router-link to="/activities/play-word-by-word"><button>IRAKUR-LAGUN</button></router-link>
           <router-link to="/activities/count-letters"><button>SILABAK ZENBATU</button></router-link>
           <router-link to="/activities/chained-words"><button>HITZ KATEATUAK</button></router-link>
-          <router-link to="/activities/color-memory"><button>MARGOTU ZURE MEMORIA</button></router-link>
-          <router-link to="/activities/cards-game"><button>BIKOTE JOLASA</button></router-link>
-    </section> -->
-    <section>
+          <!-- <router-link to="/activities/color-memory"><button>MARGOTU ZURE MEMORIA</button></router-link>
+          <router-link to="/activities/cards-game"><button>BIKOTE JOLASA</button></router-link> -->
+    </section>
+    <!-- <section>
       <button v-for="activity in activities" :key="activity.id" @click="onButtonClicked(activity)">{{activity.name}}</button>
     </section>
-  </div>
+
+  <p>{{localUser}}</p> -->
+    </div>
 </template>
 
 <script>
@@ -26,7 +28,6 @@ export default {
     return {
       activity: "",
       activities: [],
-      userLogged: "",
       localUser: useStorage("user", {}),
     }
   },
@@ -38,7 +39,7 @@ export default {
       const settings = {
         method: "GET",
         headers: {
-          Authorization: localStorage.userId,
+          Authorization: localStorage.user_id,
         },
       };
       const response = await fetch(`${config.API_PATH}/activities`, settings);

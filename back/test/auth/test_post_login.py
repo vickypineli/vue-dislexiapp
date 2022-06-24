@@ -7,7 +7,7 @@ def setup():
     app = create_app(repositories={"users": user_repository})
     client = app.test_client()
 
-    alba = User(id='user-Alba', name='Alba', password='0000')
+    alba = User(user_id='user-2', name='Alba', password='0000')
     user_repository.save(alba)
 
     return client

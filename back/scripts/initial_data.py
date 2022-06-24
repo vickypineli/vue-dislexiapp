@@ -47,10 +47,10 @@ def main():
     activity_repository.save(Activity_6)
 
 
-    user_repository = UserRepository(database_path)
+    user1 = User (user_id='user-1', name='Ander', password='0000')
+    user2 = User (user_id='user-2', name='Alba', password='0000')
 
-    user1 = User (id='user-1', name='Ander', password='0000')
-    user2 = User (id='user-2', name='Alba', password='0000')
+    user_repository = UserRepository(database_path)
 
     user_repository.save(user1)
     user_repository.save(user2)

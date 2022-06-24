@@ -2,14 +2,14 @@ import sqlite3
 from unittest import result
 
 class User:
-    def __init__(self, id, name, password="NO-PASSWORD"):
-        self.id = id
+    def __init__(self, user_id, name, password="NO-PASSWORD"):
+        self.user_id = user_id
         self.name = name
         self.password = password       
 
     def to_dict(self):
         return {
-            "id": self.id,
+            "user_id": self.user_id,
             "name": self.name,
             "password": self.password,
         }
@@ -27,7 +27,7 @@ class UserRepository:
         def init_tables(self):
             sql = """
                 CREATE TABLE if not exists users(
-                    "id" varchar PRIMARY KEY,
+                    "user_id" varchar PRIMARY KEY,
                     "name" varchar,
                     "password" varchar
                 )
@@ -49,18 +49,18 @@ class UserRepository:
             return result
             
         def save(self, user):
-            sql = """insert into users (id, name, password) values (:id, :name, :password
+            sql = """insert into users (user_id, name, password) values (:user_id, :name, :password
             ) """
             conn = self.create_conn()
             cursor = conn.cursor()
-            cursor.execute ( sql, {"id":user.id, "name":user.name, "password":user.password})
+            cursor.execute ( sql, {"user_id":user.user_id, "name":user.name, "password":user.password})
             conn.commit()           
 
-        def get_user_by_id(self, id):
-            sql = """SELECT * FROM users WHERE id=:id"""
+        def get_user_by_user_id(self, user_id):
+            sql = """SELECT * FROM users WHERE user_id=:user_id"""
             conn = self.create_conn()
             cursor = conn.cursor()
-            cursor.execute(sql, {"id":id})
+            cursor.execute(sql, {"user_id":user_id})
 
             data = cursor.fetchone()
             if data is None:

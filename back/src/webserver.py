@@ -48,6 +48,11 @@ def create_app(repositories):
         all_users = repositories["users"].get_all_users()
         return object_to_json(all_users)
 
+    @ app.route("/api/users/<user_id>", methods=["GET"])
+    def get_user_by_user_id(user_id):
+        user = repositories["users"]. get_user_by_user_id(user_id)
+        return user.to_dict(), 200
+
     # @app.route("/api/activities", methods=["GET"])
     # def get_all_activities():
     #     all_activities = repositories["activities"].get_all()
@@ -55,7 +60,7 @@ def create_app(repositories):
 
     @app.route("/api/activities", methods=["GET"])
     # @jwt_required()
-    def get_all_activities_by_user():
+    def get_all_activities_by_user_id():
         user_id = request.headers.get("Authorization")
         # user_id = get_jwt_identity()
         print("****", user_id)

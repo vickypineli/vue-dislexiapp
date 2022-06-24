@@ -12,32 +12,39 @@
         </div>
     </section>
     <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
-        <div class="draw-area">
+        <article class="draw-area">
             <img class="photo" :src="phrase.img" />
-        </div>
-        <div class="question-area">
+        </article>
+        <article class="question-area">
             <p class="question">{{phrase.question}}</p>
             <input class="answer" type="text" v-model="phrase.inputanswer"/>
+            
+            <div class="solution">
+                <!-- <div v-if="phrase.inputanswer == null"></div>
+                <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
+                <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div> -->
+            <div>
+                <p v-show= "resultIsGood == true">🎉Oso ondo egin duzu....!!</p>
+                <p v-show= "resultIsBad == true">❌Saiatu berriro.</p>
+            </div>
+            <button  class="buttonfinish" @click="result()"> EMAITZA</button>
+
         </div>
-        <!-- <div class="solution">
-            <div v-if="phrase.inputanswer == null"></div>
-            <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
-            <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div>
-        </div> -->
-        <div>
-            <p v-show= "resultisgood == true">Oso ondo egin duzu....!!</p>
-            <p v-show= "resultisbad == true">Saiatu berriro.</p>
-        </div>
+        </article>
     </section>
+    
     <section>    
         <div class="finish-game-container" >
           <div class="text">{{text}}</div>
-            <button @click="finish = !finish" :class="styles">
+            <!-- <button @click="finish = !finish" :class="styles">
                     <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
-            </button>
+            </button> -->
+            <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button> 
+        
         </div>
-    <!-- <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button>  -->
+        
+    
     </section>
 </div>
 </template>
@@ -53,17 +60,17 @@ export default {
                 resultIsBad: false,
             }
     },
-    watch:{
-        finish(value){
-            if(value){
-                this.result(); 
-            } else {
-                this.text ="Nahi baduzu jolastu berriro?";
-                this.loadData();
+    // watch:{
+    //     finish(value){
+    //         if(value){
+    //             this.result(); 
+    //         } else {
+    //             this.text ="Nahi baduzu jolastu berriro?";
+    //             this.loadData();
                    
-            }
-        }
-    },
+    //         }
+    //     }
+    // },
     mounted(){
         this.loadData();
     },
@@ -75,17 +82,17 @@ export default {
         },
         result() {
                 if (this.phrase.inputanswer == this.phrase.answer) {
-                    this.resultIsGood = true;   
+                    return this.resultIsGood = true;   
                 } else {
-                    this.resultIsBad = true;  
+                    return this.resultIsBad = true;  
                 }
         }
     },
-    computed: {
-        styles(){ 
-                return this.finish ? ['buttonstart'] : ['buttonfinish'];
-                }
-    }
+    // computed: {
+    //     styles(){ 
+    //             return this.finish ? ['buttonstart'] : ['buttonfinish'];
+    //             }
+    // }
 }
 </script>
 
@@ -119,7 +126,7 @@ export default {
     border-radius: 15px;
 }
 
-question-area{
+.question-area{
     display:flex;
     flex-direction: column;
 }
@@ -149,19 +156,19 @@ question-area{
 .photo{
     width: 150px;
 }
-
 .solution{
     width: 60vw;
 }
 .finish-game-container{
     width: 80vw;
-    height: 8vh;
     display:flex;
+    margin-top:  10px;
     justify-content: space-evenly;
     align-items: baseline;
     background: rgba(98, 233, 188, 0.164);
 }
 .buttonfinish {
+    width: 40vw;
     margin: 10px;
     padding: 0px 10px;
     border-color:rgb(145, 144, 144);
@@ -171,7 +178,9 @@ question-area{
     color: white;
 }
 .buttonstart {
-    margin: 20px;
+    width: 30vw;
+    height: 10vh;
+    margin: 10px;
     padding: 0px 10px;
     border-color:rgb(255, 0, 85);
     border-radius: 15px;

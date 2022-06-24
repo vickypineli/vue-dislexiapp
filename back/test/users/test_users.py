@@ -20,12 +20,12 @@ def test_should_return_all_users_of_database():
     client = app.test_client()
 
     user1 = User(
-        id = "user-1",
+        user_id = "user-1",
         name = "Ander",
         password='0000',
     )
     user2 = User(
-        id = "user-2",
+        user_id = "user-2",
         name = "Alba",
         password='0000',
     )
@@ -38,13 +38,37 @@ def test_should_return_all_users_of_database():
     # ASSERT (then)
     assert response.json == [
         {
-            "id": "user-1",
+            "user_id": "user-1",
             "name": "Ander",
             "password":'0000',
         },
         {
-            "id": "user-2",
+            "user_id": "user-2",
             "name": "Alba",
             "password":'0000',
         },
     ]
+def test_get_user_by_user_id():
+    user_repository = UserRepository(temp_file())
+    app = create_app(repositories={"users": user_repository})
+    client = app.test_client()
+    
+    user1 = User(
+        user_id = "user-1",
+        name = "Ander",
+        password='0000',
+    )
+    user2 = User(
+        user_id = "user-2",
+        name = "Alba",
+        password='0000',
+    )
+
+    user_repository.save(user1)
+    user_repository.save(user2)
+
+    response = client.get("/api/users/user-1")
+
+    assert response.json["user_id"] == "user-1"
+    assert response.json["name"] == "Ander"
+    assert response.json["password"] == "0000"
