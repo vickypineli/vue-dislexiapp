@@ -16,7 +16,8 @@ export default {
   },
   computed: {
     loggedUser() {
-      return this.localUser;
+     let user = localStorage.getItem("auth");
+     return user;
     },
   },
 };

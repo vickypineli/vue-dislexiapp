@@ -104,7 +104,6 @@ h1 {
   text-transform: uppercase;
   color: rgb(242, 117, 8);
 }
-
 img {
   width: 35vw;
   height: 30vw;
@@ -120,7 +119,6 @@ input {
   height: 4.5vh;
   font-size: 1.5em;
 }
-
 
 button {
   width: 30vw;

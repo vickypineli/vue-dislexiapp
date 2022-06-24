@@ -157,6 +157,7 @@ export default {
 }
 .photo{
     width: 150px;
+    height: 150px;
 }
 .solution{
     width: 60vw;
@@ -203,7 +204,7 @@ button {
 }
 h1 {
   width: 90vw;
-  height: 60px;
+  height: 80px;
   margin: auto;
   margin-top: 4vh;
   font-size:5vw ;
