@@ -37,7 +37,7 @@
                     <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
             </button> -->
-            <button  class="buttonstart" @click="loadData()"> JOLASTU BERRIRO</button> 
+            <button  class="buttonstart" @click="playAgain()"> JOLASTU BERRIRO</button> 
         
         </div>
         
@@ -77,9 +77,16 @@ export default {
         async loadData() {
             const response = await fetch("http://localhost:5000/api/activities/chainedword/easy");
             this.phrases = await response.json();
+
+        },
+        playAgain(){
+                this.solutionGood = false;
+                this.solutionBad = false;
+                this.loadData();
+            
         },
         result() {
-    
+
                 if (this.phrases[0].inputanswer === this.phrases[0].answer) {
                  
                     this.solutionGood = true; 

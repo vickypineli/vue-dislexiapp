@@ -8,7 +8,7 @@
             <router-link to="/activities/chained-words/hard"><button>ZAILENA</button></router-link>
         </div>
         <div class="despcription">
-          <p>( Zaila Maila)</p>
+          <p>( Normala Maila)</p>
         </div>
     </section>
     <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
@@ -37,7 +37,7 @@
                     <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
             </button> -->
-            <button  class="buttonstart" @click="loadData()"> JOLASTU BERRIRO</button> 
+            <button  class="buttonstart" @click="playAgain()"> JOLASTU BERRIRO</button> 
         
         </div>
         
@@ -68,18 +68,25 @@ export default {
     //             this.loadData();
     //         }
     //     }
-    //
+    // },
     mounted(){
         this.loadData();
     },
 
     methods: {
         async loadData() {
-            const response = await fetch("http://localhost:5000/api/activities/chainedword/hard");
+            const response = await fetch("http://localhost:5000/api/activities/chainedword/mediun");
             this.phrases = await response.json();
+
+        },
+        playAgain(){
+                this.solutionGood = false;
+                this.solutionBad = false;
+                this.loadData();
+            
         },
         result() {
-    
+
                 if (this.phrases[0].inputanswer === this.phrases[0].answer) {
                  
                     this.solutionGood = true; 
@@ -143,7 +150,7 @@ export default {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 .answer{
-    width:50vw;
+    width: 50vw;
     margin: auto;
     margin-top: 20px;
     font-size: 1em;
