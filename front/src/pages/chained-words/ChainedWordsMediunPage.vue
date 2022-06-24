@@ -143,10 +143,10 @@ export default {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 .answer{
-    width:40vw;
+    width:50vw;
     margin: auto;
     margin-top: 20px;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
     font-weight: bold;
     color: rgb(71, 69, 69);
