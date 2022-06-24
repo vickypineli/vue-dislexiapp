@@ -8,7 +8,7 @@
             <router-link to="/activities/chained-words/hard"><button>ZAILENA</button></router-link>
         </div>
         <div class="despcription">
-          <p>( Zailena Maila)</p>
+          <p>( Zaila Maila)</p>
         </div>
     </section>
     <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
@@ -23,65 +23,76 @@
                 <!-- <div v-if="phrase.inputanswer == null"></div>
                 <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
                 <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div> -->
+            <div>
+                <p v-show= "resultIsGood == true">🎉Oso ondo egin duzu....!!</p>
+                <p v-show= "resultIsBad == true">❌Saiatu berriro.</p>
             </div>
+            <button  class="buttonfinish" @click="result()"> EMAITZA</button>
 
-        <div>
-            <p v-show= "resultisgood == true">Oso ondo egin duzu....!!</p>
-            <p v-show= "resultisbad == true">Saiatu berriro.</p>
         </div>
-            </article>
-        <button  class="buttonfinish" @click="result()"> EMAITZA</button>
+        </article>
     </section>
+    
     <section>    
         <div class="finish-game-container" >
-           <div class="text">{{text}}</div>
-           <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button> 
+          <div class="text">{{text}}</div>
             <!-- <button @click="finish = !finish" :class="styles">
                     <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
             </button> -->
+            <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button> 
+        
         </div>
-   
+        
+    
     </section>
 </div>
 </template>
 <script>
 export default {
-  name:"ChainedWord",
-  data() {
-        return {
-            finish:true,
-            text:"Amaitu duzu ariketa?",
-            phrases:[], 
+    name:"ChainedWord",
+    data() {
+            return {
+                finish: false,
+                text:"Amaitu duzu ariketa?",
+                phrases:[], 
+                resultIsGood: false,
+                resultIsBad: false,
+            }
+    },
+    // watch:{
+    //     finish(value){
+    //         if(value){
+    //             this.result(); 
+    //         } else {
+    //             this.text ="Nahi baduzu jolastu berriro?";
+    //             this.loadData();
+                   
+    //         }
+    //     }
+    // },
+    mounted(){
+        this.loadData();
+    },
+
+    methods: {
+        async loadData() {
+            const response = await fetch("http://localhost:5000/api/activities/chainedword/hard");
+            this.phrases = await response.json();
+        },
+        result() {
+                if (this.phrase.inputanswer == this.phrase.answer) {
+                    return this.resultIsGood = true;   
+                } else {
+                    return this.resultIsBad = true;  
+                }
         }
-  },
-//   watch:{
-//     finish(value){
-//         if(value){
-//             this.text ="Amaitu duzu ariketa?";
-//                 return this.loadData();           
-//             } else {
-//                 this.text= "Nahi baduzu jolastu berriro?"
-//                 return this.result();
-//             }
-//     }
-//   },
-  mounted(){
-    this.loadData();
-  },
-
-  methods: {
-    async loadData() {
-        const response = await fetch("http://localhost:5000/api/activities/chainedword/hard");
-        this.phrases = await response.json();
-    }
-
-  },
-//   computed: {
-//         styles(){
-//             return this.finish ? ['buttonstart'] : ['buttonfinish'];
-//         }
-//   },
+    },
+    // computed: {
+    //     styles(){ 
+    //             return this.finish ? ['buttonstart'] : ['buttonfinish'];
+    //             }
+    // }
 }
 </script>
 
@@ -110,17 +121,17 @@ export default {
     width: 90vw;
     height: 30vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     border: 4px dashed #42b983;
     border-radius: 15px;
 }
+
 .question-area{
-    width: 75vw;
     display:flex;
     flex-direction: column;
 }
 .question{
-    width: 70vw;
+    width: 60vw;
     margin: auto;
     margin-top: 10px;
     font-size: 2.2vw;
@@ -133,7 +144,7 @@ export default {
     width:40vw;
     margin: auto;
     margin-top: 20px;
-    font-size: 1em;
+    font-size: 1.2em;
     text-align: center;
     font-weight: bold;
     color: rgb(71, 69, 69);
@@ -146,39 +157,38 @@ export default {
     width: 150px;
 }
 .solution{
-    width: 40vw;
+    width: 60vw;
 }
 .finish-game-container{
     width: 80vw;
-    height: 8vh;
     display:flex;
+    margin-top:  10px;
     justify-content: space-evenly;
-    font-family: dislexia;
     align-items: baseline;
     background: rgba(98, 233, 188, 0.164);
 }
 .buttonfinish {
     width: 40vw;
-    width: 40vw;
     margin: 10px;
     padding: 0px 10px;
     border-color:rgb(145, 144, 144);
     border-radius: 15px;
-    font-family: dislexia;
     font-size: 1.2em;
     background: rgb(255, 0, 85);
     color: white;
 }
 .buttonstart {
-    margin: 20px;
+    width: 30vw;
+    height: 10vh;
+    margin: 10px;
     padding: 0px 10px;
     border-color:rgb(255, 0, 85);
     border-radius: 15px;
     font-size: 1.2em;
     background: white;
     color:rgb(255, 0, 85);
-    
 }
+
 button {
     width:20vw;
     height: 4vh;
@@ -186,7 +196,6 @@ button {
     border-color:rgb(145, 144, 144);
     border-radius: 10px;
     font-size: 1em;
-    font-family: dislexia;
     background: #42b983;
     color: white;
 }
