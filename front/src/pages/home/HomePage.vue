@@ -28,6 +28,7 @@ import { useStorage } from "@vueuse/core";
 import { login } from "@/services/auth.js";
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Home',
   data() {
     return {

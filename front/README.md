@@ -1,20 +1,23 @@
-# Aplicación semilla (front)
+# front
 
-## Configuración del proyecto
+## Project setup
 ```
 npm install
 ```
-### Ejecutar servidor de desarrollo
+
+### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
-### Generar archivos de distribución
+
+### Compiles and minifies for production
 ```
 npm run build
 ```
-### libreria para generar animacines
+
+### Lints and fixes files
 ```
-npm install gsap
+npm run lint
 ```
 
 ### Customize configuration
