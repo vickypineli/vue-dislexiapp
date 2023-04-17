@@ -13,75 +13,94 @@
     </section>
     <section class="exercise-box" v-for="phrase in phrases" :key="phrase.id">
         <article class="draw-area">
-            <img class="photo" :src="phrase.img" />
+            <img class="photo" :src="phrase.img"/>
         </article>
         <article class="question-area">
             <p class="question">{{phrase.question}}</p>
             <input class="answer" type="text" v-model="phrase.inputanswer"/>
             
             <div class="solution">
-                <!-- <div v-if="phrase.inputanswer == null"></div>
-                <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
-                <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div> -->
+            <div>
+                <p v-show = "solutionGood === true">🎉Oso ondo egin duzu....!!</p>
+                <p v-show = "solutionBad ===true">❌Saiatu berriro.</p>
             </div>
+            <button  class="buttonfinish" @click="result"> EMAITZA</button>
 
-        <div>
-            <p v-show= "resultisgood == true">Oso ondo egin duzu....!!</p>
-            <p v-show= "resultisbad == true">Saiatu berriro.</p>
         </div>
-            </article>
-        <button  class="buttonfinish" @click="result()"> EMAITZA</button>
+        </article>
     </section>
+    
     <section>    
         <div class="finish-game-container" >
-           <div class="text">{{text}}</div>
-           <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button> 
+          <div class="text">{{text}}</div>
             <!-- <button @click="finish = !finish" :class="styles">
                     <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
             </button> -->
+            <button  class="buttonstart" @click="playAgain()"> JOLASTU BERRIRO</button> 
+        
         </div>
-   
+        
+    
     </section>
 </div>
 </template>
 <script>
 export default {
-  name:"ChainedWord",
-  data() {
-        return {
-            finish:true,
-            text:"Amaitu duzu ariketa?",
-            phrases:[], 
+    name:"ChainedWord",
+    data() {
+            return {
+                finish: false,
+                text:"Amaitu duzu ariketa?",
+                phrases:[], 
+                phrase:"",
+                solutionGood: false,
+                solutionBad: false,
+               
+            }
+    },
+    // watch:{
+    //     finish(value){
+    //         if(value){
+    //             this.result(); 
+    //         } else {
+    //             this.text ="Nahi baduzu jolastu berriro?";
+    //             this.loadData();
+    //         }
+    //     }
+    // },
+    mounted(){
+        this.loadData();
+    },
+
+    methods: {
+        async loadData() {
+            const response = await fetch("http://localhost:5000/api/activities/chainedword/hard");
+            this.phrases = await response.json();
+        },
+        playAgain(){
+                this.solutionGood = false;
+                this.solutionBad = false;
+                this.loadData();
+            
+        },
+        result() {
+    
+                if (this.phrases[0].inputanswer === this.phrases[0].answer) {
+                 
+                    this.solutionGood = true; 
+                    this.solutionBad = false;  
+                } else {
+                    this.solutionGood = false;  
+                    this.solutionBad = true;
+                }
         }
-  },
-//   watch:{
-//     finish(value){
-//         if(value){
-//             this.text ="Amaitu duzu ariketa?";
-//                 return this.loadData();           
-//             } else {
-//                 this.text= "Nahi baduzu jolastu berriro?"
-//                 return this.result();
-//             }
-//     }
-//   },
-  mounted(){
-    this.loadData();
-  },
-
-  methods: {
-    async loadData() {
-        const response = await fetch("http://localhost:5000/api/activities/chainedword/hard");
-        this.phrases = await response.json();
-    }
-
-  },
-//   computed: {
-//         styles(){
-//             return this.finish ? ['buttonstart'] : ['buttonfinish'];
-//         }
-//   },
+    },
+    // computed: {
+    //     styles(){ 
+    //             return this.finish ? ['buttonstart'] : ['buttonfinish'];
+    //             }
+    // }
 }
 </script>
 
@@ -110,17 +129,17 @@ export default {
     width: 90vw;
     height: 30vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     border: 4px dashed #42b983;
     border-radius: 15px;
 }
+
 .question-area{
-    width: 75vw;
     display:flex;
     flex-direction: column;
 }
 .question{
-    width: 70vw;
+    width: 60vw;
     margin: auto;
     margin-top: 10px;
     font-size: 2.2vw;
@@ -130,7 +149,7 @@ export default {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 .answer{
-    width:40vw;
+    width:50vw;
     margin: auto;
     margin-top: 20px;
     font-size: 1em;
@@ -144,41 +163,41 @@ export default {
 }
 .photo{
     width: 150px;
+    height: 150px;
 }
 .solution{
-    width: 40vw;
+    width: 60vw;
 }
 .finish-game-container{
     width: 80vw;
-    height: 8vh;
     display:flex;
+    margin-top:  10px;
     justify-content: space-evenly;
-    font-family: dislexia;
     align-items: baseline;
     background: rgba(98, 233, 188, 0.164);
 }
 .buttonfinish {
     width: 40vw;
-    width: 40vw;
     margin: 10px;
     padding: 0px 10px;
     border-color:rgb(145, 144, 144);
     border-radius: 15px;
-    font-family: dislexia;
     font-size: 1.2em;
     background: rgb(255, 0, 85);
     color: white;
 }
 .buttonstart {
-    margin: 20px;
+    width: 30vw;
+    height: 10vh;
+    margin: 10px;
     padding: 0px 10px;
     border-color:rgb(255, 0, 85);
     border-radius: 15px;
     font-size: 1.2em;
     background: white;
     color:rgb(255, 0, 85);
-    
 }
+
 button {
     width:20vw;
     height: 4vh;
@@ -186,13 +205,12 @@ button {
     border-color:rgb(145, 144, 144);
     border-radius: 10px;
     font-size: 1em;
-    font-family: dislexia;
     background: #42b983;
     color: white;
 }
 h1 {
   width: 90vw;
-  height: 60px;
+  height: 80px;
   margin: auto;
   margin-top: 4vh;
   font-size:5vw ;

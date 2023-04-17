@@ -20,14 +20,11 @@
             <input class="answer" type="text" v-model="phrase.inputanswer"/>
             
             <div class="solution">
-                <!-- <div v-if="phrase.inputanswer == null"></div>
-                <div v-else-if="phrase.inputanswer == phrase.answer">🎉 OSO ONDO !!!</div>
-                <div v-else-if="phrase.inputanswer !=phrase.answer" >❌ SAIATU BERRIRO.</div> -->
             <div>
-                <p v-show= "resultIsGood == true">🎉Oso ondo egin duzu....!!</p>
-                <p v-show= "resultIsBad == true">❌Saiatu berriro.</p>
+                <p v-show = "solutionGood === true">🎉Oso ondo egin duzu....!!</p>
+                <p v-show = "solutionBad ===true">❌Saiatu berriro.</p>
             </div>
-            <button  class="buttonfinish" @click="result()"> EMAITZA</button>
+            <button  class="buttonfinish" @click="result"> EMAITZA</button>
 
         </div>
         </article>
@@ -40,7 +37,7 @@
                     <div v-if="!finish">GOAZEN</div>
                     <div v-else>EMAITZA</div>
             </button> -->
-            <button  class="buttonstart" @click="this.loadData"> JOLASTU BERRIRO</button> 
+            <button  class="buttonstart" @click="playAgain()"> JOLASTU BERRIRO</button> 
         
         </div>
         
@@ -56,8 +53,10 @@ export default {
                 finish: false,
                 text:"Amaitu duzu ariketa?",
                 phrases:[], 
-                resultIsGood: false,
-                resultIsBad: false,
+                phrase:"",
+                solutionGood: false,
+                solutionBad: false,
+               
             }
     },
     // watch:{
@@ -67,7 +66,6 @@ export default {
     //         } else {
     //             this.text ="Nahi baduzu jolastu berriro?";
     //             this.loadData();
-                   
     //         }
     //     }
     // },
@@ -79,12 +77,23 @@ export default {
         async loadData() {
             const response = await fetch("http://localhost:5000/api/activities/chainedword/easy");
             this.phrases = await response.json();
+
+        },
+        playAgain(){
+                this.solutionGood = false;
+                this.solutionBad = false;
+                this.loadData();
+            
         },
         result() {
-                if (this.phrase.inputanswer == this.phrase.answer) {
-                    return this.resultIsGood = true;   
+
+                if (this.phrases[0].inputanswer === this.phrases[0].answer) {
+                 
+                    this.solutionGood = true; 
+                    this.solutionBad = false;  
                 } else {
-                    return this.resultIsBad = true;  
+                    this.solutionGood = false;  
+                    this.solutionBad = true;
                 }
         }
     },
@@ -141,10 +150,10 @@ export default {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
 .answer{
-    width:40vw;
+    width: 50vw;
     margin: auto;
     margin-top: 20px;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
     font-weight: bold;
     color: rgb(71, 69, 69);
@@ -155,6 +164,7 @@ export default {
 }
 .photo{
     width: 150px;
+    height: 150px;
 }
 .solution{
     width: 60vw;
@@ -201,7 +211,7 @@ button {
 }
 h1 {
   width: 90vw;
-  height: 60px;
+  height: 80px;
   margin: auto;
   margin-top: 4vh;
   font-size:5vw ;

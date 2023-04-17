@@ -57,6 +57,7 @@ h1 {
   color: rgb(242, 117, 8);
 }
 h2{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color:rgb(247, 9, 88);  
 }
 button {
